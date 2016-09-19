@@ -1,0 +1,141 @@
+^T: Welcome: To Programming and to Python!
+^ST: Lecture 1A: Welcome!
+^I: Introduction to Programming for Public Policy
+^SI: Intro Programming
+
++ Why Learn to Code?
+# Technology powers the modern world.
+#- Gain currency with technology so you can help govern it.  
+#- What's at stake when services go wrong (VA, healthcare.gov).
+#- Understand the potential of algorithms to improve policy.
+# Expand your own toolset.
+#- Find, manipulate, and share data to get answers and promote solutions.
+
++ This is an Amazing Moment to Learn
+# Governments are getting on board...
+#- `One size fits all' bureaucracy doesn't cut it.
+#- Modern interface for services.
+#- Target interventions (money) where it's most needed.
+# And they're learning to share their data.
+#- Most states have \emph{some} data portal presence; many are very good.
+# Software is easier and more powerful than ever.
+#- Mapping, internet, etc.: making awesome stuff has never been easier.
+
++++ How the Class Is Structured
+
++ What We Will and Won't Cover
+- Thinking algorithmically with python.
+-- Building blocks of code from the ground up.
+- First-pass of low-level tools: the command line.
+- Fundamentals of databases and the web.
+>1em
+\hrule
+>1em
+- Higher-level analysis `recipes.'
+-- Build your own projects from large, free components.
+-- Wrangle data to get and share information, and create solutions.
+>1em
+\hrule
+>1em
+- However: not a management or policy course.
+% slide iteration, size, x, y, angle, text
+\caveat{2}{30}{50}{35}{10}{$\bm{\sim5}$ weeks}
+\caveat{2}{30}{50}{70}{10}{$\bm{\sim5}$ weeks}
+
++ Assignments
+- Weekly assignments posted on the class \link{https://classroom.github.com/classrooms/20690068-introduction-to-public-policy-30550-uc-harris}{Github site}.
+- You will also \emph{submit them} through Github.  
+-- There are detailed instructions in this week's homework, and we'll cover this in more detail, next week.
+-- But if you have trouble with Github, speak up fast!
+- Collaborative, large scale final project for exam.  I will provide templates, and you will propose the project.
+
++ Yes, some group work.
+! Real projects require collaboration.
+- Open source software is an incredibly important...
+-- Linux runs your phone; Apache is the most common web server.
+- Coders use Github to share work.  Using Github is a skill.
+-- You don't need to be in the same place, or even talk to your partner.
+- Github shows who wrote or modified every line of code.
+- In some cases, the `roles' will be very well definied.
+img/group_assignments.png
+
++ Additional Resources 
+- TA: XXX YYY (xyyy@uchicago -- but contact with Piazza!).
+- XXX and I will host a `clinic' (office hours) for 2-3 hours, starting from 16h on Thursdays in the Cathey Learning center. 
+- Use the class \link{https://piazza.com/uchicago/fall2016/ppha30550}{Piazza} discussion board.  
+>1em
+- New class: I will regularly ask for feedback.  \chred{Please} tell me (anonymously, if you like) if a lecture or assignment is confusing, or if you're frustrated.
+
++++ Coding for Public Policy
+- 311 System of Boston: improve constitutent interactions and services.
+- Mapping Trees in New York: making something beautiful.
+- Prioritizing building inspections in New York: public safety.
+- Policing in Charlotte/Mecklenberg: intervening with `at risk' officers.
+- Poverty by Census tract: studying and understanding the world.
+
++++ Approaching the Command Line
+- Please open Terminal (Mac) or Cygwin (Windows).
+- If you have not yet installed this (Windows), you can use \link{http://tmpnb.org}{tmpnb.org}.
+-- This is \emph{not the real McCoy}, and you will need cygwin very soon!
+
++ The Fundamental Commands
+\Large
+- \chred{pwd}:     print working directory
+- \chred{cd}:      change directory
+- \chred{mkdir}:   create a directory
+- \chred{rm(dir)}: remove a file (directory)
+- \chred{ls}:      list (files and folders)
+- \chred{mv}:      move or rename a file
+- \chred{chmod}:   change permissions on a file
+>1em
+- \chred{ssh/scp}: secure connections (not in this course)
+
++ Editing Text and Writing Code: Vim or Atom
+- A computer executes your code by `interpreting it' or runnng a pre-compiled `binary.'
+-- Interpreters: are computer programs that follow your instructions real-time
+-- Compilers translate what you write into something the computer understands `intuitively' (ones and zeros = binary).
+- Either way, your code cannot have any extraneous characters.
+-- So, needless to say (?), Microsoft Word won't cut it.
+>1em
+- I propose to use \link{https://atom.io/}{Atom} (gui) or \link{http://www.vim.org/}{vim}: Vi IMproved (vi = visual).
+-- The advantage of `vi` is that it's all from the command line.
+-- Emacs (also command line) has many partisans, as well.
+- In some cases we'll use Jupyter.
+
+img/pywordmark.png
++ 
+
++ What is Python?
+! Python is a popular \chred{interpreted}, \chred{high-level}, \chred{dynamic} programming language with \chred{automatic memory management}.
+\chred{Interpreted}: computer `runs your instructions,' so you can:
+- Run \chred{interactively}: execute one line of code at a time.
+- Or \chred{script}: write down and save all of your commands.
+- Opposed to languages that are `\chred{compiled}' into a `machine readable' executable (of 1's and 0's).
+% 
+\chred{Why Python?} Python hides a lot of the complexity from you.
+- You don't have to worry about moving bits (1s and 0s) around: it is \chred{high-level} and takes care of \chred{memory management}.
+- It is \chred{dynamic}: it figures out the \chred{types} of variables at `run-time.'
+
++ Creating a First Script
+''' Create a file \texttt{hello\_world.py}, using vim Atom, TextEdit, etc.
+''' Write \texttt{print("hello world")} in this file and save it.
+''' Navigate to the directory that holds that file: \\ \texttt{cd /Users/jsaxon/Documents/...}
+''' Type: \texttt{python hello\_world.py}
+- To go further, we need the rules and building blocks of Python...
+
+\centering
+\Large
+Through the next two lecture, we'll discuss:
+! Control
+! Types 
+! Assignment, Operators, and Methods
+Some of them will be mixed together.
+
++ The Building Blocks \tright{Notes: See Jupyter Notebook.}
+Launch python on your computer, or open a jupyter notebook:
+! Command line: `python' (must be python 3).
+! Local Jupyter: Anaconda Navigator
+! Online Jupyter: \link{http://tmpnb.org}{tmpnb.org} or \link{http://try.jupyter.org}{try.jupter.org}
+\centering \small{Click `New' in the upper right corner, then Python 3.}
+img/jupyter.png
+

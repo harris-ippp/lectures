@@ -116,14 +116,13 @@ Regular expressions (regex) is a shorthand, for complex pattern matches.
 + sed
 - sed allows for simple, regex find and replace
 - If you learn \tt{vim} it is the same syntax:
-` \pr sed 's/find/replace/g' salaries.csv
+` \pr sed \tqs{}s/find/replace/g\tqs{} salaries.csv
 - Here, the \tt{s} means `search' and the \tt{g} means global/all occurrences in a line.  For instance, remove the \$ signs:
-` \pr grep '\$' salaries.csv | sed 's/\$//g' 
+` \pr grep \tqs{}\$\tqs{} salaries.csv | sed \tqs{}s/\$//g\tqs 
 
 + sort
 - sort sorts your file, with many options.
-- Try to choose out the highest 20 municipal salaries in Chicago...
--- man: \tt{-k} for key, \tt{-r} for reverse, \tt{-t} for delimiter, \tt{-n} for numeric.
+! Find the 20 highest salaries in the city. \\ \small{man: \tt{-k} for key, \tt{-r} for reverse, \tt{-t} for delimiter, \tt{-n} for numeric.}
 
 + chmod
 - chmod allows you to change the permissions of a file
@@ -175,7 +174,7 @@ You'll need these from day one:
 + A Standard Sequence \tright{Do in Terminal.}
 Start with a single user and a single thread of edits:
 # Download your homework skeleton:
-#- \tt{git clone git@github.com:harris-ippp/hw-1-JamesSaxon.git}
+#- \tt{git clone git@github.com:harris-ippp/01-welcome.git}
 # Make your edits with Atom or vim.
 # Add files to the `staging' area, and commit them; check the status and log to see that it worked:
 #- \tt{git add q1.py}
@@ -200,10 +199,10 @@ However, there is tremendous flexibility:
 - \chred{git drop}:  get rid of the stash (gone forever)
 - \chred{git pop}:   retrieve the changes in the stash.
 
-+ Using Branches
++ Using Branches (Less Common but Important)
 Use `branches' to work on projects that might disrupt the `master' (which should always work):
 # Download the project:
-#- \tt{git clone git@github.com:JamesSaxon/test.git}
+#- \tt{git clone git@github.com:harris-ippp/01-welcome.git}
 # Create a new branch:
 #- \tt{git checkout -b my\_branch} 
 #- Or \tt{git branch my\_branch}, then \tt{git checkout my\_branch}.
@@ -221,7 +220,9 @@ Use `branches' to work on projects that might disrupt the `master' (which should
 # Grab a repository: 
 #- \tt{git clone git@github.com:JamesSaxon/test.git}
 # Make some changes and commit them.  In the meantime, your collaborator does the same.
-# \tt{pull} updates down from the server, only to find that they conflict.  Resolve the conflicts and recommit.
+# \tt{git pull} to download updates from the server.
+# If they conflict, use vim or Atom to resolve this by hand; then stage and recommit.
 # Push back up to the server.
 #- \tt{git push}
+! Let's try an \link{https://github.com/harris-ippp/lectures/blob/master/02/snip/git\_merge\_ex.sh}{example}.
 

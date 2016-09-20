@@ -11,6 +11,13 @@
 # Expand your own toolset.
 #- Find, manipulate, and share data to get answers and promote solutions.
 
++++ Coding for Public Policy
+- 311 System of Boston: improve constitutent interactions and services.
+- Mapping Trees in New York: making something beautiful.
+- Prioritizing building inspections in New York: public safety.
+- Policing in Charlotte/Mecklenberg: intervening with `at risk' officers.
+- Poverty by Census tract: studying and understanding the world.
+
 + This is an Amazing Moment to Learn
 # Governments are getting on board...
 #- `One size fits all' bureaucracy doesn't cut it.
@@ -51,27 +58,18 @@
 
 + Yes, some group work.
 ! Real projects require collaboration.
-- Open source software is an incredibly important...
--- Linux runs your phone; Apache is the most common web server.
 - Coders use Github to share work.  Using Github is a skill.
 -- You don't need to be in the same place, or even talk to your partner.
-- Github shows who wrote or modified every line of code.
-- In some cases, the `roles' will be very well definied.
+- Open source software is an incredibly important...
+-- Linux runs your phone; Apache is the most common web server.
 img/group_assignments.png
 
 + Additional Resources 
 - TA: XXX YYY (xyyy@uchicago -- but contact with Piazza!).
-- XXX and I will host a `clinic' (office hours) for 2-3 hours, starting from 16h on Thursdays in the Cathey Learning center. 
+- XXX and I will host a `tea' (office hours) for 2-3 hours, starting from 16h on Thursdays in the Cathey Learning center. 
 - Use the class \link{https://piazza.com/uchicago/fall2016/ppha30550}{Piazza} discussion board.  
 >1em
 - New class: I will regularly ask for feedback.  \chred{Please} tell me (anonymously, if you like) if a lecture or assignment is confusing, or if you're frustrated.
-
-+++ Coding for Public Policy
-- 311 System of Boston: improve constitutent interactions and services.
-- Mapping Trees in New York: making something beautiful.
-- Prioritizing building inspections in New York: public safety.
-- Policing in Charlotte/Mecklenberg: intervening with `at risk' officers.
-- Poverty by Census tract: studying and understanding the world.
 
 +++ Approaching the Command Line
 - Please open Terminal (Mac) or Cygwin (Windows).
@@ -86,9 +84,19 @@ img/group_assignments.png
 - \chred{rm(dir)}: remove a file (directory)
 - \chred{ls}:      list (files and folders)
 - \chred{mv}:      move or rename a file
-- \chred{chmod}:   change permissions on a file
+- \chred{python}:  run a python script
+- \chred{man}:     read the `manual'
 >1em
 - \chred{ssh/scp}: secure connections (not in this course)
+
++ Notes on the Directory Structure
+- \chred{`..'}: means `backwards one directory'
+- \chred{`~'}: means `my home directory'
+- \chred{'/'}: is `root'
+> 1em
+- \chred{\*}: is a `wildcard' (match anything or nothing)
+> 1em
+- On \chred{cygwin}, hard drive that you're accustomed to is `hidden' at /cygdrive/c/
 
 + Editing Text and Writing Code: Vim or Atom
 - A computer executes your code by `interpreting it' or runnng a pre-compiled `binary.'

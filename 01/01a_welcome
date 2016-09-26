@@ -1,37 +1,51 @@
-^T: Welcome: To Programming and to Python!
+^T: Welcome: to the Class and to the Command Line!
 ^ST: Lecture 1A: Welcome!
 ^I: Introduction to Programming for Public Policy
 ^SI: Intro Programming
+^D: September 26, 2016
 
 + Why Learn to Code?
+\Large
 # Technology powers the modern world.
+#- Good policy requires that we understand the system.
 #- Gain currency with technology so you can help govern it.  
 #- What's at stake when services go wrong (VA, healthcare.gov).
-#- Understand the potential of algorithms to improve policy.
+#- Understand the potential of algorithms to improve policy. \\ \vspace{2em}
 # Expand your own toolset.
 #- Find, manipulate, and share data to get answers and promote solutions.
-
-+++ Coding for Public Policy
-- 311 System of Boston: improve constitutent interactions and services.
-- Mapping Trees in New York: making something beautiful.
-- Prioritizing building inspections in New York: public safety.
-- Policing in Charlotte/Mecklenberg: intervening with `at risk' officers.
-- Poverty by Census tract: studying and understanding the world.
+#- Needn't authorize money or create programs: \emph{just solve problems}.
 
 + This is an Amazing Moment to Learn
+# Software is easier and more powerful than ever.
+#- Mapping, internet, etc.: making awesome stuff has never been easier.
 # Governments are getting on board...
 #- `One size fits all' bureaucracy doesn't cut it.
 #- Modern interface for services.
 #- Target interventions (money) where it's most needed.
 # And they're learning to share their data.
 #- Most states have \emph{some} data portal presence; many are very good.
-# Software is easier and more powerful than ever.
-#- Mapping, internet, etc.: making awesome stuff has never been easier.
 
-+++ How the Class Is Structured
++++ Coding for Public Policy
+
++ Boston 311 System: Improve Constituent Services
+../img/bos311a.png; ../img/bos311b.png; ../img/bos311c.png
+
++ Mapping Trees in New York: Make Something Beautiful
+../img/nyc_trees.png \link{http://jillhubley.com/project/nyctrees/}{jillhubley.com/project/nyctrees}
+
++ Prioritizing Building Inspections: Public Safety
+../img/nyc_fire.png:0.5
+
++ Policing: Intervene with `At-Risk' Officer
+../img/rayid.png
+
++ Poverty by Census Tract: Visualize the World
+- See Jupyter Notebook, \tt{census/Census.ipynb}.
+
++++ How the Class is Structured
 
 + What We Will and Won't Cover
-- Thinking algorithmically with python.
+- Thinking algorithmically with python: coding.
 -- Building blocks of code from the ground up.
 - First-pass of low-level tools: the command line.
 - Fundamentals of databases and the web.
@@ -51,99 +65,244 @@
 
 + Assignments
 - Weekly assignments posted on the class \link{https://classroom.github.com/classrooms/20690068-introduction-to-public-policy-30550-uc-harris}{Github site}.
-- You will also \emph{submit them} through Github.  
--- There are detailed instructions in this week's homework, and we'll cover this in more detail, next week.
--- But if you have trouble with Github, speak up fast!
+- You will also \emph{submit them} through `Github.'  
+-- Covered later today.  It is the `standard' for collaboratively developing and publishing code.
+-- If you have trouble with git/Github, speak up fast!
 - Collaborative, large scale final project for exam.  I will provide templates, and you will propose the project.
 
 + Yes, some group work.
 ! Real projects require collaboration.
-- Coders use Github to share work.  Using Github is a skill.
+- Developers use git to work collaboratively.  Using git is a skill.
 -- You don't need to be in the same place, or even talk to your partner.
-- Open source software is an incredibly important...
--- Linux runs your phone; Apache is the most common web server.
-img/group_assignments.png
+- Even better: learn to contribute to the open source community.
+../img/group_assignments.png
 
 + Additional Resources 
-- TA: XXX YYY (xyyy@uchicago -- but contact with Piazza!).
-- XXX and I will host a `tea' (office hours) for 2-3 hours, starting from 16h on Thursdays in the Cathey Learning center. 
-- Use the class \link{https://piazza.com/uchicago/fall2016/ppha30550}{Piazza} discussion board.  
+- TAs to be finalized in the next 24 hours.
+- We will host a `clinic' (discussion session) for 2-3 hours, starting from 16h on Thursdays or Fridays.  \chred{Please come!}
+- Use the class \link{https://piazza.com/uchicago/fall2016/ppha30550}{Piazza} discussion board.
+-- First item of business: vote for the tea time that fits your schedule!
 >1em
-- New class: I will regularly ask for feedback.  \chred{Please} tell me (anonymously, if you like) if a lecture or assignment is confusing, or if you're frustrated.
+- New class: \chred{Please} tell me (anonymously, if you prefer) if a lecture or assignment is confusing, or if you're frustrated.
+- And please ask questions as we go.
 
-+++ Approaching the Command Line
++++ Welcome to the Command Line
+
++  This will be different: hang in there.
+- This may be one of the hardest lectures in the entire class.
+- We are doing it now, because everything else depends on it.
+>1em
+- We'll list and examine a bunch of `commands' (programs/words).
+- Just understand the `meaning' -- don't worry about memorizing these.
+- Learning to string them together will take practice (HW!).
+
++ Why Use The Command Line?
+- Making Graphical User Interfaces (GUIs) is tricky and unenlightening.
+- GUIs are often not extensible or scriptable: doing something fifty times usually requires the user to actually click around, fifty times!
+-- Insane!  Computers are good at repetition!
+- For computation, we're better off running programs from the command line.
+- Immediately available on Mac OS X.  On Windows, cygwin provides a Unix-like interface.
+
++ Approaching the Command Line
 - Please open Terminal (Mac) or Cygwin (Windows).
 - If you have not yet installed this (Windows), you can use \link{http://tmpnb.org}{tmpnb.org}.
 -- This is \emph{not the real McCoy}, and you will need cygwin very soon!
+<0.45em
+../img/welcome_to_the_shell.png:0.7
 
 + The Fundamental Commands
 \Large
 - \chred{pwd}:     print working directory
+- \chred{ls}:      list (files and folders)
 - \chred{cd}:      change directory
 - \chred{mkdir}:   create a directory
-- \chred{rm(dir)}: remove a file (directory)
-- \chred{ls}:      list (files and folders)
 - \chred{mv}:      move or rename a file
-- \chred{python}:  run a python script
+- \chred{touch}:   create an empty file
+- \chred{cp}:      copy a file or folder
+- \chred{rm(dir)}: remove a file (directory)
 - \chred{man}:     read the `manual'
 >1em
 - \chred{ssh/scp}: secure connections (not in this course)
 
 + Notes on the Directory Structure
-- \chred{`..'}: means `backwards one directory'
-- \chred{`~'}: means `my home directory'
+- \chred{`.'}: means \emph{this} directory
+- \chred{`..'}: means one directory higher
+- \chred{`\tt{\textasciitilde}'}: means `my home directory'
+- \chred{`\tt{-}'}: the last directory I was in.
 - \chred{'/'}: is `root'
 > 1em
-- \chred{\*}: is a `wildcard' (match anything or nothing)
+- \chred{\tt{*}}: is a `wildcard' (match anything or nothing)
 > 1em
-- On \chred{cygwin}, hard drive that you're accustomed to is `hidden' at /cygdrive/c/
+- In \chred{cygwin}, your `normal' hard drive lives at /cygdrive/c/.
 
-+ Editing Text and Writing Code: Vim or Atom
-- A computer executes your code by `interpreting it' or runnng a pre-compiled `binary.'
--- Interpreters: are computer programs that follow your instructions real-time
--- Compilers translate what you write into something the computer understands `intuitively' (ones and zeros = binary).
-- Either way, your code cannot have any extraneous characters.
--- So, needless to say (?), Microsoft Word won't cut it.
->1em
-- I propose to use \link{https://atom.io/}{Atom} (gui) or \link{http://www.vim.org/}{vim}: Vi IMproved (vi = visual).
--- The advantage of `vi` is that it's all from the command line.
--- Emacs (also command line) has many partisans, as well.
-- In some cases we'll use Jupyter.
++ Going Deeper: The Commands
+Tremendous power `built in' to the command line: quickly compose programs to get answers.
+- \chred{echo}:    parrot back some text
+- \chred{curl/wget}: retrieving web resources.
+- \chred{cat, head, tail}: `concatenate' (dump) a file, or part of it
+- \chred{less}:    page through a file
+- \chred{grep}:    search for lines in a file
+- \chred{sed}:     find and replace
+- \chred{wc}:      count words or lines in file
+- \chred{sort}:    sort a file
+- \chred{cut}:     choose out specific columns
+- \chred{uniq}:    with \tt{-c}, count occurences of a unique line.
 
-img/pywordmark.png
++ Going Further: Piping and Scripting
+- The power of the command line comes from the ability to quickly compose programs from these building blocks.
+- There are two import `connectors' to know:
+--[\tt{|}]  \chred{pipe}: forward the output to the next command.
+--[\tt{>}]  \chred{redirect output}: write to a file
+- You may sometimes see these as well:
+--[\tt{>>}] \chred{redirect output}: \emph{append} to a file.
+--[\tt{<}]  \chred{redirect input}: feed \emph{in} to command.
+--[\tt{<< X}] \chred{read input}: read from ithe command line `until X' (uncommon)
+
++ echo
+- \tt{echo} just parrots everything that follows it:
+` \pr echo hello world. \\ hello world.
+- You could easily use this to write to a file... not like this!
+` \pr echo Hello (and happy birthday) > bd\\ -bash: \chred{syntax error} near unexpected token `('
+- `Special' characters (!, \/, \$, (, ), etc.) need to be enclosed in quotes:
+` \pr echo "Hello (and happy birthday)" > bd 
+
++ curl/wget
+- \tt{curl} and \tt{wget} retrieve a web-page or other net resource \link{https://data.cityofchicago.org/Administration-Finance/Current-Employee-Names-Salaries-and-Position-Title/xzkq-xp2w}{[link]}:
+` wget data.cityofchicago.org/api/views/xzkq-xp2w/rows.csv 
+` curl data.cityofchicago.org/api/views/xzkq-xp2w/rows.csv -s -o salaries.csv
+- The wget `-O' and curl `-o' `options' allow you to specify and output file name for the download.
+-- And -s stands for `silent' -- see the \tt{man} pages.
+! Please do the curl command.
+
++ cat/head/tail/less
+- \tt{cat} dumps a file to the screen:
+` \pr cat salaries.csv
+- For very large files, better to `page through it', or check the beginning or end:
+` \pr less salaries.csv
+` \pr head -42 salaries.csv \# first 42 lines
+` \pr tail -12 salaries.csv \#  last 12 lines
+- With \tt{<< X}, one could write a small script ... uncommon.
+
++ grep [1 of 3]
+- \tt{grep} is a filter.  It finds all matching lines in a file.
+` \pr grep EMANUEL salaries.csv
+- You can also `reverse grep' with `-V.'
+- \chred{grep is my favorite command.}  I hope you will enjoy it too!
+
++ grep [2 of 3]: Regular Expresion Special Characters 
+Regular expressions (regex) is a shorthand, for complex pattern matches.
+- Dramatically expands potential of grep.
+*T: A bit quirky at first, but super useful!
+* c l
+* \tt{\^}          & Beginning of the line. \\
+* \$            & End of line. \\
+* \tt{\textbackslash}  & Turn off the next special character. \\
+* \tt{[ ]}      & Any {\it contained} characters; use `x-y' for range. \\
+* \tt{[\^{} ]}  & None of contained characters. \\
+* \tt{.}        & Any single character. \\
+* \tt{*}        & The preceding character/expression, any number of times. \\
+* \tt{\textbackslash\string{x\textbackslash\string}}    & The preceding, $x$ times. \\
+* \tt{x|y}      & x OR y. \\
+
++[fragile] grep [3 of 3]: Applying Regular Expressions
+- How much does the mayor make? 
+\begin{tcolorbox}
+\pr \verb|grep '^\"EMA' salaries.csv|
+\end{tcolorbox}
+- Who makes more than \$200k?
+\begin{tcolorbox}
+\pr \verb|grep '\$[2-9][0-9]\{5\}\.' salaries.csv|
+\end{tcolorbox}
+
++ wc: word count
+- wc allows you to count the number of bytes (-c), number of words (-w) or number of lines (-l) in a file:
+` \pr wc -l salaries.csv \# by far the most useful
+- How many police offers are on the streets of Chicago?
+` \pr grep -i "police officer" salaries.csv | wc -l
+- How many of them are detectives?
+` \pr grep "POLICE.*DETECTIVE" salaries.csv | wc -l
+
++ sed
+- sed allows for simple, regex find and replace
+- If you learn \tt{vim} it is the same syntax:
+` \pr sed \tqs{}s/find/replace/g\tqs{} salaries.csv
+- Here, the \tt{s} means `search' and the \tt{g} means global/all occurrences in a line.  For instance, remove the \$ signs:
+` \pr grep \tqs{}\textbackslash\$\tqs{} salaries.csv | sed \tqs{}s/\textbackslash\$//g\tqs 
+- Technical warning: it's single quotes, here.  With double quotes, you'd need to `escape' the \$ twice: for the command line \emph{and} regex.
+
++ sort
+- sort sorts your file, with many options.
+! Find the 10 highest salaries in the city. \\ \small{man: \tt{-k} for key field, \tt{-t} for delimiter, \tt{-r} for reverse, \tt{-n} numeric.}
+- Modify the sort command here:
+` \pr grep \tqs{}\textbackslash\$\tqs{} salaries.csv | sed \tqs{}s/\textbackslash\$//g\tqs | sort | head
+
++ cut (penultimate!)
+- cut allows you to choose which columns to print. 
+- Really needs the \tt{-d} (delimiter) and \tt{-f} (field) options.
+- To print only the first names in the city:
+` \pr cut -f2 -d, salaries.csv
+- i.e., the second field, delimited by commas.
+
++ uniq (last one!)
+- uniq prints unique lines: subsequent duplicates are removed.
+- It is most-often used after sort, and with \tt{-c} option to \emph{count}.
+- To count the occurrences of each last name:
+` \pr cut -d, -f1 salaries.csv | sort | uniq -c 
+
++ That was a lot!
+- You will \emph{need} the navigation commands \emph{all the time}.
+%
+- The text analysis commands are really useful for getting fast answers.
+-- You will get more familiar with them in homework.
+-- But the rest of the course will not depend on these.
+- It should slow down a bit now.
+
++++ Version Control: Git
+
++ What is version control?  Why use it?
+- Perhaps a familiar story, for paper drafts. $⟹ $
+- What if several people need to be able to edit \emph{simultaneously}.
+- What if there are many different files that depend on eachother being at a specific version, all of which may be changed?
+! Version Control Systems maintain a history and facilitate collaborative editing.
+../img/college_papers.png:0.31:side
+
++ What is git?  GitHub?
+- Git is \emph{the} modern VCS, designed by Linus Torvalds (creator of Linux).
+- Git maintains a history of meaningful `commits.'  
+-- It is tremendously flexible (`branches').
+- Git is \emph{distributed}: everyone has a copy of the entire history.
+- However, it is often useful to maintain a master copy on a server where anyone can access it or `push' their changes: GitHub.
+- GitHub is a nice \chred{interface} for hosting repositories.
+../img/git_github.pdf:0.6
+
++ Git Commands 
+You'll use these regularly:
+- \chred{git init}:   create a repository in this directory
+- \chred{git clone}:  download repository
+- \chred{git add}:    add a file to `staging' area
+- \chred{git status}: view status of all files
+- \chred{git commit}: commit staged files to history
+- \chred{git push}:   upload all changes to a remote server
+- \chred{git log}:    show the history
+
++ A Standard Sequence \tright{Do in Terminal.}
+Start with a single user and a single thread of edits:
+# Download your homework skeleton:
+#- \tt{git clone git@github.com:harris-ippp/01-welcome.git}
+# Make your edits with Atom or vim.
+# Add files to the `staging' area, and commit them; check the status and log to see that it worked:
+#- \tt{git add q1.py}
+#- \tt{git status \# is everything there?}
+#- \tt{git commit -m "started question 1"}
+#- \tt{git log \# now all part of the commit history?}
+# Upload it to the server:
+#- \tt{git push}
+Then repeat steps 2-4 as you go. \\
+\visible<2>{\hspace{3.2em}\huge{\chred{This is what you'll use regularly.}}}
+
+\centering 
+\huge
+Next time:
+../img/pywordmark.png
 + 
-
-+ What is Python?
-! Python is a popular \chred{interpreted}, \chred{high-level}, \chred{dynamic} programming language with \chred{automatic memory management}.
-\chred{Interpreted}: computer `runs your instructions,' so you can:
-- Run \chred{interactively}: execute one line of code at a time.
-- Or \chred{script}: write down and save all of your commands.
-- Opposed to languages that are `\chred{compiled}' into a `machine readable' executable (of 1's and 0's).
-% 
-\chred{Why Python?} Python hides a lot of the complexity from you.
-- You don't have to worry about moving bits (1s and 0s) around: it is \chred{high-level} and takes care of \chred{memory management}.
-- It is \chred{dynamic}: it figures out the \chred{types} of variables at `run-time.'
-
-+ Creating a First Script
-''' Create a file \texttt{hello\_world.py}, using vim Atom, TextEdit, etc.
-''' Write \texttt{print("hello world")} in this file and save it.
-''' Navigate to the directory that holds that file: \\ \texttt{cd /Users/jsaxon/Documents/...}
-''' Type: \texttt{python hello\_world.py}
-- To go further, we need the rules and building blocks of Python...
-
-\centering
-\Large
-Through the next two lecture, we'll discuss:
-! Control
-! Types 
-! Assignment, Operators, and Methods
-Some of them will be mixed together.
-
-+ The Building Blocks \tright{Notes: See Jupyter Notebook.}
-Launch python on your computer, or open a jupyter notebook:
-! Command line: `python' (must be python 3).
-! Local Jupyter: Anaconda Navigator
-! Online Jupyter: \link{http://tmpnb.org}{tmpnb.org} or \link{http://try.jupyter.org}{try.jupter.org}
-\centering \small{Click `New' in the upper right corner, then Python 3.}
-img/jupyter.png
 

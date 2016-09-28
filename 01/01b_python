@@ -13,6 +13,7 @@
 %
 - The command line language is `bash,'\footnote{Bourne Again SHell} and can be run via `source`.
 ` \pr echo "echo hello" > hw \\ \pr source hw \\ hello
+- But `echo' is not a great way to write our long command!
 
 + Editing Text and Writing Code: Vim or Atom
 - Computers `interpret' your code, or run a `compiled binary.'
@@ -28,7 +29,9 @@
 - Sometimes we'll use `Jupyter' -- a browser based environment.
 
 + Putting the Salaries Script Into a File
-../img/salaries.pdf:0.8
+The long command: \link{http://tinyurl.com/z45357y}{tinyurl.com/z45357y}
+>1.5em 
+../img/salaries.pdf
 
 + A First Python Script
 ''' Create a file \texttt{hello\_world.py}, using vim Atom, TextEdit, etc.
@@ -41,7 +44,7 @@
 - chmod allows you to change the permissions of a file
 - Each file has separate `permissions' for whether you (u), people in its `group' (g), or anyone (o), can read (r), write (w), or execute/run (x) the file.  You can add (+), remove (-), or set (=) permissions.
 - Most often, use it to make a script executable, perhaps just for you:
-` \pr cat my.py \\ \#!/usr/bin/env python \\ print("hello world") \\\pr chmod u+x my.py  \\ \pr ./my.py \# don't need `python' \\ hello world
+` \pr cat hello\_world.py \\ \#!/usr/bin/env python \\ print("hello world") \\\pr chmod u+x hello\_world.py  \\ \pr ./hello\_world.py \# don't need `python' \\ hello world
 
 \centering 
 ../img/pywordmark.png
@@ -56,8 +59,7 @@
 >0.5em
 \chred{High level:} python hides a lot of the complexity from you.
 - You don't have to worry about moving bits (1s and 0s) around.
-- And you can accompish a lot, with relatively little code.
-
+- And you can accomplish a lot, with relatively little code.
 
 \centering
 \Large

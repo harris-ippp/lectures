@@ -13,7 +13,8 @@
 #- Understand the potential of algorithms to improve policy. \\ \vspace{2em}
 # Expand your own toolset.
 #- Find, manipulate, and share data to get answers and promote solutions.
-#- Needn't authorize money or create programs: \emph{just solve problems}.
+#- Needn't authorize money or create programs: \emph{just solve problems}. \\ \vspace{2em}
+# And it's fun!  Like learning a language.
 
 + This is an Amazing Moment to Learn
 # Software is easier and more powerful than ever.
@@ -250,55 +251,12 @@ Regular expressions (regex) is a shorthand, for complex pattern matches.
 ` \pr cut -d, -f1 salaries.csv | sort | uniq -c 
 
 + That was a lot!
-- You will \emph{need} the navigation commands \emph{all the time}.
+- You will use the navigation commands \emph{all the time}.
 %
-- The text analysis commands are really useful for getting fast answers.
+- The text analysis commands are super useful for fast answers.
 -- You will get more familiar with them in homework.
 -- But the rest of the course will not depend on these.
 - It should slow down a bit now.
-
-+++ Version Control: Git
-
-+ What is version control?  Why use it?
-- Perhaps a familiar story, for paper drafts. $⟹ $
-- What if several people need to be able to edit \emph{simultaneously}.
-- What if there are many different files that depend on eachother being at a specific version, all of which may be changed?
-! Version Control Systems maintain a history and facilitate collaborative editing.
-../img/college_papers.png:0.31:side
-
-+ What is git?  GitHub?
-- Git is \emph{the} modern VCS, designed by Linus Torvalds (creator of Linux).
-- Git maintains a history of meaningful `commits.'  
--- It is tremendously flexible (`branches').
-- Git is \emph{distributed}: everyone has a copy of the entire history.
-- However, it is often useful to maintain a master copy on a server where anyone can access it or `push' their changes: GitHub.
-- GitHub is a nice \chred{interface} for hosting repositories.
-../img/git_github.pdf:0.6
-
-+ Git Commands 
-You'll use these regularly:
-- \chred{git init}:   create a repository in this directory
-- \chred{git clone}:  download repository
-- \chred{git add}:    add a file to `staging' area
-- \chred{git status}: view status of all files
-- \chred{git commit}: commit staged files to history
-- \chred{git push}:   upload all changes to a remote server
-- \chred{git log}:    show the history
-
-+ A Standard Sequence \tright{Do in Terminal.}
-Start with a single user and a single thread of edits:
-# Download your homework skeleton:
-#- \tt{git clone git@github.com:harris-ippp/01-welcome.git}
-# Make your edits with Atom or vim.
-# Add files to the `staging' area, and commit them; check the status and log to see that it worked:
-#- \tt{git add q1.py}
-#- \tt{git status \# is everything there?}
-#- \tt{git commit -m "started question 1"}
-#- \tt{git log \# now all part of the commit history?}
-# Upload it to the server:
-#- \tt{git push}
-Then repeat steps 2-4 as you go. \\
-\visible<2>{\hspace{3.2em}\huge{\chred{This is what you'll use regularly.}}}
 
 \centering 
 \huge

@@ -1,0 +1,47 @@
+^T: Version Control: Git and GitHub
+^ST: Git and GitHub
+^I: Introduction to Programming for Public Policy
+^SI: Intro Programming
+^D: September 28, 2016
+
++ What is version control?  Why use it?
+- Perhaps a familiar story, for paper drafts. $⟹ $
+- What if several people need to be able to edit \emph{simultaneously}.
+- What if there are many different files that depend on eachother being at a specific version, all of which may be changed?
+! Version Control Systems maintain a history and facilitate collaborative editing.
+../img/college_papers.png:0.31:side
+
++ What is git?  GitHub?
+- Git is \emph{the} modern VCS, designed by Linus Torvalds (creator of Linux).
+- Git maintains a history of meaningful `commits.'  
+-- It is tremendously flexible (`branches').
+- Git is \emph{distributed}: everyone has a copy of the entire history.
+- However, it is often useful to maintain a master copy on a server where anyone can access it or `push' their changes: GitHub.
+- GitHub is a nice \chred{interface} for hosting repositories.
+../img/git_github.pdf:0.6
+
++ Git Commands 
+You'll use these regularly:
+- \chred{git init}:   create a repository in this directory
+- \chred{git clone}:  download repository
+- \chred{git add}:    add a file to `staging' area
+- \chred{git status}: view status of all files
+- \chred{git commit}: commit staged files to history
+- \chred{git push}:   upload all changes to a remote server
+- \chred{git log}:    show the history
+
++ A Standard Sequence \tright{Do in Terminal.}
+Start with a single user and a single thread of edits:
+# Download your homework skeleton:
+#- \tt{git clone git@github.com:harris-ippp/01-welcome.git}
+# Make your edits with Atom or vim.
+# Add files to the `staging' area, and commit them; check the status and log to see that it worked:
+#- \tt{git add q1.py}
+#- \tt{git status \# is everything there?}
+#- \tt{git commit -m "started question 1"}
+#- \tt{git log \# now all part of the commit history?}
+# Upload it to the server:
+#- \tt{git push}
+Then repeat steps 2-4 as you go. \\
+\visible<2>{\hspace{3.2em}\huge{\chred{This is what you'll use regularly.}}}
+

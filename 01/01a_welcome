@@ -126,6 +126,7 @@
 - \chred{ssh/scp}: secure connections (not in this course)
 
 + Notes on the Directory Structure
+! In \chred{cygwin}, your C drive is at /cygdrive/c/.
 - \chred{`.'}: means \emph{this} directory
 - \chred{`..'}: means one directory higher
 - \chred{`\tt{\textasciitilde}'}: means `my home directory'
@@ -133,8 +134,6 @@
 - \chred{'/'}: is `root'
 > 1em
 - \chred{\tt{*}}: is a `wildcard' (match anything or nothing)
-> 1em
-- In \chred{cygwin}, your `normal' hard drive lives at /cygdrive/c/.
 
 + Going Deeper: The Commands
 Tremendous power `built in' to the command line: quickly compose programs to get answers.
@@ -236,6 +235,7 @@ Regular expressions (regex) is a shorthand, for complex pattern matches.
 ! Find the 10 highest salaries in the city. \\ \small{man: \tt{-k} for key field, \tt{-t} for delimiter, \tt{-r} for reverse, \tt{-n} numeric.}
 - Modify the sort command here:
 ` \pr grep \tqs{}\textbackslash\$\tqs{} salaries.csv | sed \tqs{}s/\textbackslash\$//g\tqs | sort | head
+- The \link{https://gist.github.com/JamesSaxon/c223710765fdfe535582f3fc9f1b562e}{answer} -- don't peak!
 
 + cut (penultimate!)
 - cut allows you to choose which columns to print. 

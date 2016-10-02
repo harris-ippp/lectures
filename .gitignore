@@ -1,0 +1,11 @@
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.tex
+*.toc
+*.vrb
+.DS_Store
+.ipynb_checkpoints
+01/snip/

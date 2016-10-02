@@ -1,0 +1,108 @@
++ Unix and Linux Power the World
+- Unix is an operating system dating from the 1970s at Bell Labs.  
+- Pretty much everything except Windows is Unix-like.
+- Linux is a 25-year old `flavor' of Unix... so is Mac OS X.
+- If you have a smartphone, you are most likely \emph{already} a Unix user.
+- If you've used the web, you've been served by a Linux machine.
+-- Well over half of websites are powered by Linux and Unix.
+- 21st century cars will run a flavor of Linux (AGL)
+
+\centering
+\Large
+Through the next two lecture, we'll discuss:
+! Control
+! Types 
+! Assignment
+! Operators
+Some of them will be mixed together.
+
++ Let's take these one at a time... \tright (See Jupyter Notebook.)
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\Large
+\chred{Control}
+- \texttt{while}
+- \texttt{for}
+- \texttt{if}
+- \texttt{else}
+- \texttt{elif}
+- \texttt{break}
+- \texttt{continue}
+- \texttt{pass}
+\end{column}
+\begin{column}{0.3\textwidth}
+\Large
+\chred{Types}
+- \texttt{bool}
+- \texttt{int}
+- \texttt{float}
+- \texttt{string}
+- \texttt{list}
+- \texttt{dict}
+- \texttt{tuple}
+- \texttt{iterator}
+\end{column}
+\begin{column}{0.3\textwidth}
+\Large
+\chred{Assignment:} \texttt{=} \\
+%
+>1em
+\chred{Operators}
+\begin{column}{0.5\textwidth}
+- \texttt{+}
+- \texttt{-}
+- \texttt{*}
+- \texttt{/}
+- \texttt{\%}
+- \texttt{//}
+- \texttt{**}
+\end{column}
+\begin{column}{0.5\textwidth}
+- \texttt{==}
+- \texttt{>}
+- \texttt{<}
+- \texttt{>=}
+- \texttt{<=}
+\end{column}
+\end{column}
+\end{columns}
+
++ Collaborating with Git
+# Grab a repository: 
+#- \tt{git clone git@github.com:JamesSaxon/test.git}
+# Make some changes and commit them.  In the meantime, your collaborator does the same.
+# \tt{git pull} to download updates from the server.
+# If they conflict, use vim or Atom to resolve this by hand; then stage and recommit.
+# Push back up to the server.
+#- \tt{git push}
+! Let's try an \link{https://github.com/harris-ippp/lectures/blob/master/02/snip/git\_merge\_ex.sh}{example}.
+
++ Further Assorted Commands
+However, there is tremendous flexibility:
+- \chred{git pull}:   download and merge updates from a remote server
+- \chred{git fetch}:  just downlaod updates from a remote server
+- \chred{git reset}:  de-stage files
+- \chred{git revert}: undo existing commits
+- \chred{git checkout}: switch to a different branch
+- \chred{git branch}: show or create a branch
+- \chred{git merge}:  merge one branch to another.
+- \chred{git stash}: creates temporary $\unsim$branch; revert to a clean directory.
+- \chred{git drop}:  get rid of the stash (gone forever)
+- \chred{git pop}:   retrieve the changes in the stash.
+
++ A Few More
+You may not need these, but here's a flavor.
+- \chred{diff}: displays differences between two files
+- \chred{awk}: useful (but abstruse) scripting capabilities.
+- \chred{column} will align columns.
+- \chred{top}: which programs are taxing the computer the most 
+- \chred{history}: what have you done!?
+- \chred{hostname} the current computer's name
+- \chred{whoami}:  your user name
+- \chred{hostname}: the host you're on
+- \chred{git} is a powerful tool for versioning files!
+>0.5em
+- Any missing commands can be installed through the cygwin installer or with home brew on Mac.  (Or apt-get/yum on Linux.)
+
+
+

@@ -1,0 +1,44 @@
+^T: When Things Go Wrong: Debugging
+^ST: Lecture 3B: Debugging
+^I: Introduction to Programming for Public Policy
+^SI: Intro Programming
+^D: October 12, 2016
+
++ Debugging
+''' Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?  \\ \hspace*{20.5em} -- Brian Kernighan
+- Bugs are inevitable; debugging is hard.
+- Let's talk briefly about how to deal with bugs.
+
++ Steps
+# \textbf{Read the error!}  Python generally tells you the location of and code for the error.  That may be enough.
+# If you don't understand the error, google it.
+# Add lots of \tt{print} (debug) statements, near where you believe the code is failing, to understand the state of the program.
+#- Or, possibly, use \tt{pdb}: covered next.
+# Build the minimal piece of code that reproduces the bug.
+#- If your `minimal example' \emph{works}, then build up from there.
+# Explain your code to a friend (or an inanimate object = duck).
+<1em
+../img/rubber_duck.jpg:0.3
+
++ The Python Debugger
+A fast way to see what the computer's actual state is to use pdb
+` \pr python -m pdb jamie\_spirograph.py
+-[\textbf{n:}] to go to next line of code
+-[\textbf{l:}] list source code for the current file (or \tt{ll}).
+-[\textbf{b:}] set a breakpoint
+-[\textbf{c:}] continue debugging until you hit a breakpoint
+-[\textbf{s:}] step into a function
+-[\textbf{p:}] to print the value of an expression in the current context
+
++ If you are still lost, ask!  (But ask well!)
+- Many forums where you can get help, but they can be snarky.
+-- In this class, we have Piazza; in the real world, stack\textbf{overflow}.
+-- Of course -- start be searching the forum (indexed on google).
+- A few tips for good questions: [\link{http://tinyurl.com/stack-hints}{1}, \link{http://www.catb.org/~esr/faqs/smart-questions.html}{2}, \link{https://webmasters.googleblog.com/2010/09/tips-for-getting-help-with-your-site.html}{3}, \link{http://stackoverflow.com/help/how-to-ask}{4}]
+-- Ask in public, in the right place.  Tag it so people can find it.
+-- Meaningful subject line: `python problem or `help!' don't cut it.
+-- Be specific about what you wanted (what's are you trying to do), expected from the program, and got.
+-- Provide your minimal example, so others can \emph{reproduce} your error.
+-- List the steps you've already tried (demonstrate commitment).
+- Good questions get answered; bad ones get \link{http://lmgtfy.com/?q=rtfm}{LMGTFY} (or RTFM).
+

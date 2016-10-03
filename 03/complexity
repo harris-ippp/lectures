@@ -198,7 +198,7 @@ The (apparent!) fact that $P ≠ NP$ matters a LOT: \\
 \chred{internet encryption uses the fact that prime factorization is NP!}
 
 + RSA: Internet Encryption in One Slide
-- Euler: if $a$ and $n$ share no prime factors, then $a^{φ(n)} \equiv 1 \pmod{n}$.
+- Euler: if $m$ and $n$ share no prime factors, then $m^{φ(n)} \equiv 1 \pmod{n}$.
 -- $φ(n)$ is the number of integers less than $n$ that are relatively prime to $n$.
 -- If $n$ has just two prime factors, $q$ and $p$, $φ(n) = (q - 1)(p - 1)$.
 - Choose an integer\footnote{It must be coprime with respect to $φ(n)$, i.e., share no prime factors.} $e$ and find $d$ such that $d × e ≡ 1 \pmod{φ(n)}$, i.e. $d × e = 1 + zφ(n)$ for an integer $z$.

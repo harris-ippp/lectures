@@ -9,7 +9,7 @@
 
 + Introduction
 - Up to now, our python scripts have been self-contained.
-- It is time to open them to the world!  Use data, 
+- It is time to open them to the world!  Use data, we can
 
 + Canonical Reads
 - for line in open("salaries.csv", "r"):

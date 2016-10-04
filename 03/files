@@ -1,0 +1,16 @@
+^T: Input, Output, and Options
+^ST: I/O and Options
+^I: Introduction to Programming for Public Policy
+^SI: Intro Programming
+^D: October 10, 2016
+^H: \include{pythonlst}
+^H: \usepackage{perpage} 
+^H: \MakePerPage{footnote}
+
++ Introduction
+- Up to now, our python scripts have been self-contained.
+- It is time to open them to the world!  Use data, 
+
++ Canonical Reads
+- for line in open("salaries.csv", "r"):
+

@@ -8,9 +8,46 @@
 ^H: \MakePerPage{footnote}
 
 + Introduction
-- Up to now, our python scripts have been self-contained.
-- It is time to open them to the world!  Use data, 
+\setbeamertemplate{itemize/enumerate body begin}{\Large}
+\setbeamertemplate{itemize/enumerate subbody begin}{\Large}
+\setbeamertemplate{itemize/enumerate subsubbody begin}{\Large}
+- Our python scripts have been `self-contained.'
+- It is time to open them to the world:
+-- \chred{Input/Output}: Play with data!
+-- \chred{Options}: Modify them on the fly!
 
-+ Canonical Reads
-- for line in open("salaries.csv", "r"):
++ `Canonical' Reads
+! Great news: you already know how!
+\pythonexternal{snip/a/for_line_in_file.py}
+- The syntax \emph{is} a \tt{for} loop -- nothin' to it!
+- Just \tt{open()} the file with a \tt{`r'} flag, for `read.'
+- You get one line at a time, and can do whatever you want with them.
+- Use \tt{strip()} to remove any additional whitespace.
+
++ `Canonical' Writes
+! Good news: fairly similar...
+\pythonexternal{snip/a/canonical_write.py}
+- The difference is that we're iterating over \emph{something else}.
+- The output file is just an object, that we write to.
+- There is also \tt{`a'}, for `append' (write at end of file).
+
++ `Canonical' Writes: \tt{with}
+- I sometimes use `\tt{with}' to specify a block in which to write.
+- The file `snaps shut' at the end of the block.
+\pythonexternal{snip/a/canonical_write_with.py}
+
++++ Using Data
+
++ Using and Filtering Inputs
+- Let's start by reproducing our `high salaries grep' from day 1.
+\pythonexternal{snip/a/for_line_in_grep.py}
+
++ Python: Beyond Single Lines
+- Using bash, we were limited in our `global' view.
+- Though we could \tt{sort}, we mainly looked at one line at a time.
+> 1em
+- Python lets us store variables and manipulate the entire dataset.\footnote{Truth be told, bash allows this too; it's just less fun.}
+-- In future weeks we'll learn more and more tools for doing this.
+
++ 
 

@@ -11,8 +11,13 @@ class person():
 
   def greet(self, other):
 
-    print("How do you do, {}?".format(other.name))
-    other.respond(self)
+    if type(other) is person:
+      print("How do you do, {}?".format(other.name))
+      other.respond(self)
+
+    if type(other) is dog:
+      print("Who's a good boy?  Is {} a good boy?".format(other.name))
+      other.happy_ears()
 
   def respond(self, other):
     

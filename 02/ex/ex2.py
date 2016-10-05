@@ -4,7 +4,7 @@ mconv = {"ly" : 9.4605e15, "km" : 1000, "m" : 1, "cm" : 0.01, "mi" : 1609.344, "
 
 def convert(n = 1, fr = "m", to = "m"):
 
-  pass
+  return n * mconv[fr] / mconv[to]
 
 print(convert(3.281, "ft", "m"))
 print(convert(1000, "m", "km"))

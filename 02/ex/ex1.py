@@ -6,10 +6,10 @@ yum = ["pineapple", "watermelon", "blueberry", "apricot", "chirimoya", "grapefru
 #################################
 
 print(":: 1 :: alphabetically")
+yum.sort()
 for y in yum:
 
-  pass
-
+  print(y)
 
 #################################
 #################################
@@ -17,6 +17,7 @@ for y in yum:
 print(":: 2 :: only the berries")
 for y in yum:
 
-  pass
+  if "berry" in y:
+    print(y)
 
 

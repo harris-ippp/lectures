@@ -33,7 +33,7 @@
 
 + Using and Filtering Inputs \tright ex/a/for\_line\_in\_grep.py
 - Let's start by reproducing our `high salaries grep' from day 1.
-\pythonexternal{ex/a/for_line_in_grep.py}
+\visible<2>{\pythonexternal{ex/a/for_line_in_grep.py}}
 
 + Python: Beyond Single Lines
 - Using bash, we were limited in our `global' view.
@@ -55,13 +55,13 @@
 
 +++ Formats
 
-+ CSV: Comma Separated Values \tright ex/a/csv\_test.py
++ CSV: Comma Separated Values
 - Common, simple, flat, but non-standardized format.
 -- Text in columns separated by a delimiter (`escape' by quotes).
 -- Can be read directly by e.g., Excel.
 ../img/csv_ex.png
 
-+ CSV: The Module
++ CSV: The Module  \tright ex/a/csv\_test.py 
 - I tend to just use a for loop, but there \emph{is} a csv module.
 \pythonexternal{ex/a/csv_test.py}
 

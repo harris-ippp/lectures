@@ -1,0 +1,86 @@
+^T: List Comprehension
+^I: Introduction to Programming for Public Policy
+^SI: Intro Programming
+^D: October 10, 2016
+^H: \include{pythonlst}
+^H: \usepackage{perpage} 
+^H: \MakePerPage{footnote}
+
++[fragile] One-Line Loops
+- We've already talked about lists and loops.
+- Sometimes it can be useful to combine them.
+- This is called `list comprehension.'  At its simplest:
+\begin{tcolorbox}
+\pr \verb|print([i for i in range(10)])| \\
+\verb|[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]|
+\end{tcolorbox}
+- So: the thing on the left is repeated for each entry in the iterable.
+- This is a very concise way to create useful lists.
+
++[fragile] Using the Variables
+- You can also do simple operations, for instance, get the squares
+\begin{tcolorbox}
+\pr \verb|print([i*ifor i in range(10)])| \\
+\verb|[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]|
+\end{tcolorbox}
+- Or perform operations on each item:
+\begin{tcolorbox}
+\pr \verb|words = 'The only people for me are ...'.split()| \\
+\pr \verb|print([w.upper() for w in words])| \\
+\verb|['THE', 'ONLY', 'PEOPLE', 'FOR', 'ME', 'ARE', '...']|
+\end{tcolorbox}
+- This is still `somewhat artificial.'
+
++ Example 1: Sudoku (Homework)
+- In this week's homework, you'll permanently solve Sudoku.
+- If your `puzzle' is stored in an 81-digit list, \tt{puzzle}, what are the values in row, column, or block 5?
+- Rows are easiest:
+` [puzzle[5*9+x] for x in range(9)]
+- Columns are pretty straightforward:
+\visible<2->{
+` [puzzle[5+9*x] for x in range(9)]
+}
+- Blocks don't lend themselves well to this:
+\visible<3>{
+` [puzzle[(x\%3) + (x//3)*9 + (b\%3) * 3 + (b//3)*27] for x in range(9)]
+}
+
++ Example 1: Sudoku (Ordering)
+../img/sudoku_count.pdf:0.5:full
+
++[fragile] Selection
+- Using \tt{if}, you can control selection into the lists...
+\begin{tcolorbox}
+\pr \verb|num = [6, -5, -5, 10, 4, 8, -6, -5, 0, -6]| \\
+\pr \verb|print([x for x in num if x > 0])| \\
+\verb|[6, 10, 4, 8]|
+\end{tcolorbox}
+
++ Example 2: Intersection \tright{ex/a/intersection.py}
+- How could we take the intersection of two lists?
+\pythonexternal{ex/a/intersection.py}
+
++ Additional `Comprehensions'
+We'll mainly see lists, but the syntax applies more broadly:
+>1em
+- Using curly brackets, \{\}, one can also create sets ($\unsim$unique lists):
+` \pr print(\{i//2 for i in range(10)\}) \\ {0, 1, 2, 3, 4}
+- With parentheses, one gets a `generator object' -- lists for which each individual element is generatedd `just in time' for you to use them:
+` \pr print((i*i for i in range(10))) \\ <generator object <genexpr> at 0x102997a40>
+- Generators can be very slick -- feel free to learn about them!
+
++++ Operations on Iterables
+
++ Operations on Iterables \tright{ex/a/iterable\_operations.py}
+- Anything you can put in a for loop is an iterable.
+- There are a few useful functions on iterables, not specific to lists.
+>0.5em
+- \chred{max()} returns the larget value.
+- \chred{min()} returns the smallest value.
+- \chred{sum()} returns the sum of all values.
+- \chred{len()} returns the number of elements.
+- \chred{all()} returns True if every element is True, and False otherwise.
+- \chred{any()} returns True if at least one element is True.
+>1.0em
+\pythonexternal{ex/a/iterable_operations.py}
+

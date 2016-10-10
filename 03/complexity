@@ -73,12 +73,12 @@
 +[fragile] Count the Operations in Each Snippet
 \begin{columns}
 \begin{column}{0.4\linewidth}
-\pythonexternal{snip/count1.py}
-\pythonexternal{snip/count3.py}
+\pythonexternal{ex/count1.py}
+\pythonexternal{ex/count3.py}
 \end{column}
 \begin{column}{0.4\linewidth}
-\pythonexternal{snip/count2.py}
-\pythonexternal{snip/count4.py}
+\pythonexternal{ex/count2.py}
+\pythonexternal{ex/count4.py}
 \end{column}
 \end{columns}
 \caveat{2-}{17}{10}{53}{0}{$\bm{N³+N²+N+1}$}

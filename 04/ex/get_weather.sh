@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bath
 
 mkdir -p weather
 cd weather

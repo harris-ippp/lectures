@@ -16,6 +16,6 @@ JOIN ::
   [ACT, CPS] 
 
 SUBQUERY :: 
-  [ACT, ROS] housework by sex
-  [ACT, ROS, CPS] housework by sex and educational atainment
+  [ACT, ROS] housework (02) by sex
+  [ACT, ROS, CPS] housework (02) by sex and educational atainment
 

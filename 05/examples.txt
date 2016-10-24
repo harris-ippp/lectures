@@ -1,0 +1,21 @@
+WHERE :: 
+  [CPS] age and family income in DC, IL, or PA
+  [CPS] marital status and educationl attainment for families with income > $100k (>= 15)
+  [ACT] duration of video game playing (120307)
+
+GROUP BY ::
+  [CPS] bachelors or HS by state
+  [RES] daily time alone in households with 2 children, by youngest child age
+  [RES] worked last week (1Y, 2N) by partner or spouse present (1 or 2).
+
+ORDER BY :: 
+  [CPS] bachelor's by state
+
+JOIN ::
+  [RES, CPS] worked last week (1Y, 2N) by ed attainment
+  [ACT, CPS] 
+
+SUBQUERY :: 
+  [ACT, ROS] housework by sex
+  [ACT, ROS, CPS] housework by sex and educational atainment
+

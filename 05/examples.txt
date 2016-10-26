@@ -1,21 +1,32 @@
+http://tinyurl.com/z24cdoz
+
 WHERE :: 
   [CPS] age and family income in DC, IL, or PA
   [CPS] marital status and educationl attainment for families with income > $100k (>= 15)
   [ACT] duration of video game playing (120307)
 
 GROUP BY ::
-  [CPS] bachelors or HS by state
-  [RES] daily time alone in households with 2 children, by youngest child age
+* [CPS] bachelors or HS by state
+* [RES] daily time alone in households with 2 children, by youngest child age
   [RES] worked last week (1Y, 2N) by partner or spouse present (1 or 2).
+  [RES] daily time with friends by year; daily time with family by year. (not for class)
+  [CPS] married by educational attainment
+* [CPS] married by state (children at home)
 
 ORDER BY :: 
-  [CPS] bachelor's by state
+* [CPS] bachelor's by state
+* [CPS] high school by state
 
 JOIN ::
-  [RES, CPS] worked last week (1Y, 2N) by ed attainment
-  [ACT, CPS] 
+* [RES, CPS] worked last week (1Y, 2N) by ed attainment
+  
 
 SUBQUERY :: 
+* [CPS, ACT] time spent directly engaging children, by years of education.
+* [CPS, ACT] time spent directly engaging children, by sex.
+  [CPS, ACT] time spent directly engaging children, by spouse or partner present.
+  [CPS, ACT] time spent directly engaging children, by work status.
+  [CPS, ACT] time spent directly engaging children, by GEDIV/GEREG.
+* [ACT, CPS, RES] married by attended church
   [ACT, ROS] housework by sex
   [ACT, ROS, CPS] housework by sex and educational atainment
-

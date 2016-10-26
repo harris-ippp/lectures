@@ -1,6 +1,7 @@
 ^T: The Relational Model and the \\ Structured Query Language
 ^ST: RDBM and SQL
 ^H: \include{sqllst}
+^H: \include{pythonlst}
 
 ! \Huge{Who are these dudes?}
 
@@ -115,12 +116,18 @@ This is THE basic SQL syntax that you will use.
 + \tt{ORDER BY} (i.e., .sort\_values(by = ``..."))
 - Sort by one or more fields, ascending or descending (\tt{ASC} or \tt{DESC}).
 \sqlexternal{ex/order_group_education_state.sql}
+- Note also the use of \tt{AS} (like in python!), to alias a long column name.
 
 + \tt{JOIN} (i.e., .join())
 - In households with children, what is the likelihood that a spouse or partner is present, by levels of education.  Must \tt{JOIN} tables.
 - Alternatively, this can be done with multiple tables in `\tt{FROM}' and join conditions under `\tt{WHERE}.'
 \only<1>{\sqlexternal{ex/spouse_present.sql}}
 \only<2>{\sqlexternal{ex/spouse_present_where.sql}}
+
++ \tt{HAVING} (Requirements on Groups)
+- \tt{HAVING} is like \tt{WHERE} for grouped values.
+- For instance, you could present averages only for groups with \tt{COUNT()} larger than 30, or averages or sums above a threshold.
+\sqlexternal{ex/having.sql}
 
 + Subqueries
 - You can use subqueries as tables, for multiple levels of grouping.
@@ -130,5 +137,59 @@ This is THE basic SQL syntax that you will use.
 + On The Structure
 - Good news is: SQL queries basically always follow the same structure.  
 - You may or may not need all the pieces, but there's no question about the order-- there's only one way.  
-- The query on the last page is as complicated as it gets.
+- There are a few more keywords, but the format of the query on the last page is as complicated as \tt{SELECT} statements get.
+
++++ Creating Tables
+
++ CREATE TABLE
+- Most likely, you will be a database rather than developer.
+- But it's useful to understand how to create a simple database.
+` \pr sqlite3 my\_new\_db.sqlite
+\sqlexternal{ex/create.sql}
+- This defines the \emph{schema} of a table.
+-- SQLite recognizes: \tt{INTEGER}, \tt{REAL}, \tt{TEXT}, \tt{BLOB}, and \tt{NULL}.
+- The \tt{id} column will auto-increment, to provide a unique primary key.
+- \tt{NOT NULL} and \tt{PRIMARY KEY} are \emph{constraints}, that help the RDBMS optimally parse a statement.
+
++ \tt{INSERT} Rows
+- Insert values like so:
+\sqlexternal{ex/insert.sql}
+- Multiple values are both convenient and efficient.
+- Trying to insert multiplepeople with 
+
+''' When the RDBMS evaluates a statement, it begins by `parsing' and compiling it: reading it and turning it into a computer-ready, optimized plan.  Most RDBMSs treat this as separate from the execution step, so you can `recycle' the execution plan.  (To my knowledge, \tt{sqlite3} does not provide this access.)
+
++ Creating a Table From the Command Line
+- There's a shortcut in \tt{sqlite3} for loading data from a csv file:
+` \pr CREATE TABLE chicago (Last TEXT, First TEXT, Position TEXT, Department TEXT, Salary REAL); \\ \pr .mode csv \\ \pr .import salaries.csv chicago
+- You'll try this, for homework.
+
++++ Access from Python 
+
++ Using the \tt{sqlite3} Library
+- Straightforward python interface: \tt{sqlite3} (\link{https://docs.python.org/3.5/library/sqlite3.html}{docs}).
+- And pandas totally builds in support, like read\_csv/read\_json.
+\only<1>{\pythonexternal{ex/sqlite_minimal.py}}
+\only<2>{\pythonexternal{ex/sqlite_pandas.py}}
+- Other library, \tt{sqlalchemy}, extends this interface, makes access feel more object-oriented.
+
++ Broader Example: Goal
+- Want direct child engagement by parent education.
+-- Will sum over activities, per person.
+- Use \tt{years\_education}, \tt{activity\_code}, and \tt{duration}; join on \tt{case\_id} and \tt{line\_no}.
+-- Codes are codes 301XX, 302XX, 303XX.
+- Require children in household and respondent to work (edited\_labor\_force\_status $<$ 3).
+>1em
+# Write a SQL query to give us the formatted data.
+# Use this query load the data in pandas, and plot it.
+
++ A Larger Example: SQL
+\sqlexternal{ex/direct_engagement.sql}
+
++ A Larger Example: Python
+\pythonexternal{ex/child_engagement.py}
+
++ Result (Lower Stats than Before)
+<0.5em
+engagement.pdf:0.8
 

@@ -1,0 +1,116 @@
+^T: The Internet, the Web, and HTML
+^ST: The Web
+^I: Introduction to Programming for Public Policy
+^SI: Intro Programming
+^D: Halloween 2016
+
++++ The Internet and the \\ World Wide Web
+
++ Fundamental Definitions
+''' The \chred{Internet} is a \emph{physical network}, and a set of protocols for shipping information across that network.
+>3em
+''' The \chred{World Wide Web} uses a high-level protocol, called the Hyper Text Transfer Protocol (http), along with a markup language (html), to transfer interlinked documents across the Internet.
+
++ History of the Internet in One Slide
+- Started as a Defense Advanced Research Projects Agency (DARPA/DoD) ARPANET project to interconnect computers.
+- First transmission between nodes at UCLA in 1969; by 1970 it reached across the US (to Boston).
+- Transmission Control Protocol/Internet Protocol (TCP/IP, slide \ref{slide:tcpip}) developped throughout the 1970s.
+-- Became sole internet protocol in 1983.
+- ARPANET declared `operational' (no-longer research) in 1975; transferred to the military.
+- Ethernet standard (transmission on wires) written in 1981.
+- In the 1980s, the internet shifted to the National Science Foundation; in 1983, it switched to its modern protocol (TCP/IP).
+-- NSFNET provided the backbone of the internet from 1985 to 1995.
+- Clinton I privatized the internet backbone in 1994.
+
+% http://www.vox.com/a/internet-maps
+../img/G69Dec.jpg:1.0:full
+
+% http://www.computerhistory.org/internethistory/1970s/
+../img/1975_net_map.jpg:1.0:full
+
+% https://en.wikipedia.org/wiki/National_Science_Foundation_Network
+../img/nsfnet_backbone_1986.png:1.0:full
+
+% http://www.vox.com/a/internet-maps
+../img/backbone_2000.png:1.0:full
+
+../img/oceanic_cables.pdf:1.0:full
+
+../img/cable_landing_2.jpg:1.0:full
+
++ The Internet Protocol Suite: Moving Packets
+\label{slide:tcpip}
+How do the packets actually get divided up and sent around?
+- Higher-level applications deliver payloads to lower-level protocols, that ensure deliver, address, the packets, and move them across wires.  
+-- The high-level protocol just needs to know the IP address it wants, and the port at the destination.
+- Together, these make up the Internet Protocol Suite, or TCP/IP.
+-- Often conceptualized as four layers.\footnote{A competing model, the OSI model, uses 7.}
+../img/tcpip_layers.pdf:1.0
+
++ Moving Across the Internet
+Data is divided, wrapped and delivered to lower levels, where they are repeatedly routed (internet layer) and shipped (over physical cables).
+>1em
+../img/moving_on_the_net.pdf:1.0
+
++ Mapping from Here to Geneva
+\fontsize{7.5}{12} \selectfont
+* clll
+* Hop & IP & Where & Time \\ \hline
+*  1  & 10.0.0.1  & (My Router) & -- \\
+*  2  & 96.120.26.81 & Comcast: Mount Prospect, IL & 11.266 ms \\
+*  3  & elmhurst.il.chicago.comcast.net & Comcast: Elmhurst, IL & 9.386 ms \\
+*  4  & 162.151.92.89 & Comcast: Lower West Side &  12.537 ms \\
+*  5  & area4.il.chicago.comcast.net & Comcast: Lower West Side & 11.665 ms \\
+*  6  & 350ecermak.il.ibone.comcast.net & \cg 350 East Cermak, Chicago & 13.547 ms \\
+*  7  & newyork.ny.ibone.comcast.net & \cg 60 Hudson St, NYC & 32.365 ms \\
+*  8  & 111eighthave.ny.ibone.comcast.net & \cg Google Building, NYC & 30.809 ms \\
+*  9  & 111eighthave.ny.ibone.comcast.net & \cg Google Building, NYC & 33.153 ms \\
+* 10  & 217.239.43.33 & Deutsche Telekom, Remscheid &  \cy 121.475 ms \\
+* 11  & 193.159.166.222 & Deutsche Telekom, Monchengladbach &  238.268 ms \\
+* 12  & e513-e-rbrxl-2-ne0.cern.ch & CERN, Geneva & 119.991 ms \\
+*T: \tt{traceroute} to CERN/Geneva
+
+../img/east_cermak.png:1.0:full
+
+% ../img/60hudson_st_nyc:1.0:full
+../img/sky_hudson.png:1.0:full
+
+../img/111_eighth_ave.jpg:1.0:full
+
+../img/trace_map.png:1.0:full
+
++++ Hyper Text Transfer Protocol
+
++ The Hyper Text Transfer Protocol
+- Most of the data that you access on the internet comes over http or https (secure).
+- A web browser is a `client,' issuing requests through a TCP/IP port.
+- A `server' is an application on a computer, listening on a port.
+- HTTP provides a framework for these requests and responses.
+-- HTTP takes the transmission across the Internet at the lower levels (TCP/IP/Link) for granted.
+
++ \tt{GET} and \tt{POST} Requests
+- The two most-common request types are \tt{GET} and \tt{POST}.  
+- Both request resources with a `uniform resource locator' (URL):
+''' \centering \tt{scheme://host[:port]/path[?query][\#fragment]}
+- \tt{GET} simply requests a URL.
+- \tt{POST} additionally sends data to the server in the request `body.'
+- The server responds with a resource which may be...
+-- static: a file \&c. that is already prepared.
+-- dynamic: using limited data from the name of the requested resource (\tt{GET}) or data from the body of the request (\tt{POST}) the server may create or modify a resource `on-the-fly' (next week).
+>1em
+- There are also several methods used more-commonly in e.g., javascript (not coverd): \tt{HEAD}, \tt{PUT}, \tt{DELETE}, etc.
+
++ The Response/Resource
+- The server responds to the request with a status code and, hopefully, the requested resource.
+- The most common status code is \green{200}/OK, but you've probably also seen \red{404}/Not Found, and experienced \gold{301}/Moved or \gold{307}/redirect.
+- Most common type of document is an \infnblue{html file}, which may include references (URLs) for additional resources (pictures, style, etc.) that the browser must also request, and which the server will supply.
+
++++ HTML
+h1, h2, p, b, i, ul, ol, div, tables,
+br, title, body, a/href, img, 
+
++++ CSS
+
++ Bootstrap
+
++ Getting Files on a Server; Types of Servers

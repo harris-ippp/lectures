@@ -7,7 +7,7 @@
 * Go back to [apps.twitter.com](https://apps.twitter.com) and click on your App.
 * Go to "Keys and Access Tokens.
 * Scroll down and click "Create my access token,"
-* You'll need all four keys:
+* You'll need all four keys to create an OAUTH:
   * Consumer Key
   * Consumer Secret
   * Access Token

@@ -1,0 +1,144 @@
+^T: Web Scraping and RESTful APIs
+^ST: Scraping and APIs
+^I: Introduction to Programming for Public Policy
+^SI: Intro Programming
+^D: November 2, 2016
+^H: \include{pythonlst}
+
++ Getting Data
+- Wonderful but \emph{rare}, to find free, formatted data.
+- How do we use the data that's available, but `un-processed'?
+- Look for `undocumented APIs,' scrape when necessary, and hope for pretty interfaces.
+
++ Examples of Different Resources
+Qualities and techniques best demonstrated by example:
+# Illinois State Board of Education \link{http://illinoisreportcard.com/}{Report Card} provides a lot of data, but back-breaking methods for accessing it.
+# Census provides both a `consumer-level' \link{http://www.census.gov/data.html}{site} and \link{http://www.census.gov/data/developers/data-sets/acs-5year.html}{an API} for retrieving well-formatted data at any level.
+# Bureau of Labor Statistics similarly provides a \link{http://www.bls.gov/developers/api_python.htm}{respectable API} for time series data whose \link{http://www.bls.gov/help/hlpforma.htm}{coding} is, nevertheless, `somewhat' abstruse.
+#- The ATUS that you've used exists only as bulk text files.
+# Weather Underground provides an expensive API for predictions, but quietly \link{https://www.wunderground.com/history/airport/KMDW/2016/10/31/DailyHistory.html?format=1}{exposes} hourly data for any airport in the US.
+# Twitter famously provides one of the most-comfortable, fast, featureful, compulsively perfect \link{https://dev.twitter.com/rest/public}{APIs} ever.
+Consider the people who want to use your (their!) data!
+
++ A Spectrum
+\Large{
+- Unmanageable, awful websites...
+- `Trivially' extractable data.
+- Fabulous APIs, ready for consumption.
+}
+
++ Three Tools
+# \tt{curl}: request simple web resources, issue post requests, get options.
+# \link{http://docs.python-requests.org/en/master/}{requests} library: retrieve web resources \emph{in python}.
+#- Provides methods for authentication, \tt{POST}ing data, etc.
+#- Basically, \tt{curl} for python.
+# \link{https://www.crummy.com/software/BeautifulSoup/bs4/doc/}{beautifulsoup} library: provides mechanisms for `quickly' accessing and extracting elements of web pages in python.
+
++[fragile] \tt{curl}: Weather Data
+- Useful new expression: \tt{for} loops and \tt{\$variables} in bash:
+\begin{tcolorbox}
+\verb|addr="https://www.wunderground.com/history/airport/KMDW"|
+\verb|for x in $(seq 1 31); do | \\
+\verb|  curl ${addr}/2016/10/${x}/DailyHistory.html?format=1| \\
+\verb|done|
+\end{tcolorbox}
+- Bulk download (and format!) data from available end-points.
+
++ Requests: Minimal Example
+- Just request an address -- here, \link{http://api.census.gov/data/2014/acs5/profile?for=tract:*&in=state:42+county:*&get=NAME,DP02_0058E,DP02_0058M}{Census}.
+\pythonexternal{ex/req.py}
+
++ Beautiful Soup
+- (Real scraping is basically the worst.)
+- `Art' to scanning the raw webpage and finding the tag you want.
+- Take an example of the \link{http://illinoisreportcard.com/District.aspx?source=schoolsindistrict&Districtid=15016299025}{Illinois State Report Card} (which we used a few weeks back): 560 schools in the district, not doing it by hand.
+-- Check the html to see if you can find it?  No!?
+-- Chrome: View $→$ Developper $→$ Developper Tools $→$ Elements.
+-- Firefox: Tools $→$ Developper $→$ Toggle Tools $→$ Inspector.
+-- Find the element of interest... find \emph{its} source.
+- Most complex webpages load content from many different sources; they may not all be rendered as part of the base URL.
+- Best case: find it in the webpage or wait for it to load.
+
++ Beautiful Soup: Minimal Example
+- Please grap the url from this \link{https://iircapps.niu.edu/Apps_2_0/en/School/150162990250849/Profile?helperUrl=//illinoisreportcard.com/helper.html}{link}.
+- Go to View/Tools $→$ Source, and look for the address.
+\pythonexternal{ex/bs.py}
+- Full documentation \link{https://www.crummy.com/software/BeautifulSoup/bs4/doc/}{here}.
+
++ BS4: Find and Find All
+- If you can identify the objects, \tt{find()} and \tt{find\_all()} are usually the fastest accessors.
+-- These yield the first, and \emph{all} instances, respectively.
+- Consider this example, from our website:
+\pythonexternal{ex/bs_find.py}
+- Find all the rows in the table:
+` soup.find\_all("tr")
+
++ BS4: Children and Contents
+- Consider all of the `true' conditions of chicken health benefits.
+- The problem is that the truth is in a different element from the item.
+- We need to to look at rows in their entirety, printing the first column if the second is true.
+- \tt{children()} provides an iterable, and \tt{.content} provides a list.
+
++ BS4: Parts of Elements
+Accessing parts of elements get/dictionary:
+- \tt{soup.find("img").get("src")}
+- \tt{soup.find("ul").get("class")}
+- \tt{soup.find("em").contents}
+- \tt{soup.find("ul")["class"]}
+- \tt{soup.find("a")["href"]}
+
++ Advanced Scraping (For Information)
+- On \link{http://illinoisreportcard.com/District.aspx?source=SchoolsInDistrict&Districtid=15016299025}{many} web pages, you have to wait for the page to `load.'
+- \emph{Could} do this with browser, then save page... not scalable!
+- So use a web driver -- ugh!
+` \pr conda install --channel \textbackslash  \\ \hspace{3em}https://conda.anaconda.org/conda-forge selenium \\ \pr conda install phantomjs
+\pythonexternal{ex/sel.py}
+
++++ RESTful APIs
+\centering 
+Representational State Transfer: Doing it the `Right' Way.
+
++ REST in Practice\footnote{The most-readable resource on this I have found is \link{http://www.drdobbs.com/web-development/restful-web-services-a-tutorial/240169069?pgno=1}{here}.}
+- Data on the web could obviously be better `exposed' and integrated.
+- Application Programming Interfaces (APIs) allow/instruct users/developpers on how to use a resource.
+! APIs: Fancy-Coded Web Addresses
+- RESTful web services use (usually) HTTP methods as meaningful verbs, and web addresses as functions.
+- \tt{GET} is a pure retrieval and \tt{POST} corresponds to a send.  
+-- \tt{DELETE}, \tt{PUT}, etc. may also be defined.
+- You can then access these resources with \tt{requests}, \tt{curl}, etc.
+
++ RESTful Principles
+Roy Fielding standardized good principles for HTTP 1.1 and RESTful services.
+The philosophy is that:
+- Client and server are stateless and separated (server doesn't `remember' anything about a session).
+- Service is scalable and cachable; this allows for expansion.
+- But REST is a uniform/consistent \emph{style} of accessing resources... \\ best illustrated by example.
+
++ Twitter API
+- Fantastic, clear API: \link{https://api.twitter.com/1.1/}{https://api.twitter.com/1.1/}
+- \link{https://dev.twitter.com/rest/reference}{Many methods}, e.g., show users or tweets by user:
+` /users/show.json?screen\_name=iamjohnoliver \\ /statuses/user\_timeline.json?screen\_name=iamjohnoliver
+- Basically: carefully follow each model.  Query starts by ? and terms are separated by \& (except in \tt{search}).
+- Requires access keys, readily generated with a Twitter account.\footnote{Follow \link{https://github.com/harris-ippp/lectures/blob/master/06/twitter.md}{these instructions} and checkout \link{https://github.com/harris-ippp/lectures/blob/master/06/ex/twitter_query.py}{this script} if you want to try this.}
+
++ Census API
+- More-typical, but still excellent, API from the \link{http://www.census.gov/data/developers/data-sets.html}{Census}.
+- For example, five-year \link{http://api.census.gov/data/2014/acs5/examples.html}{ACS estimates} as of 2014 (\link{http://api.census.gov/data/2014/acs5/profile/variables.html}{variables}).
+\centering
+\fontsize{9}{12} \selectfont http://api.census.gov/data/2014/acs5/profile?get=DP02\_0037PE,NAME\&for=state:*
+- Returning to week 4:
+\pythonexternal{ex/census.py}
+
++ Two Notes on APIs
+# A lot of APIs end up with 3rd party python libaries. 
+#- For two examples, these are tweepy and sunlightlabs/census.
+#- Both of them are good!  But they obfuscate the original intention, and often are not as well documented as the original site.
+#- \emph{I} usually find it easier just to understand the API. \\ \vspace{3em}
+# Many cities/states use Socrata or CKAN (open source/data.gov).  Socrata comes with the SODA API, for many (all?) datasets (e.g., \link{https://dev.socrata.com/foundry/data.cityofchicago.org/fg6s-gzvg}{Chicago Divvy}).
+
++ A Soapbox on Standards
+- Tremendous range in \emph{how hard} you have to work to get data.
+- Lots of jurisdictions and agencies are touting their open data efforts.  But very often, the released data sets are awful.
+- Even when they're very good (e.g., city crime, education) they may not be standardized across jurisdictions.  
+- Need standards (schemas) to minimize overlapping efforts.
+

@@ -25,6 +25,7 @@
 -- Want more?  Best tutorials I've ever seen: \link{https://docs.djangoproject.com/en/1.10/intro/tutorial01/}{official} and \link{https://tutorial.djangogirls.org/en/}{Django Girls}.
 
 + Web Server Gateway Interface
+How do we `hook up' python as a server?
 - Server forwards requests to python through a `gateway interface' module; python responds with a resource.
 - Server \emph{should} handle static resources itself (it's much better at it!); heavy server configuration is beyond the scope of this course.
 - Luckily for us, Django provides a development server that is very lightweight and easy to run.
@@ -34,11 +35,11 @@
 Like python, a huge realm; choice of material and method very subjective.
 - Initial set-up of django and a \chred{site}.
 - Create hello/goodbye world \chred{views} and register its URLs.
-- Build several \emph{very} simple \chred{dynamic} `views.'
 - Return a \chred{table} from pandas; the same, from csv.
-- Return a dynamic \chred{plot} (v. generating `all' the plots in advance).
+- Build several \emph{very} simple \chred{dynamic} `views.'
 - Handling \chred{\ttb{GET}} and \chred{\ttb{POST}} data.
 - An introduction to \chred{forms}.
+- Return a dynamic \chred{plot} (v. generating `all' the plots in advance).
 These are basically the pieces you'll need to make your projects.
 >1em
 - On Wednesday, we'll make it pretty again, with HTML \emph{templates} and hopefully a bit of bootstrap (pre-built css).
@@ -121,11 +122,11 @@ Run functions on a website, leveraging the awesome power of python!
 - Let's create views to add and subtract numbers.
 
 +[fragile] Beginning to Prettify: Templates
-- Templates allow you to `fill in' holes in websites.
-- Good to use variables, but also want to reuse big stuff: \chred{templates!!}
-- So we could also write our personalized greeting with a view like this:
+- \chred{Templates} allow you to `fill in' holes in websites.
+- Good to use variables, but also want to reuse e.g., nav bar.
+- So we could write our greeting with a view, like this:
 \pythonexternal{ex/template_greet.py}
-- And a \tt{myapp/template.html} as:
+- And a \tt{myapp/templates/greet.html} as:
 \begin{tcolorbox}
 \verb|Well hello, {{ who }}!!|
 \end{tcolorbox}
@@ -148,7 +149,7 @@ Run functions on a website, leveraging the awesome power of python!
 
 + HTML Forms and Django Models
 - Django recognizes that there is likely a correspondence between data (objects/databases), forms (for creating objects), and views (for displaying them).  They are all built from \chred{Models}.
--- We won't cover this in depth -- in particular, we won't cover database integration with an Object Relational-Mapping (ORM, RDBMS interface wrapping SQL).
+-- We won't cover this in depth -- the databases are implemented with an Object Relational-Mapping (ORM, RDBMS interface wrapping SQL) that would be a good deal more work.
 -- But you can learn more \link{https://tutorial.djangogirls.org/en/django_models/}{here}.
 %
 - Nevertheless, Models are a useful tool.
@@ -198,85 +199,4 @@ Looks like a lot, but just two tricks:
 # Return the bytes as \tt{content\_type = \chred{"image/png"}}.
 <0.5em
 ../img/plots_on_the_fly.png:0.8
-
-\end{document}
-
-django-admin startproject mysite
-
-cd mysite
-
-# python manage.py migrate
-python manage.py runserver 0.0.0.0:8000
-
-⟹  vi myapp/views.py
-from django.http import HttpResponse
-
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
-
-⟹ create: myapp/urls.py
-from django.conf.urls import url
-
-from . import views
-
-urlpatterns = [
-    url(r'^$', views.index, name='index'),
-]
-
-⟹  vi mysite/urls.py
-Modify:
-from django.conf.urls import url, include
-
-Add to urlpatterns:
-url(r'^myapp/', include('myapp.urls')),
-
-
-
-⟹ mysite/settings.py
-Add to INSTALLED_APPS
-    'myapp.apps.MyappConfig',
-
-python manage.py makemigrations myapp
-python manage.py migrate
-python manage.py runserver 0.0.0.0:8000
-
-
-⟹ Now add a new view:
-def my_add(request, p1, p2):
-
-    p1 = int(p1)
-    p2 = int(p2)
-
-    return HttpResponse("{} + {} = ".format(p1, p2, p1 + p2))
-
-⟹ Also need a corresponding entry in myapp/urls.py
-
-    url(r'^my_add/(?P<p1>[0-9]+)/$', views.my_add, name='my_add'),
-
-⟹ myapp/models.py
-from django.forms import ModelForm
-
-STATES = (
-    ('PA', 'Pennsylvania'),
-    ('IL', 'Illinois'),
-    ('OH', 'Ohio'),
-    ('DC', 'Washington DC'),
-    ('ME', 'Maine'),
-    )
- 
-
-class Input(models.Model):
-    r = models.CharField(max_length=2, choices=STATES)
-
-class InputForm(ModelForm):
-    class Meta:
-        model = Input
-
-
-⟹ Set up the static files ROOT, in mysite/settings:
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-python manage.py collectstatic
-
 

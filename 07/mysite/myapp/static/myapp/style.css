@@ -1,0 +1,111 @@
+* { 
+  font-family: 'Open Sans', sans-serif; 
+}
+
+img {
+  border-style: solid;
+  border-color: darkred;
+  border-width: 8px;
+  float: right;
+}
+
+.navbar {
+  background-color: darkred;
+  border-radius: 0px;
+  border-color: darkred;
+  border-width: 0px;
+}
+
+.navbar-inverse {
+  padding: 0px;
+  min-height: 0px !important;
+  height: 38px;
+  font-size: 13pt;
+  color: white;
+}
+
+.navbar .navbar-nav .active>a,
+.navbar .navbar-nav .active>a:focus,
+.navbar .navbar-nav .active>a:hover {
+  background-color: dimgrey;
+  border: none;
+}
+
+.navbar-nav > li > a {
+  padding-top: 7px !important;
+  padding-bottom:0 !important;
+  height: 38px;
+  color: white;
+  display: inline-block;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+  background-color: dimgrey;
+}
+
+.navbar-brand {
+    padding-top: 4px !important;
+    padding-bottom :0 !important;
+    padding-left: 0 !important;
+    height: 30px;
+}
+
+.navbar-toggle {
+    margin: 3px 0px;
+    background-color: transparent;
+    background-image: none;
+    border-color: white;
+    border-width: 1px;
+    border-radius: 6px;
+}
+
+.dropdown-toggle:active,
+.open .dropdown-toggle {
+  background:dimgrey !important;
+  color: white !important;
+}
+
+.navbar-nav > .dropdown a{
+  padding: 0px 15px;
+}
+
+.dropdown-menu {
+  background-color: dimgrey;
+  padding: 0px 0px;
+}
+
+.dropdown > .dropdown-menu > li a {
+  background-color: dimgrey;
+  color: white;
+  padding: 6px 16px;
+}
+
+
+.form-control { 
+  width : auto;
+  height : 38px;
+  margin: 0px 0px;
+  padding: 0px 20px;
+  display: inline-block;
+  border-width: 4px;
+  border-radius: 0px;
+  background-color: darkred;
+  border-color: dimgrey;
+  color: white;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  float: right;
+}
+
+
+table {
+  width: auto;
+}
+
+h1 {
+  color: darkred;
+}

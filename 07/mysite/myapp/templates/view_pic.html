@@ -1,0 +1,72 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:600,500,400,300,200,100,400italic0&subset=latin,greek,latin-ext' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/style.css' %}" />
+    {% block title %}<title>{{ title }}</title>{% endblock %}
+
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-inverse" id="navbar">
+  <div class="col-md-10 col-md-offset-1">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#home">Home</a></li>
+      <li><a href="#data">Data</a></li>
+      <li><a href="#methods">Methods</a></li>
+      <li><a href="#code">Code</a></li>
+
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Group<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#jq">Joey Q</a></li>
+          <li><a href="#jo">Jessie O</a></li>
+          <li><a href="#dl">Donna L</a></li>
+          <li><a href="#bb">Betty B</a></li>
+        </ul>
+      </li>
+
+    </ul>
+
+      {{ form.state }}
+
+    </ul>
+  </div>
+
+</nav>
+
+
+
+<div class="col-md-10 col-md-offset-1 text-left">
+
+  <h1>{{ title }}</h1>
+
+  <img src='{{ pic_source }}' width=40% />
+
+<p />
+
+  {{ state }}
+
+  <div>
+   {{ html_table | safe }}
+   </div>
+
+
+
+<p />
+
+</div>
+
+</body>
+</html>
+

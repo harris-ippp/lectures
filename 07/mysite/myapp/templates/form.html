@@ -1,0 +1,12 @@
+{% if state %}
+    I hear you, {{ state }}!!
+{% endif %}
+
+<form action="{{ form_action }}" 
+      method="{{ form_method }}">
+  {% if form_method == "post" %}
+    {% csrf_token %}
+  {% endif %}
+
+  {{ form.as_p }}
+</form>

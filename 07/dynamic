@@ -22,14 +22,14 @@
 - Many more options today: other servers (nginx), databases (Postgres, SQLite) and languages (python, Ruby on Rails).
 - We'll continue using python, with \chred{Django}.
 -- Popular, powerful framework, used by Instagram, Pinterest, The Onion, Washington Post, etc.
--- Want more?  Best tutorials I've ever seen: \link{https://docs.djangoproject.com/en/1.10/intro/tutorial01/}{official} and \link{https://tutorial.djangogirls.org/en/}{Django Girls}.
+-- Want more?  Exceptional tutorials: \link{https://docs.djangoproject.com/en/1.10/intro/tutorial01/}{official} and \link{https://tutorial.djangogirls.org/en/}{Django Girls}.
 
 + Web Server Gateway Interface
 How do we `hook up' python as a server?
 - Server forwards requests to python through a `gateway interface' module; python responds with a resource.
 - Server \emph{should} handle static resources itself (it's much better at it!); heavy server configuration is beyond the scope of this course.
-- Luckily for us, Django provides a development server that is very lightweight and easy to run.
-../img/mod_wsgi_and_layers.pdf:0.33
+- Luckily for us, Django provides a development server that is lightweight and easy to run.
+../img/mod_wsgi_and_layers.pdf:0.40:side
 
 + What We'll Cover
 Like python, a huge realm; choice of material and method very subjective.
@@ -65,7 +65,8 @@ Just like \tt{startproject}, this creates some files for us.
 ../img/app_resources.png:0.4
 
 + Getting Started with Django: A view
-Now edit the file \tt{myapp/views.py}, adding these lines:
+- \chred{Views} are specific functions/pages within an app.
+- Edit the file \tt{myapp/views.py}, adding these lines:
 \pythonexternal{ex/index_app.py}
 
 + How Do We Find Our Site?
@@ -105,9 +106,11 @@ Run functions on a website, leveraging the awesome power of python!
 \pythonexternal{ex/csv_table.py}
 
 + Collecting Your Static Files
-- Let's make a small csv at \tt{myapp/static/myapp/baby.csv}.
+- Let's make a small csv at \tt{myapp/static/myapp/va\_presidential.csv}.
 - You also need to tell Django where your static files live.
-- Set up the static files ROOT, in mysite/settings: \\ \pythoninline{STATIC_ROOT = os.path.join(BASE_DIR, 'static')}
+- Set up the static files ROOT, in mysite/settings:
+-- Add \tt{\tqs{}myapp.apps.MyappConfig\tqs{}} to \tt{INSTALLED\_APPS}.
+-- At the end, add \\ \pythoninline{STATIC_ROOT = os.path.join(BASE_DIR, 'static')}
 - Then run this (and accept):
 ` \pr python manage.py collectstatic
 - We used the `long' path, so that the `collected' files would still have a recognizable pattern.
@@ -121,8 +124,20 @@ Run functions on a website, leveraging the awesome power of python!
 >1em
 - Let's create views to add and subtract numbers.
 
-+[fragile] Beginning to Prettify: Templates
-- \chred{Templates} allow you to `fill in' holes in websites.
++++ Templates
+
++ What are Templates?
+- Templates are reusable HTML code blocks, with insertion points for variables (or other large blocks), simple functions, and loops.
+-- This reduces rewriting code (nav bar) and repetitive code (lists).
+-- Philosophy: Don't Repeat Yourself (DRY).
+- The template code lives in \tt{myapp/templates.html}.
+- `Render' html code by inserting variables into the template by: \\ \pythoninline{return render(req, "template.html", {"key" : value})}
+-- This is actually an \tt{HttpResponse}.
+>1em
+- Best illustrated by example.
+
++[fragile] Prettifying and Codifying: Templates
+- Let's start by using templates to insert values.
 - Good to use variables, but also want to reuse e.g., nav bar.
 - So we could write our greeting with a view, like this:
 \pythonexternal{ex/template_greet.py}
@@ -130,7 +145,46 @@ Run functions on a website, leveraging the awesome power of python!
 \begin{tcolorbox}
 \verb|Well hello, {{ who }}!!|
 \end{tcolorbox}
-- We'll cover this in more detail on Wednesday.
+- Here, \tt{\{\{ who \}\}} is variable, passed as an item in a dictionary.
+
++[fragile] Template Inheritance
+- I've copied my `standard' header in \tt{myapp/templates/base.html}.
+-- The header will be reused every time.
+- \verb|{% block content %}| is a replaceable block of code.
+- Swap it out by overwriting the bock, in \tt{myapp/templates/view\_table.html}.
+\begin{tcolorbox}
+\verb|{% extends "base.html" %} | \\
+\verb| | \\
+\verb|{% block content %} | \\
+\verb=  {{ html_table | safe }} = \\
+\verb|  {% lorem 3 p %} <!-- some text --> | \\
+\verb|{% endblock %}|
+\end{tcolorbox}
+- New view: render table, using \tt{html\_table} and \tt{view\_table.html}.
+- Very little html, to get a new page.  
+
++[fragile] Template Code: \tt{for}, \tt{if}
+- Write for loops or if statements with:
+-- \verb|{% for x in xli %}<li>{{ x }}</li>{% endfor %}|
+-- \verb|{% if animal == "dog" %}ARFF{% endif %}|
+- Let's create a view that renders a \tt{pure\_template.html}.
+- This is very useful for elements in parts of forms, etc.
+
++[fragile] Template Code: Dictionary and List Items, Functions
+- For functions, drop the parentheses.
+-- For instance \verb|{% for k, v in di.items %}| (instead of \tt{di.items()}
+- Access variables out of a dictionary or elements of a list using a dot, instead of brackets.
+-- So: \tt{di.cat} instead of \tt{di["cat"]}.
+- Still with \tt{pure\_template.html}, let's render the dictionary, \\ \verb|'di' : {"dog":"ARF", "cat":"MEOW", "tiger":"ROAR"}|
+
++[fragile] Additional Template Functions
+- To load css files, scripts, or other static files, you may need:
+-- \verb|{% load staticfiles %}| and \verb|{% static 'myapp/style.css' %}|.
+-- The latter locates a static file, according to your static ROOT.
+- There are many, many template filters, most notably, `\tt{safe},' which just prints to html (instead of wrapping it as a string).
+-- You've seen \verb={{ table_html | safe }}=.
+
++++ Forms
 
 + Reading \tt{GET} and \tt{POST}
 - You don't want users to \emph{have} to edit the URL.
@@ -139,11 +193,11 @@ Run functions on a website, leveraging the awesome power of python!
 \pythonexternal{ex/get_reader.py}
 - So how do we \emph{send} this data?
 
-+++ Forms
-
 + HTML Forms
-- The standard HTML element for inputing data is a \emph{form}: a collection of radio buttons, check boxes, text input fields of varying lengths, drop-down menus, etc. within \tt{<form></form>} tags.
-- Take a look at the source for this simple form:
+- The standard HTML element for inputing data is a \emph{form}: a collection of radio buttons, check boxes, text input fields of varying lengths, drop-down menus, etc. within \tt{<form></form>} tags.  Two important attributes:
+-# \tt{action}: destination site. 
+-# \tt{method}: get or post.
+- Take a look at the source for this form:
 \centering
 \link{https://harris-ippp.github.io/lectures/form.html}{https://harris-ippp.github.io/lectures/form.html}
 
@@ -168,10 +222,8 @@ Now writing the form is not so bad (but not intuitive, either).
 - The \tt{attrs} is for the html rendering of the element.
 \pythonexternal{ex/form.py}
 
-+ A View
-\pythonexternal{ex/form_view.py}
-
-+[fragile] Which Requires a Template
++[fragile] A Template: Display a Chosen State and an Option
+- The elements of the form are `automatically' by \tt{.as\_p} or \tt{.as\_table}, but the wrapping tags are not -- they must be written out in the template.
 \begin{tcolorbox}
 \verb|{% if state %}| \\
 \verb|    I hear you, {{ state }}!!| \\
@@ -183,6 +235,11 @@ Now writing the form is not so bad (but not intuitive, either).
 \verb|</form>|
 \end{tcolorbox}
 
++ A View
+- We can pass all of the elements in the form to the template.
+- Also use \tt{reverse\_lazy()} to look up the url of the site.
+\pythonexternal{ex/form_view.py}
+
 + Dynamic Plots
 Make and return plots on the fly.  (Brilliant or misguided?)
 >0.5em
@@ -191,7 +248,7 @@ Make and return plots on the fly.  (Brilliant or misguided?)
 - On the other hand, most of what you generate will be the $\unsim$same.  Making new plots for every single visitor is expensive.  
 %
 - Depending on the parameters of your website, could generate `all' possibilities and serve them statically.  Faster but less flexible.
-Other libraries (Bokeh) build plots with javascript from data...
+Other libraries (Bokeh) build plots with javascript from data... a good `extension' in your projects.
 
 + Creating Plots on the Fly: A Recipe
 Looks like a lot, but just two tricks:

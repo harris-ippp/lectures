@@ -125,14 +125,16 @@ Run functions on a website, leveraging the awesome power of python!
 - Let's create views to add and subtract numbers.
 
 +++ Templates
+\centering
+git clone git@github.com:harris-ippp/django-ex.git
 
 + What are Templates?
 - Templates are reusable HTML code blocks, with insertion points for variables (or other large blocks), simple functions, and loops.
 -- This reduces rewriting code (nav bar) and repetitive code (lists).
 -- Philosophy: Don't Repeat Yourself (DRY).
-- The template code lives in \tt{myapp/templates.html}.
-- `Render' html code by inserting variables into the template by: \\ \pythoninline{return render(req, "template.html", {"key" : value})}
--- This is actually an \tt{HttpResponse}.
+- Template files live at \tt{myapp/templates/ex.html}.
+- `Render' html code by inserting variables into the template by: \\ \pythoninline{return render(req, "ex.html", \{"key" : value\})}
+- This is actually an \tt{HttpResponse}.
 >1em
 - Best illustrated by example.
 
@@ -146,6 +148,20 @@ Run functions on a website, leveraging the awesome power of python!
 \verb|Well hello, {{ who }}!!|
 \end{tcolorbox}
 - Here, \tt{\{\{ who \}\}} is variable, passed as an item in a dictionary.
+
++[fragile] Template Code: \tt{for}, \tt{if}
+- Write for loops or if statements with:
+-- \verb|{% for x in xli %}<li>{{ x }}</li>{% endfor %}|
+-- \verb|{% if animal == "dog" %}ARFF{% endif %}|
+- Let's create a view that renders a \tt{pure\_template.html}.
+- This is very useful for elements in parts of forms, etc.
+
++[fragile] Template Code: Dictionary and List Items, Functions
+- For functions, drop the parentheses.
+-- For instance \verb|{% for k, v in di.items %}| (instead of \tt{di.items()}
+- Access variables out of a dictionary or elements of a list using a dot, instead of brackets.
+-- So: \tt{di.cat} instead of \tt{di["cat"]}.
+- Still with \tt{pure\_template.html}, let's render the dictionary, \\ \verb|'di' : {"dog":"ARF", "cat":"MEOW", "tiger":"ROAR"}|
 
 +[fragile] Template Inheritance
 - I've copied my `standard' header in \tt{myapp/templates/base.html}.
@@ -162,20 +178,6 @@ Run functions on a website, leveraging the awesome power of python!
 \end{tcolorbox}
 - New view: render table, using \tt{html\_table} and \tt{view\_table.html}.
 - Very little html, to get a new page.  
-
-+[fragile] Template Code: \tt{for}, \tt{if}
-- Write for loops or if statements with:
--- \verb|{% for x in xli %}<li>{{ x }}</li>{% endfor %}|
--- \verb|{% if animal == "dog" %}ARFF{% endif %}|
-- Let's create a view that renders a \tt{pure\_template.html}.
-- This is very useful for elements in parts of forms, etc.
-
-+[fragile] Template Code: Dictionary and List Items, Functions
-- For functions, drop the parentheses.
--- For instance \verb|{% for k, v in di.items %}| (instead of \tt{di.items()}
-- Access variables out of a dictionary or elements of a list using a dot, instead of brackets.
--- So: \tt{di.cat} instead of \tt{di["cat"]}.
-- Still with \tt{pure\_template.html}, let's render the dictionary, \\ \verb|'di' : {"dog":"ARF", "cat":"MEOW", "tiger":"ROAR"}|
 
 +[fragile] Additional Template Functions
 - To load css files, scripts, or other static files, you may need:

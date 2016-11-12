@@ -1,0 +1,35 @@
+^T: Geographic Information Systems
+^I: Introduction to Programming for Public Policy
+^SI: Intro Programming
+^D: November 14, 2016
+^H: \include{pythonlst}
+
++ Geographic Information Systems: Maps
+- People love maps -- emotional response to `seeing yourself.'
+- GIS is a huge field.  There are other classes at Harris for this.
+-- A lot of work on spatial statistics, etc.
+- But huge bang for the buck at the entry level.  Many datasets represent a spatial area or point at a specific time.
+-- This is a great index for \emph{joins}.
+
++ What We'll Cover
+\Large{
+# Making simple maps with GeoPandas (\tt{pandas}+).
+#- Finding and importing shapefiles and geojson (like \tt{read\_csv()}).
+#- Projections (briefly). \\ \vspace{1em}
+# Indexed and spatial joins.
+#- Using the census geolocation API (APIs). 
+#- Making a map with real data! \\ \vspace{1em}
+# Making a simple \emph{web} (!) map with GeoPandas 
+}
+>1em
+- Largely revisiting old material.
+
++ Shapefiles
+- Three forms of geographic objects: points (schools, crimes), lines (roads, rivers), and polygons (lots, census tracts, regions, lakes, etc.).
+- Many, many sources for geographic data: \link{http://data.cityofchicago.org/}{data.cityofchicago.org}, the \link{https://www.census.gov/geo/maps-data/data/tiger-line.html}{US Census}, \link{https://www.usgs.gov/products/maps/gis-data}{USGS},  etc.
+- Much of this is provided in `ESRI Shapefiles' (Environmental Systems Research Institute, major GIS company) or in geojson.
+-- Of courses, addresses and coordinates (lat/lon) are also geographic locations...
+
++ Projections
+../img/albers_30_60.png:0.57; ../img/albers_45_90.png:0.57; ../img/albers_80_109.png:0.57
+

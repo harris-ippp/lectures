@@ -9,7 +9,6 @@
 
 * `conda create -n p34-geo python=3.4`
 * `source activate p34-geo`
-
 * `conda install fiona "libgdal<2.0"`
 * `conda install pandas matplotlib`
 * `conda install -c ioos shapely pyproj`

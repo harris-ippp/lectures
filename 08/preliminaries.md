@@ -4,6 +4,7 @@
 * `conda install -c conda-forge geopandas`
 * `conda install -c conda-forge folium`
 * `conda install -c conda-forge mplleaflet`
+* `conda install jupyter wget pysal`
 
 # PC
 

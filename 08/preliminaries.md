@@ -13,4 +13,4 @@
 * `conda install pandas matplotlib`
 * `conda install -c ioos shapely pyproj`
 * `conda install -c ioos geopandas descartes --no-deps`
-* `conda install jupyter, wget, pysal`
+* `conda install jupyter wget pysal`

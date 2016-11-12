@@ -23,6 +23,7 @@ Set up the virtual environment and install the packages
 * `conda install -c conda-forge folium`
 * `conda install -c conda-forge mplleaflet`
 * `conda install jupyter wget pysal`
+
 Pour yourself a glass of wine.
 
 (Adapted from [here](https://www.bountysource.com/issues/27623893-fyi-installing-geopandas-with-conda).)

@@ -1,6 +1,6 @@
 # Installation of Geographical Libraries
 
-Geographical libraries are reliably the toughest packages to install, since they rely on c++ code that does not always compile well.  In order to open 'shapefiles,' which map files, we need a library called Fiona.  Conda is able to install fiona pretty much out of the box on Macs, but on PCs... not so much.  We have been using python 3.5, which I could not get to run.  Fortunately, conda makes it really easy to use different versions of python as 'environments.'  By setting up an environment `p34-geo`, we can just run 
+Geographical libraries are reliably the toughest packages to install, since they rely on c++ code that does not always compile well.  In order to open 'shapefiles,' which map files, we need a library called Fiona.  Conda is able to install fiona pretty much out of the box on Macs, but on PCs... it is [quietly unsupported](https://docs.continuum.io/anaconda/pkg-docs).  We have been using python 3.5, which I could not get to run.  Fortunately, conda makes it really easy to use different versions of python as 'environments.'  By setting up an environment `p34-geo`, we can just run 
 
 ## Mac
 

@@ -26,10 +26,11 @@ Set up the virtual environment and install the packages
     
 * `conda install fiona "libgdal<2.0"`
 * `conda install pandas matplotlib`
-* `conda install -c ioos shapely pyproj`
+* `conda install -c ioos shapely pyproj
+* `conda install -c ioos rtree`
 * `conda install -c ioos geopandas descartes --no-deps`
 * `conda install -c conda-forge folium`
-* `conda install -c conda-forge mplleaflet`
+* `conda install -c conda-forge mplleaflet geopy`
 * `conda install jupyter wget pysal`
 
 Pour yourself a glass of wine.

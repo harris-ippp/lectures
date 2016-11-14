@@ -5,18 +5,19 @@
 ^H: \include{pythonlst}
 
 + Geographic Information Systems: Maps
-- People love maps -- emotional response to `seeing yourself.'
+People love maps -- emotional response to `seeing yourself.'
 - GIS is a huge field.  There are other classes at Harris for this.
 -- A lot of work on spatial statistics, etc.
-- But huge bang for the buck at the entry level.  Many datasets represent a spatial area or point at a specific time.
--- This is a great index for \emph{joins}.
+- But huge bang for the buck at the entry level.
+-- Easy to make compelling graphics.
+-- Many datasets represent a spatial area or point at a specific time. \\ \chred{$⟹ $} Great potential for \emph{joins}!
 
 + What We'll Cover
 \Large{
 # Making simple maps with GeoPandas (\tt{pandas}+).
 #- Finding and importing shapefiles and geojson (like \tt{read\_csv()}).
 #- Projections (briefly). \\ \vspace{1em}
-# Indexed and spatial joins.
+# Attribute and spatial joins.
 #- Using the census geolocation API (APIs). 
 #- Making a map with real data! \\ \vspace{1em}
 # Making a simple \emph{web} (!) map with GeoPandas 
@@ -28,8 +29,106 @@
 - Three forms of geographic objects: points (schools, crimes), lines (roads, rivers), and polygons (lots, census tracts, regions, lakes, etc.).
 - Many, many sources for geographic data: \link{http://data.cityofchicago.org/}{data.cityofchicago.org}, the \link{https://www.census.gov/geo/maps-data/data/tiger-line.html}{US Census}, \link{https://www.usgs.gov/products/maps/gis-data}{USGS},  etc.
 - Much of this is provided in `ESRI Shapefiles' (Environmental Systems Research Institute, major GIS company) or in geojson.
--- Of courses, addresses and coordinates (lat/lon) are also geographic locations...
+-- Shapefiles come zipped with a lot of other files, it's the shp you want.
+-- Let's browse: \link{http://www2.census.gov/geo/tiger/GENZ2015/shp/}{census shapefiles}.
+- Addresses may be geocoded and coordinates are also points!
 
-+ Projections
-../img/albers_30_60.png:0.57; ../img/albers_45_90.png:0.57; ../img/albers_80_109.png:0.57
++ Loading a Shapefile with GeoPandas
+- \chred{GeoPandas} simply adds a geometry series to a pandas DataFrame.
+- It is tightly integrated with \emph{many} other geographic programs, among them \chred{fiona} for reading geojson/shapefiles and \chred{shapely} for geometric operations (intersections, etc.).
+- Really easy to import! Both shapefiles and geojson: 
+` import geopandas as gpd \\ gdf = gpd.read\_file("myfile.shp") \\ gdf.plot() \# WOW!!!!
+- All of the `standard' dataframe operations (slicing, indexing, merging) are still available.
+
++ Making a Slightly Better Map 
+- Let's restrict ourselves to the contiguous 48 states.
+- Make a mask to get rid of Alaska and Hawaii (STATEFP 2 and 15), and the territories (STATEFP $≥ 57$).
+- We can also use a better projection: \tt{gpd.to\_crs(epsg=2163)}.
+../img/gpd_world.png; ../img/gpd_contiguous.png; ../img/gpd_us_aea.png
+
++ Coordinate Reference Systems (CRS) \tright{\link{https://xkcd.com/977/}{xkcd}}
+- To make maps, we need a description of the shape of Earth (an ellipsoid) and an origin/center.  This is called a \chred{datum}.
+- We also need a \chred{projection} from 3D to 2D.
+- These are standardized in \textcolor{chred}{EPSG codes}:
+--[4269] By default, GeoPandas uses a Plate-Car\'ee projection: a mapping of longitude and latitude lines to horizontal and vertical lines (gross).
+--[3857] Most online maps use web Mercator, which is conformal (preserves shapes/angles) but much-maligned.
+--[2163] Albers Equal Area is a good conic projection for the US. $✔$
+- Inappropriate projections make maps look stupid.
+../img/meade_range_nad27.jpg:0.75 Center of the World; ../img/orange.png:1.4 $\unsim$Goode Homolosine; ../img/albers.png:0.75 Albers Equal Area!!
+
++ Joins
+Several distinct goals:
+# Visualize a dataset as a map (join it to a shapefile).
+# Attribute join on two datasets with matching geometries.
+#- Don't care about the geometry, just use it!
+# Datasets with different geometries (e.g., points and polygons).
+#- Use a spatial join; may not care about map!
+
++ Attribute Join 
+- Attribute joins are the joins we've already been doing with pandas.  
+- Prepare them for the join by matching the indices (state codes).
+>1em
+Two examples:
+# Single mothers in the United States.
+#- Join the state shapes to data from the (\link{http://api.census.gov/data/2014/acs5/profile?for=state:*\&get=DP02\_0037PE}{census API}).
+# Voting returns in Pennsylvania from the election return \link{http://www.electionreturns.pa.gov/ENR\_New/api/ElectionReturn/GetCountyBreak?officeId=1\&districtId=1\&methodName=GetCountyBreak\&electionid=undefined\&electiontype=undefined\&isactive=undefined}{site}
+
++ Choropleth Maps: Shaded Areas
+- Easy to make basic, beautiful choropleth maps!
+\pythonexternal{scraps/choropleth.py}
+- The built-in method also allows for \tt{quantiles} (default), \tt{equal\_intervals} (linear), and \tt{fisher\_jenks}.
+-- Fisher Jenks defines categories by minimizing the in-group variance , and maximizing the between-group variance.
+-- Most lay-people will only understand equal intervals!!
+- There are many, many \link{http://matplotlib.org/examples/color/colormaps\_reference.html}{colormaps}.
+- The defaults only allow 9 breaks; see \tt{Adanced.ipynb} for a gradient.
+
++ Point to Polygon: Spatial Joins
+- GeoPandas provides many powerful geometric operations.
+- Spatial joins (\tt{sjoin}) behave as you might expect: \\ \pythoninline{gpd.sjoin(pt_df, poly_df, how = 'left', op = 'within')}
+- This joins rows with locations (points) in one dataframe, to regions (polygons) in the other.
+
++ Building a GeoDataFrame from Scratch
+- We also need to be able to create a GeoDataFrame from scratch.
+- A GeoDataFrame, as we've said, is just a DataFrame with a geometry.
+- So we need to build the GeoSeries...
+- In this case, the GeoSeries consists of a list of points, which we can construct as 
+` import from shapely.geometry import Point \\ pt = Point(x, y)
+- Then create a GeoDatFrame, by setting the geoemtry and crs:
+` gpd.GeoDataFrame(crime\_df, crs = tract\_df.crs, geometry=geometry)
+
+! Example: associate murders to \\ census tracts and community areas.
+
++ A Simple Web Map \tright{\tt{scraps/web\_folium.py}}
+- Folium creates a powerful javascript map on OpenStreetMap.
+- Really nice interface, easily embedded in other sites:
+-- \fontsize{9}{11} \selectfont \tt{<iframe src="map.html" width=800px height=500px></iframe>}
+<0.5em
+../img/folium.png
+
++ Geocoding
+- Often, we have latitudes and longitudes (ready to be wrapped as points), but \emph{addresses}.
+- Geocoding is the process of turning addresses into coordinates.
+- Many geocoding services can additionally provide census tracts, counties, etc. $⟹ $ Huge time saver!
+
++[fragile] Nominatim/\tt{geopy} 
+- \tt{geopy} plugs into the OpenStreetMap `Nominatim' API.
+- Super easy to use!!
+\begin{tcolorbox}
+\verb|from geopy.geocoders import Nominatim| \\
+\verb|nom = Nominatim()| \\
+\verb|location = nom.geocode("1155 E. 60th St, Chicago 60637")| \\
+\verb|location|
+\end{tcolorbox}
+
++[fragile] Census API
+- The Census \link{https://geocoding.geo.census.gov/geocoder/Geocoding\_Services\_API.html}{geocoding API} matches tracts in \link{https://geocoding.geo.census.gov/geocoder/geographies/address?street=4600+Silver+Hill+Rd\&city=Suitland\&state=MD\&benchmark=Public_AR_Census2010\&vintage=Census2010_Census2010\&layers=14\&format=json}{geography} endpoint
+-- Also standard \link{https://geocoding.geo.census.gov/geocoder/locations/address?street=4600+Silver+Hill+Rd\&city=Suitland\&state=MD\&zip=20746\&benchmark=Public_AR_Census2010\&format=json}{location} mode.
+- Capable of up to 1000 addresses at a time in batch mode:
+\begin{tcolorbox}
+\fontsize{8.5}{12} \selectfont
+\verb|curl -F addressFile=@short.csv -F layers=9 \| \\
+\verb|     -F vintage=ACS2015_Current \| \\
+\verb|     -F benchmark=Public_AR1_Current \| \\
+\verb|     https://geocoding.geo.census.gov/geocoder/geographies/addressbatch|
+\end{tcolorbox}
 

@@ -23,6 +23,7 @@ Set up the virtual environment and install the packages
     sed -i "s/\r$//" /the/path/it/complained/about/Scripts/deactivate
     ```
     (Copy the path from what you see failing, but be weary to "escape" any spaces: `../James\ Saxon/Anacond3/...`)
+  * Then you need to go back and `source activate p34-geo` again.
     
 * `conda install fiona "libgdal<2.0"`
 * `conda install pandas matplotlib`

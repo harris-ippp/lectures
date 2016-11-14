@@ -16,6 +16,14 @@ Lucky kids -- this is it --
 Set up the virtual environment and install the packages
 * `conda create -n p34-geo python=3.4`
 * `source activate p34-geo`
+  * If this fails, complaining about \r, etc., then Windows is refusing to understand the end of line characters, and you need to get rid of them.  You can do this using `sed`:
+  
+    ```
+    source -i "s/\r$//" /the/path/it/complained/about/Scripts/activate
+    source -i "s/\r$//" /the/path/it/complained/about/Scripts/deactivate
+    ```
+    (Copy the path from what you see failing, but be weary to "escape" any spaces: `../James\ Saxon/Anacond3/...`)
+    
 * `conda install fiona "libgdal<2.0"`
 * `conda install pandas matplotlib`
 * `conda install -c ioos shapely pyproj`

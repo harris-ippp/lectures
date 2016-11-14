@@ -19,8 +19,8 @@ Set up the virtual environment and install the packages
   * If this fails, complaining about \r, etc., then Windows is refusing to understand the end of line characters, and you need to get rid of them.  You can do this using `sed`:
   
     ```
-    source -i "s/\r$//" /the/path/it/complained/about/Scripts/activate
-    source -i "s/\r$//" /the/path/it/complained/about/Scripts/deactivate
+    sed -i "s/\r$//" /the/path/it/complained/about/Scripts/activate
+    sed -i "s/\r$//" /the/path/it/complained/about/Scripts/deactivate
     ```
     (Copy the path from what you see failing, but be weary to "escape" any spaces: `../James\ Saxon/Anacond3/...`)
     

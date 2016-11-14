@@ -33,6 +33,8 @@ Set up the virtual environment and install the packages
 * `conda install -c conda-forge mplleaflet geopy`
 * `conda install jupyter wget pysal`
 
+If, when you `import geopandas` you get an `ImportError: DLL load failed`, then fiona may have gotten messed up as you installed the others.  Just repeat that line.
+
 Pour yourself a glass of wine.
 
 (Adapted from [here](https://www.bountysource.com/issues/27623893-fyi-installing-geopandas-with-conda).)

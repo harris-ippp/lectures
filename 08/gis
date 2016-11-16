@@ -84,7 +84,8 @@ Two examples:
 
 + Point to Polygon: Spatial Joins
 - GeoPandas provides many powerful geometric operations.
-- Spatial joins (\tt{sjoin}) behave as you might expect: \\ \pythoninline{gpd.sjoin(pt_df, poly_df, how = 'left', op = 'within')}
+- Spatial joins (\tt{sjoin}) use the geometry as you might expect, : \\ \pythoninline{gpd.sjoin(pt_df, poly_df, how = 'left', op = 'within')}
+-- You can also do \tt{\tqs{}contains\tqs{}}, \tt{\tqs{}within\tqs{}}, or \tt{\tqs{}intersects\tqs{}}.
 - This joins rows with locations (points) in one dataframe, to regions (polygons) in the other.
 
 + Building a GeoDataFrame from Scratch
@@ -104,6 +105,17 @@ Two examples:
 -- \fontsize{9}{11} \selectfont \tt{<iframe src="map.html" width=800px height=500px></iframe>}
 <0.5em
 ../img/folium.png
+
++[fragile] Other Folium Features
+- You can plot a collection of points with \tt{GeoJson}, but you can get somewhat more control with 
+\begin{tcolorbox}
+\verb|folium.Marker([41.7855052, -87.5971531], | \\
+\verb|              popup='Harris School').add_to(map) |
+\end{tcolorbox}
+- See also e.g., \tt{CircleMarker}, \tt{RegularPolygonMarker}, etc.
+- Full documentation \link{https://folium.readthedocs.io/en/latest/quickstart.html}{here}.
+> 1em
+- We'll come back to this after our last example.
 
 + Geocoding
 - Often, we have latitudes and longitudes (ready to be wrapped as points), but \emph{addresses}.
@@ -131,4 +143,20 @@ Two examples:
 \verb|     -F benchmark=Public_AR1_Current \| \\
 \verb|     https://geocoding.geo.census.gov/geocoder/geographies/addressbatch|
 \end{tcolorbox}
+
++[fragile] Geocoding in GeoPandas
+- GeoPandas has \tt{geopy} built-in, with google, bing, yahoo, openmapquest, or nominatim.
+-- Nominatim is great, but has a 1-second request delay.
+-- Some of the others require API keys for large numbers of requests.
+\begin{tcolorbox}
+\verb|gpd.tools.geocode(["London", "Paris", | \\
+\verb|                   "New York", "Hong Kong"]) |
+\end{tcolorbox}
+- Of course you can also `geocode' areas with \tt{contains()}:
+` geo\_df[geo\_df.contains(pt)]["NAME"]
+
++ Second Folium Example
+- Make a map of places represented in this class (points and countries).
+- Let's curl these shapefiles for the world:
+\centering \fontsize{9}{11} \selectfont http://thematicmapping.org/downloads/TM\_WORLD\_BORDERS\_SIMPL-0.3.zip \normalsize 
 

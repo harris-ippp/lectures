@@ -16,13 +16,25 @@ Lucky kids -- this is it --
 Set up the virtual environment and install the packages
 * `conda create -n p34-geo python=3.4`
 * `source activate p34-geo`
+  * If this fails, complaining about \r, etc., then Windows is refusing to understand the end of line characters, and you need to get rid of them.  You can do this using `sed`:
+  
+    ```
+    sed -i "s/\r$//" /the/path/it/complained/about/Scripts/activate
+    sed -i "s/\r$//" /the/path/it/complained/about/Scripts/deactivate
+    ```
+    (Copy the path from what you see failing, but be weary to "escape" any spaces: `../James\ Saxon/Anacond3/...`)
+  * Then you need to go back and `source activate p34-geo` again.
+    
 * `conda install fiona "libgdal<2.0"`
 * `conda install pandas matplotlib`
 * `conda install -c ioos shapely pyproj`
+* `conda install -c ioos rtree`
 * `conda install -c ioos geopandas descartes --no-deps`
 * `conda install -c conda-forge folium`
-* `conda install -c conda-forge mplleaflet`
+* `conda install -c conda-forge mplleaflet geopy`
 * `conda install jupyter wget pysal`
+
+If, when you `import geopandas` you get an `ImportError: DLL load failed`, then fiona may have gotten messed up as you installed the others.  Just repeat that line.
 
 Pour yourself a glass of wine.
 

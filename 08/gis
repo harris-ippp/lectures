@@ -93,7 +93,7 @@ Two examples:
 - A GeoDataFrame, as we've said, is just a DataFrame with a geometry.
 - So we need to build the GeoSeries...
 - In this case, the GeoSeries consists of a list of points, which we can construct as 
-` import from shapely.geometry import Point \\ pt = Point(x, y)
+` from shapely.geometry import Point \\ pt = Point(x, y)
 - Then create a GeoDatFrame, by setting the geoemtry and crs:
 ` gpd.GeoDataFrame(crime\_df, crs = tract\_df.crs, geometry=geometry)
 

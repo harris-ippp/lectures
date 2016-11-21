@@ -38,6 +38,11 @@ Where and how to intervene?
 Note the potential tension between identification and measurement: 
 maximizing discrimination v. minimizing error (real world v. academia).
 
++ Problems with Classification in Public Policy
+- Big picture, this was a bad training sample (not enough black faces).
+- It's important, when using machine learning, to study its biases.
+../img/google_racist.png
+
 + Classification in One Dimension
 - Consider two categories of objects separated by a single variable $δ$.
 - Select objects/people/events/etc. with $δ ≤ δ_\text{cut}$ and reject others.
@@ -128,7 +133,7 @@ Overtrained ex/bdt_overtrained.pdf:0.25:side; ex/bdt_leaf15.pdf:0.3:side Min Lea
 An MLP consists of a network of nodes with activation functions, and a collection of weights for the connections between those nodes.
 \[ d_k = g_k \left(Σ_{j = 0}^M w_{kj} × g_j \left(Σ_{i=0}^N w_{ji}^h x_i\right)\right) \]
 <0.5em
-- Activation function: sigmoid/tanh, ReLU (rectified linear unit, \max(0, x)$), etc.
+- Activation function: sigmoid/tanh, ReLU (rectified linear unit, $\max(0, x)$), etc.
 - Many hyperparameters (number and size of hidden layers, etc.).
 - `Regularization' to penalize extreme weights and avoid over-training.
 Single-Output MLP ../img/network_schema.pdf:1.0:side; ex/mlp_classifier.pdf:0.36:side Classifier
@@ -144,8 +149,15 @@ Define a loss as the sum of all of the mis-classifications on the entire dataset
 + Minimize the Loss
 Iterate over the dataset, updating the biases and weights to minimize the loss: \chred{back-propagation!!}
 - Back-propagation is doing the chain-rule backwards.
--- Mainly addition with weights.  In reverse, just dot layer gradient with weights.
--- We'll use ReLU for our activation, which makes the derivatives easy (turns them off when paramater is negative).
+-- Mainly addition with weights.  Multiplication `swaps' the gradient: the gradient on the weight is $dw = do · i$, and the gradient on the input is $di = do · w$.\footnote{If the gradient of the full output with respect to this node is $\pder{f}{q}$, and $q = xy$, then $\pder{f}{x} = \pder{f}{q} \pder{q}{x} = \pder{f}{q}(y\pder{x}{x} + x\pder{y}{x}) = y\pder{f}{q} $}
+-- We'll use ReLU for our activation, which makes the derivatives easy: turns them off when paramater is negative.
+-- Since we defined the regularization as $αw²/2$, its contribution is $αw$.
 -- Trick is $Lᵢ$ to the scores: $∂Lᵢ/∂f_k = p_k - \mathds{1}(yᵢ = k)$.
-- Save the values of all of the nodes in a single forward pass, then work backwards.
+- Save the values of all nodes in one forward pass, then work backwards.
+We'll implement this on Wednesday.
+
++ So How Do We Set the Hyperparameters
+- Training only gives us the weights.  How many nodes?  Training iterations?  Minimum leaf size?  Regularization?  Step size?
+- Standard practice is to preserve a validation sample that we do \emph{not} train against, to monitor convergence.  When iterations (back-propagation) on the training sample no longer yield improvement on the validation sample, \emph{stop}.
+- Also preserve a totally sacrosact test sample, that you use only at the \emph{very end} to test performance (it's easy to `tune' for the validation sample, by hand).
 

@@ -1,0 +1,151 @@
+^T: Machine Learning 
+^I: Introduction to Programming for Public Policy
+^SI: Intro Programming
+^D: November 14, 2016
+^H: \include{pythonlst}
+^H: \usepackage{dsfont}
+
++ Introduction
+Machine learning is rapidly evolving, and changing the world.\\
+> 1em
+Algorithms use large amounts of data to `learn' the answers, by tuning parameters.  The algorithm contains no information about the solution.
+- Ranking and classification (interventions).
+- Playing (winning) human games (go).
+- Search optimization.
+- Speech and face recognition...
+These are (ambiguous) optimization problems: inherently not-exact. \\
+> 1em
+Today we'll focus on some methods; on Wednesday we'll implement and explore a simple neural network. \\
+> 1em 
+This is `just for fun' -- so please enjoy it and focus on the big picture.
+
++ A Few Distinctions
+- \emph{Supervised} learning is learning from a `training' sample by minimizing the total error (wrong answers).
+- \emph{Deep} learning (opposed to shallow) is characterized by many hidden layers and (typically) unsupervised or semi-supervised feature extraction.
+-- For instance: nose recognition as a part of face recognition.
+- \emph{Artificial intelligence} is (my view!) a slightly older pursuit of mimicking human intelligence and interactions.  Machine learning is a subset of AI, focussing on general \emph{learning} techniques that can be applied to a range of data problems.
+- \emph{Classification} problems assign (discrete) class membership; \emph{regression} problems try to learn the `right value.'
+> 1em
+We'll work on shallow, supervised learning for classification problems.
+
++ Classification Problems in Public Policy
+! Use a labelled `training sample' to \\ learn to predict group membership.
+Where and how to intervene?
+- Voter outreach.
+- Building or health inspections.
+- Police training.
+>1em
+Note the potential tension between identification and measurement: 
+maximizing discrimination v. minimizing error (real world v. academia).
+
++ Classification in One Dimension
+- Consider two categories of objects separated by a single variable $δ$.
+- Select objects/people/events/etc. with $δ ≤ δ_\text{cut}$ and reject others.
+- Want high efficiency and low false-positive rate: \blue{$\bm{\star}$} on `ROC' curve.
+<1em
+ex/gaus_discr.pdf; ex/gaus_roc.pdf
+
++ More Variables, and Correlations Between Variables
+! Seek to combine many variables \\ into a single, optimal discriminant.
+- At the simplest level, you can just make a series of `cuts' on many discriminants, to isolate your signal/population of interest.
+-- You can already do this with pandas masks!!
+- Much better: use (non-linear) correlations between variables.
+-- Linear Discriminant Analysis or Principal Component Analysis.
+-- Nearest Neighbors, Binary Decision Trees, \chred{Neural Nets}.
+
+! Analytic Multivariate Methods \\ (Not `Learning')
+- You don't \emph{need} to use neural nets to achieve good discrimination.
+
++ Analytic Multivariate Methods
+Without formal `learning' we can apply some analytical techniques to extract `optimal' cuts.
+- Linear Discriminant Analysis identifies the straight lines that best separate the variables.
+- Closely related to Quadratic Discriminant Analysis (two lines!), Principal Component Analysis (PCA) and factor analysis.
+<1em
+ex/lda_classifier.pdf Dataset; ex/lda_transf.pdf Transformed; ex/lda_project.pdf Projected
+
++ Linear Discriminant Analysis: Math (for Two Categories)
+The density of a multivariate normal distribution with means $\overline{x⃗}$ and covariances $M⃗$ is:
+\[ f(x⃗) = \left. \exp{\left(-½(x⃗-\overline{x⃗})^T M⃗⁻¹(x⃗-\overline{x⃗})\right)} \right / √{(2π)^k}|M⃗| \]
+Hence the log-likelihood ratio for membership in two sets is
+\begin{align*}
+& ½(x⃗-\overline{x⃗}₀)^T M⃗₀⁻¹(x⃗-\overline{x⃗}₀) + ½k \ln(2π) + ½\ln|M⃗₀| \\
+& \hspace{2em} - ½(x⃗-\overline{x⃗}₁)^T M⃗₁⁻¹(x⃗-\overline{x⃗}₁) - ½k \ln(2π) - ½\ln|M⃗₁| > \text{const.}
+\end{align*}
+For LDA, we assume that $M⃗=M⃗₀=M⃗₁$.
+\[ (x⃗-\overline{x⃗}₀)^T M⃗⁻¹(x⃗-\overline{x⃗}₀) - (x⃗-\overline{x⃗}₁)^T M⃗⁻¹(x⃗-\overline{x⃗}₁) > \text{const.} \]
+Since $M⃗$ is Hermitian, $x⃗^TM⃗⁻¹ \overline{x⃗}ᵢ = \overline{x⃗}ᵢ M⃗⁻¹x⃗$, and this simplifies to:
+\[ x⃗ M⃗(\overline{x⃗}₀ - \overline{x⃗}₁) > const. \]
+Taking $w⃗ ≡ M⃗(\overline{x⃗}₀ - \overline{x⃗}₁)$, we classify group membership by $x⃗·w⃗ > \text{const}$.
+
++ Linear Discriminant Analysis: More Math Notes
+- Generalizing to multiple classes (as we've used here) requires a bit more work, but (can) yield eigenvalues that correspond to the directions that yield the best separation.
+-- This is how we projected to one dimension.
+- Alternatively, one can query each individual class against the rest and take the winner.
+
++ Using LDAs in sci-kit learn 
+This is implemented in sci-kit learn, with \tt{numpy} arrays:
+- These arrays are what \tt{pandas} DataFrames are built on.
+\pythonexternal{ex/lda.py}
+
++ A Second LDA Example
+So long as we stay linear, we're alright.
+- LDAs, PCAs, etc. may be used to maximize discrimination/preprocess for learning.
+ex/lda_classifier2.pdf Dataset; ex/lda_transf2.pdf Transformed; ex/lda_project2.pdf Projected
+
++ Limits of Linear Classifiers
+- Move to a more complicated (though still somewhat contrived) generating function, but stick to two dimensions for exposition.
+- With a `spiral,' the linear classifiers fail, and need something stronger.
+<1em
+ex/lda_lollypop.pdf LDA Fail; ex/my_nn_classifier.pdf NN Classifier
+
++++ Machine Learning
+
++ Nearest Neighbors 
+Nearest neighbors uses a labelled `training' dataset as a `dictionary.'
+- Simplest case: classify new objects by matching the single closest object in the reference dataset.
+- Leads to canonical \chred{over-training}: classification reflects not only the generating function, but also the statistical fluctuations of the sample.
+- Therefore: average over $k$ nearest neighbors.
+-- Analogous to `regularization' in neural nets.
+-- \chred{$\bm{k}$} is our first \chred{hyperparameter}.
+- Large training dataset translates to high precision but slow evaluation.
+<1em
+Overtraining ex/knn_overtrained.pdf:0.3:side; ex/knn_k30.pdf:0.3:side $k = 30$
+
++ Binary Decision Trees
+>1em
+\\
+Binary decision trees use successive splits on the input variables to partition the sample.
+- The average value in a `leaf' is the output.
+- Because each cut `straight,' can be useful to rotate (PCA/LDA) before training.
+- Like `nearest neighbors,' BDTs are susceptible to overtraining.  One can protect against this by requiring a minimum population in each leaf.
+- Unlikely, kNN, \emph{extremely fast} evaluation.
+ex/bdt_graph.pdf
+Overtrained ex/bdt_overtrained.pdf:0.25:side; ex/bdt_leaf15.pdf:0.3:side Min Leaf 15
+
++ Multilayer Perceptrons (MLPs)
+>1em
+\\
+An MLP consists of a network of nodes with activation functions, and a collection of weights for the connections between those nodes.
+\[ d_k = g_k \left(Σ_{j = 0}^M w_{kj} × g_j \left(Σ_{i=0}^N w_{ji}^h x_i\right)\right) \]
+<0.5em
+- Activation function: sigmoid/tanh, ReLU (rectified linear unit, \max(0, x)$), etc.
+- Many hyperparameters (number and size of hidden layers, etc.).
+- `Regularization' to penalize extreme weights and avoid over-training.
+Single-Output MLP ../img/network_schema.pdf:1.0:side; ex/mlp_classifier.pdf:0.36:side Classifier
+
++ Training
+We've attained some pretty magical results by `training' BDTs and MLPs to recognize patterns.
+! So how does the training work!?
+Define a loss as the sum of all of the mis-classifications on the entire dataset, $L = Σ Lᵢ$.  Define the element-wise loss-by
+- Support vector machine: seek a gap in score of at least $X$ above other classes. \[ Lᵢ = \textstyle Σ_{j≠yᵢ}\max(0, X + fⱼ - f_{yᵢ}) \]
+- Softmax: the negative log `probability' of the right class: \[ Lᵢ = - \log ( e^{f_{yᵢ}} / \textstyle Σ_j e^{fⱼ} ) \]
+- Also include a regularization term that penalizes large weights: $½αw²$.
+
++ Minimize the Loss
+Iterate over the dataset, updating the biases and weights to minimize the loss: \chred{back-propagation!!}
+- Back-propagation is doing the chain-rule backwards.
+-- Mainly addition with weights.  In reverse, just dot layer gradient with weights.
+-- We'll use ReLU for our activation, which makes the derivatives easy (turns them off when paramater is negative).
+-- Trick is $Lᵢ$ to the scores: $∂Lᵢ/∂f_k = p_k - \mathds{1}(yᵢ = k)$.
+- Save the values of all of the nodes in a single forward pass, then work backwards.
+

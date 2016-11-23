@@ -84,3 +84,25 @@ We will do this entirely with matrix multiplication,
     because \texttt{numpy} is highy optimized for this.
 With \texttt{for} loops, this would just be too slow.
 
+>> Initialize 
+Our initialize function will initialize our parameters and hyperparameters:
+- The number of classes, $K$.
+- The dimensions of our input variables $D (= 2)$.
+- The number of hidden layers, $H$, defaulting to 100.
+- Very small initialization for our weights (0.01 times a Guassian).
+-- For this, we'll use \texttt{np.random.randn(x, y)}.
+- The step size and regularization ($α$).
+
+>> Evaluate 
+The evaluate function must perform the dot products and ReLU activation.
+Additionally, we're going to have to deal with the `bias trick,'
+  by extending (\texttt{np.append()}) the column of `ones' to our inputs and hidden layer.
+
+>> Classify
+This will simply choose the maximum score, with \texttt{np.argmax()}.
+
+>> Train
+This is the big kahuna class; it's just a loop over iterations (say, 5000),
+  over which we will calculate the gradients and update the parameters,
+  as already discussed \emph{ad nauseum}.
+

@@ -1,0 +1,86 @@
+^T: Simple Neural Network Math
+^H: \usepackage{dsfont}
+^G: 1.0
+^D: November 23, 2016
+
+> Defining the Network
+
+../img/nn_simple.pdf:0.55 Schematic diagram of a simple neural network. \label{fig:nn_simple}
+
+Consider an artificial neural network of the form shown in Figure~\ref{fig:nn_simple}.
+We have $D$ input variables and $K$ classes,
+   and our unique hidden layer has $H$ nodes.
+We'll call inputs $x⃗$ and outputs $f⃗$, 
+  activation functions $g$, and weights $w⃗$.
+(We denote both vectors and matrices in bold.)
+The entire net may then be expressed:
+$ f_k = g_k ( Σⱼ^H w_{kj}^{(2)} × g_j(Σᵢ^D wⱼᵢ^{(1)} xᵢ)).
+Note that we are not explicitly writing the bias nodes;
+  instead we're incorporating them into $x⃗$ and $h⃗$ as constants of 1.
+Their values are thus incorporated into the weights, which are accordingly extended by 1.
+That means that the weights $w⃗₁$ and $w⃗₂$ are matrices of size
+  $(D + 1) × H$ and $(H + 1) × K$ respsectively.
+This condenses the math, at the cost of having to track `ones.'
+
+For this example we'll take $g_k$ as the identity ($g_k(x) ≡ x$)
+  and use the rectified linear unit function for $gⱼ$:
+$ gⱼ(x) ≡ g(x) = \text{ReLU}(x) = \max(0, x).
+
+We seek to minimize the total loss of our network by tuning the weights.
+To do this, we naturally want $∂L/∂w$.
+We do this through back-propogation, but it perhaps helps first to lay it out with the chain rule.
+Intuititively, each weight multiplies \emph{an} input and forwards to \emph{all} outputs.
+The math must reflect this, which will help write down the expressions.
+
+
+> Gradient of the Loss (Steepest Descent)
+
+Calling misclassification loss (data loss) $L_d$, 
+  the number of training elements $N$, 
+  and the regularization loss $L_r$,
+  we have $L = L_d/N + L_r$.
+The regularization term is $L_r = ÷{α}{2} Σw²$,
+  so its derivative with respect to the $w$'s is trivial: $αw$.
+(Apologies for sloppy notation.)
+
+The data loss is $ L_d = Σᵢ Lᵢ$; per term, we use the softmax definition:
+$ Lᵢ = - \log(e^{f_{yᵢ}}\left /Σⱼ e^{fⱼ}\right.).
+Let's calculate the gradient with respect to the first and second layer weights.
+In the first, that's
+$ \pder{L_d}{w₁} = \pder{L}{fⱼ} \pder{fⱼ}{g} \pder{g}{h} \pder{h}{w₁}.
+The terms are pretty easy to understand:
+- $∂L/∂fⱼ$ is the loss with respect to (WRT) the scores.  This is the only `tricky' derivative and is calculated below.
+- $∂fⱼ/dg$ is the scores WRT hidden layer values.  That's just the $w⃗₂$ weights!
+- $∂g/dh$ is the activation function with respect to the hidden layer products.  This just turns off the derivative when $h$ is positive; it is the heaviside function $\Theta(h)$.
+- $∂h/∂w₁$ is the hidden layer products WRT the weights -- just the inputs $x⃗$!
+We also need the second layer weights; these are easier, just $∂L/dw⃗₂ = (∂L/∂fⱼ)(∂fⱼ/∂w⃗₂)$.
+The first term we've already seen and the second is clearly just the hidden layer \emph{values}.
+Note that the hidden layer values are needed several times, so we should hold on to these!
+
+Let's solve out $∂L_d/∂fⱼ$.
+Calling the correct classification for an object $yᵢ$, this is 
+@ \pder{Lᵢ}{f_k} &= \pder{}{f_k} [-\log(÷{e^{f_{yᵢ}}}{Σⱼe^{fⱼ}}) ] \\
+@                &= \pder{}{f_k} [\log(Σe^{fⱼ}) - \log(e^{fⱼ})] = \pder{}{f_k} \log(Σe^{fⱼ}) - \mathds{1}(yᵢ = k)
+The remaining unevaluated term is easy with the chain rule: 
+  $(∂\log/d\text{arg})(∂\text{arg}/∂f_k)$, which comes down to $e^{f_k}/Σⱼ e^{fⱼ} = p_k$.
+The full term is thus
+$ \pder{Lᵢ}{f_k} = p_k - \mathds{1}(yᵢ = k).
+
+> The terms for our program.
+We're now all done!
+Calling our hidden layer $h⃗$ and including the regularization we can write:
+- $df⃗  ≡ p_k - \mathds{1}(yᵢ - k)$
+- $dw⃗₂ ≡ ∂Lᵢ/∂w⃗₂ = h⃗ · df⃗ + αw⃗₂$
+- $dh⃗  ≡ ∂Lᵢ/dh = df⃗ · w⃗₂$
+- $dw⃗₁ ≡ ∂Lᵢ/dw⃗₁ = x⃗ · dh⃗ + αw⃗₁$
+This matches our intuitions about the gradients.
+The larger the values on the inputs, the more the first layer weights change.
+The larger the values coming out of the hidden layer,
+    the larger the gradients on the second layer weights.
+The $df⃗$ and $dh⃗$ are just intermediate steps; they do not update anything.
+
+Now we just need to code it up!!
+We will do this entirely with matrix multiplication, 
+    because \texttt{numpy} is highy optimized for this.
+With \texttt{for} loops, this would just be too slow.
+

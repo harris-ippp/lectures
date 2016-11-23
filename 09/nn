@@ -70,7 +70,7 @@ ex/lda_classifier.pdf Dataset; ex/lda_transf.pdf Transformed; ex/lda_project.pdf
 
 + Linear Discriminant Analysis: Math (for Two Categories)
 The density of a multivariate normal distribution with means $\overline{x⃗}$ and covariances $M⃗$ is:
-\[ f(x⃗) = \left. \exp{\left(-½(x⃗-\overline{x⃗})^T M⃗⁻¹(x⃗-\overline{x⃗})\right)} \right / √{(2π)^k}|M⃗| \]
+\[ f(x⃗) = \left. \exp{\left(-½(x⃗-\overline{x⃗})^T M⃗⁻¹(x⃗-\overline{x⃗})\right)} \right / √{(2π)^k |M⃗|} \]
 Hence the log-likelihood ratio for membership in two sets is
 \begin{align*}
 & ½(x⃗-\overline{x⃗}₀)^T M⃗₀⁻¹(x⃗-\overline{x⃗}₀) + ½k \ln(2π) + ½\ln|M⃗₀| \\
@@ -160,4 +160,16 @@ We'll implement this on Wednesday.
 - Training only gives us the weights.  How many nodes?  Training iterations?  Minimum leaf size?  Regularization?  Step size?
 - Standard practice is to preserve a validation sample that we do \emph{not} train against, to monitor convergence.  When iterations (back-propagation) on the training sample no longer yield improvement on the validation sample, \emph{stop}.
 - Also preserve a totally sacrosact test sample, that you use only at the \emph{very end} to test performance (it's easy to `tune' for the validation sample, by hand).
+
++ Overzealous Training
+Using the `spiral' generator, scale the training sample size and the regularization strength.
+- The training sample will always perform best, but with plentiful data the performance on the training and test samples will converge.
+- Regularization needs to be `in tune' with the data: small enough to fit, but large enough to penalize overfitting.
+-- With more data, this is less of a concern.
+<1em
+ex/regularization.pdf:0.33:side; ex/training_size.pdf:0.33:side
+
++ Give Some Thought to the Technique
+In different circumstances, BDTs, MLPs, and kNN can all be the most-performant (or most reasonable) option.  Give some thought to the `geometry' of the variables.
+ex/checkers_mlp.pdf MLP; ex/checkers_bdt.pdf BDT
 

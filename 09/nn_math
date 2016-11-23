@@ -50,8 +50,8 @@ In the first, that's
 $ \pder{L_d}{w₁} = \pder{L}{fⱼ} \pder{fⱼ}{g} \pder{g}{h} \pder{h}{w₁}.
 The terms are pretty easy to understand:
 - $∂L/∂fⱼ$ is the loss with respect to (WRT) the scores.  This is the only `tricky' derivative and is calculated below.
-- $∂fⱼ/dg$ is the scores WRT hidden layer values.  That's just the $w⃗₂$ weights!
-- $∂g/dh$ is the activation function with respect to the hidden layer products.  This just turns off the derivative when $h$ is positive; it is the heaviside function $\Theta(h)$.
+- $∂fⱼ/dg$ is the scores WRT the activation function.  This just turns off the derivative when $h$ is positive; it is the heaviside function $\Theta(h)$.
+- $∂g/dh$ is the activation function with respect to the hidden layer products.  That's just the $w⃗₂$ weights! 
 - $∂h/∂w₁$ is the hidden layer products WRT the weights -- just the inputs $x⃗$!
 We also need the second layer weights; these are easier, just $∂L/dw⃗₂ = (∂L/∂fⱼ)(∂fⱼ/∂w⃗₂)$.
 The first term we've already seen and the second is clearly just the hidden layer \emph{values}.

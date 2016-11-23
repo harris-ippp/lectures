@@ -53,7 +53,7 @@ def spiral_data(K, N = 1000, D = 2, noise_level = 0.4):
 
 
 ## Define a blob dataset.
-def blob_data(X = 2, Y = 2, N = 1000, D = 2, correlated = 0.5, noise_level = 1.0):
+def blob_data(X = 2, Y = 2, max_K = 1000, N = 1000, D = 2, correlated = 0.5, noise_level = 1.0):
 
     K = X * Y
     
@@ -80,6 +80,6 @@ def blob_data(X = 2, Y = 2, N = 1000, D = 2, correlated = 0.5, noise_level = 1.0
         r = np.linspace(0.0,1,N) # radius    
 
         par[ix] = np.c_[x, y]
-        cat[ix] = j 
+        cat[ix] = j % max_K
         
     return par, cat

@@ -1,0 +1,143 @@
+^T: Reflections: Philosophy of Government
+^ST: Reflections
+^I: Introduction to Programming for Public Policy
+^SI: Intro Programming
+^D: November 28, 2016
+^H: \usepackage{array}
+^H: \usepackage{array}
+^H: \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+^H: \include{pythonlst}
+^H: \DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{9.5} % for bold
+^H: \DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{9.5}  % for normal
+
++ Outline
+\Large
+Using data; connecting datasets
+# Topics we've covered.
+# Connecting datasets.
+>1em
+- Philosophy of government \\ \hspace{2em} expressed through computing policies.
+
++ What We've Covered
+<2em
+\fontsize{8}{11} \selectfont
+* c P{0.33\linewidth} P{0.38\linewidth}
+*                  & Applications    & What now? \\ \hline 
+* Git              & Version Control & Use (and contribute!) to packages! \\ \hline
+* Command Line     & Navigation; exploratory analysis, data reduction, and cleaning. & First line of defense with large datasets. \\ \hline
+* Python           & Algorithmic problem solving, data processing.  Many libraries: \link{https://docs.python.org/3.5/library/math.html}{math}, \link{https://www.crummy.com/software/BeautifulSoup/bs4/doc/}{bs4}, \link{http://docs.python-requests.org/en/master/}{requests}, etc. & Languages need practice: try \link{https://projecteuler.net/archives}{project euler}, \link{http://www.pythonchallenge.com/pc/def/0.html}{python challenge}, or \link{http://codingbat.com/}{coding bat} (easier). \\ \hline
+* Pandas           & Joining datasets; slicing columns and filtering rows (masks).  Plotting and fitting.  & Stats (\link{https://docs.scipy.org/doc/scipy-0.18.1/reference/stats.html}{scipy.stats}, \link{http://statsmodels.sourceforge.net/}{statsmodels}, \link{https://lmfit.github.io/lmfit-py/model.html}{lmfit}), math (\link{https://docs.scipy.org/doc/numpy-dev/user/quickstart.html}{numpy} and \link{http://docs.sympy.org/latest/tutorial/intro.html}{sympy}), plots (\link{http://seaborn.pydata.org/}{seaborn}). \\ \hline
+* Databases/SQL    & Storing, connecting, and processing data. & Ask!  They're behind most serious applications.  Be aware of indices.  \\ \hline
+* Scraping/APIs    & Use the data on the web! & Learn about \link{http://schema.org/}{schemas}! \\ \hline
+* Web Development  & Static and dynamic websites. & Javascript!  Databases!  Servers! \\ \hline
+* GIS              & Merging datasets in spacetime; beautiful, interactive maps. & Spatial statistics; many classes at Harris/UC. \\ \hline
+* Machine Learning & Targetting interventions. & Some courses through the CI. \\ 
+
++ An Amusing Diversion: Python Challenge
+- An engaging set of linked puzzles -- great for the holidays! \includegraphics[width=2em]{../img/holly_sm}
+../img/pc_0.jpg; ../img/pc_1.jpg
+
++ Educational Attainment by Census Tract
+- Huge difference in educational attainment maps at high school and college.  Do ambitious kids leave the mountain states, ne'er to return?
+<0.5em
+\only<1>{ ../img/hs_small.png:0.9 } \only<2>{ ../img/ba_small.png:0.9 }
+
++ Educational Attainment by Birthplace
+- Need \link{https://usa.ipums.org/usa/index.shtml}{IPUMS} (Integrated Pulic Use MicroSample) to get birthplace.
+-- These are 1\% and 5\% samplings of the Census and ACS.
+../img/ed_at_state/2000.png:0.75
+
++ Weather and Crime
+- Long ago, we toyed temperature and crime in Chicago.
+-- But was it driven by temperature, or seasonal?
+- Let's use APIs, $\unsim$SQL, and pandas to check \link{https://data.sfgov.org/Public-Safety/SFPD-Incidents-from-1-January-2003/tmnf-yvry}{San Francisco}!
+-- Is there annual variation in the monthly crime count?
+-# No seasonal variation in weather (or crime).  Incredibly fast to do this.
+-# But the datasets have superficial differences -- code not portable.
+<1em
+../img/chicago_monthly.png:0.6
+
++ Weather (Solution)
+\pythonexternal{ex/weather.py}
+>1em
+\centering
+(Wow, was this fast!)
+
++ Notes on Data
+- I hope this class has given you greater comfort in retrieving, processing, and sharing data.  You know statistics from other classes.
+- If you value data, ask for it, and do your own analysis.
+-- Don't settle for PDFs of other people's ideas!
+
++ Aspirations of Open Data
+''' \link{https://project-open-data.cio.gov/policy-memo/}{OMB Memo M-13-13}: Information is a valuable national resource and a strategic asset to the Federal Government, its partners, and the public. In order to ensure that the Federal Government is taking full advantage of its information resources, executive departments and agencies must manage information as an asset throughout its life cycle to promote openness and interoperability, and properly safeguard systems and information. 
+''' \link{https://data.pa.gov/}{PA Data Portal}: One of our most valuable and underutilized resources in state government is data. Our goal is to make data available in order to measure government performance, engage citizens, create economic opportunities, and develop innovative policy solutions.
+
++ Realities of Open Data: A Disconnect
+- Many flashy sites, powered by \link{https://socrata.com/}{Socrata} and \link{http://ckan.org/}{CKAN} (open source).
+-- But most of the datasets contained in these.... suck.
+- Pennsylvania data portal: \link{https://data.pa.gov/browse?category=Schools+that+Teach}{education datasets}.
+- White House: a few datasets of \link{https://github.com/WhiteHouse/budgetdata/tree/2017/data}{budget} and \link{https://open.whitehouse.gov/browse}{salaries}, but mainly questionable ones on \link{https://open.whitehouse.gov/dataset/Preserving-and-Maintaining-Our-National-Parks/hbii-2nsi}{National Parks}, etc.
+- And \link{https://catalog.data.gov/dataset}{data.gov} is relatively sparse in integrated data.
+>1em
+- You will go and change the world: make good data!
+
++ Building Technology for Government
+Cities, states, and counties like to think they're unique.  \chred{They're not.}
+- Make open source the default: responsibility is to the taxpayer, not the contractor.
+-- There are plenty of companies (e.g., Oracle!) that understand the place of open source software.
+-- We typically think of a `public dollar' as less valuable than a single private one (distortionary, etc.).  Fight against that!
+- Intellectual property is unlike other civic infrastructure.  Save money by standardizing inputs and building shared tools.
+-- Boston 311 developed with Connected Bits; now licensed to Chicago, SF, Austin, etc. (Though private licensing is a mixed blessing.)
+-- Several parking app platforms shared among cities (pango, passport).
+-- You don't have to contract it out -- but you shouldn't build it anew every time!  Use existing services if you can! (We don't write libraries.)
+- Consider design needs -- what is shared across cities or agencies?
+-- Then write a \emph{schema} and collaborate!?
+
++ An Aside -- What is Open Source?
+Free as in speech, free as in beer...
+- Open source software may be freely downloaded and used.
+- The source code is also published (often on github, sourceforge, or their predecessors), and anyone can modify it.
+- Alterations and bug reports are pushed back to the source, and a `maintainer' (or a team of) reviews and approves or rejects each one.
+-- A large community of people may propose and discuss bug fixes.
+-- Makes for stable code, fast fixes, and good security.
+Stunningly successful model.  Linux runs the majority of supercomputers; Apache dominates in web servers.  Many of you have used Firefox. \\
+>2em
+(The \$1 fix at F18: all bugs are shallow.)
+
++ Schemas and Standardization
+Great fanfare around posting data online; \\
+\hspace{0.5em} inadequate care to their quality and intercompatibility.
+- Obvious candidates for standardization (good quality data): 
+-- Crime: \link{http://www.civicapps.org/datasets/}{Portland}, \link{https://data.cityofnewyork.us/Public-Safety/NYPD-7-Major-Felony-Incidents/hyij-8hr7}{NYC}, \link{https://data.cityofchicago.org/view/5cd6-ry5g}{Chicago}, \link{https://data.lacity.org/A-Safe-City/Crimes-2012-2015/s9rj-h3s6/data}{LA}, \link{https://data.cityofboston.gov/Public-Safety/Crime-Incident-Reports-July-2012-August-2015-Sourc/7cdf-6fgx}{Boston}, \link{https://www.opendataphilly.org/dataset/crime-incidents/resource/d6369e07-da6d-401b-bf6e-93fdfacdf24d}{Philly}, \link{https://www.phoenix.gov/opendata}{Phoenix}, \link{https://www.denvergov.org/opendata/dataset/city-and-county-of-denver-crime}{Denver}, \link{https://data.sfgov.org/Public-Safety/SFPD-Incidents-from-1-January-2003/tmnf-yvry}{San Francisco}, \link{https://www.dallasopendata.com/Public-Safety/Police-Incidents/tbnj-w5hb/data}{Dallas}.
+-- Voting returns: \link{http://www.sos.state.oh.us/SOS/elections/Research/electResultsMain.aspx}{OH}, \link{https://www.elections.il.gov/ElectionInformation/DownloadVoteTotals.aspx}{IL}, \link{http://electionresults.utah.gov/elections/countyCount/300000}{UT}, \link{http://www.electionreturns.pa.gov/ENR_New/api/ElectionReturn/GetCountyBreak?officeId=1\&districtId=1\&methodName=GetCountyBreak\&electionid=54\&electiontype=G\&isactive=1}{PA}, \link{http://historical.elections.virginia.gov/elections/search/year_from:1924/year_to:2015/office_id:1/stage:General}{VA}.
+-- Budgets, school performance, road work, housing inspections, etc.
+- At \link{http://schema.org/docs/full.html}{schema.org}, Google, Microsoft, Yahoo, and Yandex work with an open source community to standardize structured data.
+-- This is what allows for displaying e.g. movie showings or restaurants directy in search results.
+
++ Why Does Government IT Stink?
+- Customer Relationship Management from the progressive age: people at desks.
+- Terrible procurement process with fixed vendors.  Particular problem when you want things \emph{fast}.
+- Inadequate entrepreneurial spirit in government.
+-- Consider prizes, novel funding mechanisms.
+- Don't settle!  Our relationship and view of government comes from our experience of it.
+
++ The Power of Technology
+- Better technology allows government to collect, analyse, and apply data more quickly.
+- Citizens can more-easily contribute information; government workers can {\it use} more information to make better, more independent decisions.
+
++ Data as a Philosophy
+- Expect push-back: lots of people build and defend fiefdoms, and their power is their data.
+- There are legitimate concerns for a lot of data (privacy), but for the time being, we're pretty far from that on the open data front.
+- And everyone is better off if you build and share tools and data.
+-- Freeing data allows new collaborations and shifts development to the private sector where possible (think GPS, NOAA).
+- Transparency and an informed citizenry is an important part of democratic government.  It's worth fighting for.
+- Build data collection into your program design, in such a way as to evaluate if they work!
+
++++ Conclusions
+\Large
+- Have fun solving puzzles and building things.
+- Look for connections between data sources.
+- Demand and use data; keep learning. 
+-- \large If interest: monthly troubleshooting hour?
+- Build government to be proud of.
+

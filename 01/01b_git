@@ -1,8 +1,9 @@
-^T: Version Control: Git and GitHub
+^T:  Version Control: Git and GitHub
 ^ST: Git and GitHub
-^I: Introduction to Programming for Public Policy
-^SI: Intro Programming
-^D: September 28, 2016
+^I:  Introduction to Programming for Public Policy
+^SI: IPPP
+^D:  September 27, 2016
+^H:  \graphicspath{{../img/}}
 
 + What is version control?  Why use it?
 - Perhaps a familiar story, for paper drafts. $⟹ $
@@ -17,13 +18,17 @@
 -- It is tremendously flexible (`branches').
 - Git is \emph{distributed}: everyone has a copy of the entire history.
 - However, it is often useful to maintain a master copy on a server where anyone can access it or `push' their changes: GitHub.
-- GitHub is a nice \chred{interface} for hosting repositories.
+- GitHub is a nice \chred{server} for hosting repositories.
 ../img/git_github.pdf:0.6
+
++++ Field Trip: \link{https://github.com/harris-ippp/lectures}{github.com/harris-ippp/lectures}
+github_clone_http.png:0.7
++
 
 + Git Commands 
 You'll use these regularly:
-- \chred{git init}:   create a repository in this directory
 - \chred{git clone}:  download repository
+- \chred{git init}:   create a repository in this directory
 - \chred{git add}:    add a file to `staging' area
 - \chred{git status}: view status of all files
 - \chred{git commit}: commit staged files to history

@@ -25,7 +25,7 @@ ul.nav li a {
 
 ul.nav li a:hover {
   background-color: #555;
-  transition: 0.5s;
+  transition: 0s;
 }
 
 ul.nav li a.active {
@@ -36,7 +36,7 @@ ul.nav li a.active {
 
 ul.nav li:hover { 
   background-color: #555;
-  transition: 0.5s;
+  transition: 0s;
 }
 
 img {

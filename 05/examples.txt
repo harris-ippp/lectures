@@ -1,4 +1,4 @@
-//tinyurl.com/z24cdoz
+http://tinyurl.com/z24cdoz
 
 WHERE :: 
   [CPS] age and family income in DC, IL, or PA
@@ -30,4 +30,3 @@ SUBQUERY ::
 * [ACT, CPS, RES] married by attended church
   [ACT, ROS] housework by sex
   [ACT, ROS, CPS] housework by sex and educational atainment
-

@@ -71,6 +71,8 @@
 +
 
 +[fragile] Count the Operations in Each Snippet
+~ \\
+<1.7em
 \begin{columns}
 \begin{column}{0.4\linewidth}
 \pythonexternal{ex/count1.py}
@@ -102,8 +104,8 @@ Say that an algorithm is `order $n²$' or `order $n\log n$,'
 - Note that exponential or factorial growth would be catastrophic.
 ../img/fn.pdf:0.7
 
-+ How Complex [3 of 3]: Big-O Notation
-- Upper limits for the \emph{worst case} behavior also useful: `big $\O$.'
++ How Complex [3 of 3]: Big-$\O$ Notation
+- Worst-case upper limits also useful: `Big-$\O$,' $f(n) = \O(g(n))$.
 ! For $n > n_\text{cut}$, $f(n) ≤ c g(n)$ for constant $c$.
 - Notational abuse: $f$ and $\O(g)$ are different objects.
 -- That $f = \O(h)$ and $g = \O(h)$ does not imply that $f = \O(g)$!

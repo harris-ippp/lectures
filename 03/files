@@ -31,6 +31,11 @@
 - The output file is just an object, that we write to.
 - There is also \tt{`a'}, for `append' (write at end of file).
 
++ `Canonical' Writes: \tt{with} \tright ex/a/canonical\_write\_with.py
+- I sometimes use `\tt{with}' to specify a block in which to write.
+- The file `snaps shut' at the end of the block.
+\pythonexternal{ex/a/canonical_write_with.py}
+
 + Using and Filtering Inputs \tright ex/a/for\_line\_in\_grep.py
 - Let's start by reproducing our `high salaries grep' from day 1.
 \visible<2>{\pythonexternal{ex/a/for_line_in_grep.py}}
@@ -47,11 +52,6 @@
 \pythonexternal{ex/a/fire_salaries.py}
 - Open \tt{ex/a/dept\_salaries.py}, and modify it to print the total, average, and max salaries, and the number of employees.
 -- Use \tt{len()}, \tt{sum()}, and \tt{max()}.
-
-+ `Canonical' Writes: \tt{with} \tright ex/a/canonical\_write\_with.py
-- I sometimes use `\tt{with}' to specify a block in which to write.
-- The file `snaps shut' at the end of the block.
-\pythonexternal{ex/a/canonical_write_with.py}
 
 +++ Formats
 
@@ -77,7 +77,7 @@
 - Let's explore some JSON data.  Please open a python prompt in ex/a/, and type this:
 \pythonexternal{ex/a/open_json.py}
 - Use \tt{narcotics.keys()} to find the data (a list).
-- What are the most common drug offenses?
+- What are the most common drug offenses? [\link{https://gist.github.com/JamesSaxon/e2aca9e262b82ea84c57fd24add99e21}{Gist}]
 -- Use a set comprehension (curly branches) to get the types.
 -- Use a for loop to ask how many of each type there are.
 

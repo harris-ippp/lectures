@@ -1,0 +1,56 @@
+^T:  \includegraphics[width=0.65\textwidth]{../img/pywordmark_white}
+^ST: Lecture 2A: Python
+^I:  Introduction to Programming for Public Policy
+^SI: IPPP
+^D:  October 2, 2017
+^H:  \graphicspath{{../img/}}
+^H:  \DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{11.5}
+^H:  \DeclareFixedFont{\ttbs}{T1}{txtt}{bx}{n}{8}
+^H:  \DeclareFixedFont{\tts}{T1}{txtt}{m}{n}{8}
+^H:  \newcommand{\T}{\green{\ttb{True}}}
+^H:  \newcommand{\F}{\red{\ttb{False}}}
+^H:  \newcommand{\sT}{\green{\ttbs{True}}}
+^H:  \newcommand{\sF}{\red{\ttbs{False}}}
+
++ What is Python?
+! Python is a popular, high-level \\ interpreted programming language.
+\chred{Interpreted}: computer `runs your instructions,' so you can:
+- Run \chred{interactively}: execute one line of code at a time.
+- Or \chred{script}: write down and save all of your commands.
+- (It actually compiles itself, `just-in-time.')
+>0.5em
+\chred{High level:} python hides a lot of the complexity from you.
+- You don't have to worry about moving bits (1s and 0s) around.
+- You can accomplish a lot, with relatively little code.
+- There are tons of libraries: it is simultaneously a basic programming language, an advanced computational engine, an excel buster, a web designer and scraper, a mapping platform, ...
+
+\centering
+\Large
+Through the next two lecture, we'll discuss:
+! Types 
+! Control
+! Assignment, Operators, and Methods
+Some of them will be mixed together.
+
++ The Building Blocks \tright{Notes: See Jupyter Notebook.}
+Launch python on your computer, or open a jupyter notebook:
+! Command line: `python' (must be python 3).
+! Local Jupyter: Anaconda Navigator
+! Online Jupyter: \link{http://tmpnb.org}{tmpnb.org} or \link{http://try.jupyter.org}{try.jupter.org}
+\centering \small{Click `New' in the upper right corner, then Python 3.}
+../img/jupyter_prompt.png
+
++ An Aside -- Boolean Arithmetic
+- \T{}/\F{} values -- booleans -- are foundational to programming.
+- We will often do something ``\tt{if}'' a condition is satisfied (\T), and not do it if the condition is \F.
+- It is \chred{critical} to understand how they are combined (and how other variables may be converted into them).
+* c@{ }c@{ }c@{\small{\hspace{0.25em}$=$\hspace{0.25em}}}c c|c c@{\small{\hspace{0.25em}$=$\hspace{0.25em}}}c
+* \sT{} & \tts{and} & \sT{} & \visible<2->{\sT}         &&&  \visible<10->{\tts{not} \sT} & \visible<11->{\sF} \\
+* \sT{} & \tts{and} & \sF{} & \visible<3->{\sF}         &&&  \visible<10->{\tts{not} \sF} & \visible<12->{\sT} \\
+* \sF{} & \tts{and} & \sT{} & \visible<4->{\sF}         &&&  \visible<10->{\sT{} \tts{and not} \sF} & \visible<13->{\sT} \\
+* \sF{} & \tts{and} & \sF{} & \visible<5->{\sF}         &&&  \visible<10->{\sF{} \tts{or} (\sF{} \tts{or} \sT)} & \visible<14->{\sT} \\
+* \sT{} & \tts{or}  & \sT{} & \visible<6->{\sT}         &&&  \visible<10->{\sT{} \tts{and} (\sF{} \tts{or} \sT)} & \visible<15->{\sT} \\
+* \sT{} & \tts{or}  & \sF{} & \visible<7->{\sT}         &&&  \visible<10->{\sF{} \tts{or} \sF{} \tts{or} \sF{} \tts{or} \sT} & \visible<16->{\sT} \\
+* \sF{} & \tts{or}  & \sT{} & \visible<8->{\sT}         &&&  \visible<10->{\sT{} \tts{and} \sT{} \tts{and} \sT{} \tts{and} \sF} & \visible<17->{\sF} \\
+* \sF{} & \tts{or}  & \sF{} & \visible<9->{\sF}         &&&  \visible<10->{\tts{not} (\sF{} and \tts{not} \sT)} & \visible<18->{\sT} \\
+

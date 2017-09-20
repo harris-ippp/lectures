@@ -130,7 +130,7 @@ We're covering this so that:
 + The Fundamental HTML Tags\footnote{We will, perhaps, make it to forms next week.}
 <1em
 - Most of these come in pairs: \tt{<tag>value</tag>}.  
-- Table, break, and img are the exceptions.
+- Break and img are the exceptions.
 <1.5em
 \fontsize{9}{13} \selectfont
 * cl
@@ -191,7 +191,7 @@ Once your content is in place (or you've given up on content), format it!
 ../img/css_spacing.pdf:0.4
 
 + Writing CSS or Including a File
-- CSS rules may be added in the header, between \tt{<script>} tags.
+- CSS rules may be added in the header, between \tt{<style>} tags.
 - A file of .css rules in your directory may be loaded via \\ \tt{<link rel="stylesheet" href="my\_style.css">}
 
 +[fragile] A CSS `Trick' for Navigation from a List

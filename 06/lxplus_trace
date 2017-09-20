@@ -1,0 +1,16 @@
+*T clll
+* Hop & IP * Where & Time \\ \hline
+*  1  & 10.0.0.1  & (Me) & 101.457 ms \\
+*  2  & 96.120.26.81 & Comcast: Mount Prospect, IL & 11.266 ms \\
+*  3  & elmhurst.il.chicago.comcast.net & Comcast: Elmhurst, IL & 9.386 ms \\
+*  4  & 162.151.92.89 & Comcast: Lower West Side &  12.537 ms \\
+*  5  & area4.il.chicago.comcast.net & Comcast: Lower West Side & 11.665 ms \\
+*  6  & 350ecermak.il.ibone.comcast.net & 350 East Cermak, Chicago & 13.547 ms \\
+*  7  & newyork.ny.ibone.comcast.net & 60 Hudson Street, NYC & 32.365 ms \\
+*  8  & 111eighthave.ny.ibone.comcast.net & Google Building, NYC & 30.809 ms \\
+*  9  & 111eighthave.ny.ibone.comcast.net & Google Building, NYC & 33.153 ms \\
+* 10  & 217.239.43.33 & Deutsche Telekom, Remscheid &  121.475 ms \\
+* 11  & 193.159.166.222 & Deutsche Telekom, Monchengladbach &  238.268 ms \\
+* 12  & e513-e-rbrxl-2-ne0.cern.ch & CERN, Geneva & 119.991 ms \\
+*T: Traceroute from Home to CERN/Geneva
+

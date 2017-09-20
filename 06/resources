@@ -77,7 +77,7 @@ Consider the people who want to use your (their!) data!
 - Consider all of the `true' conditions of chicken health benefits.
 - The problem is that the truth is in a different element from the item.
 - We need to to look at rows in their entirety, printing the first column if the second is true.
-- \tt{children()} provides an iterable, and \tt{.content} provides a list.
+- \tt{children()} provides an iterable, and \tt{.contents} provides a list.
 
 + BS4: Parts of Elements
 Accessing parts of elements get/dictionary:

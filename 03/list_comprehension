@@ -14,13 +14,15 @@
 \pr \verb|print([i for i in range(10)])| \\
 \verb|[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]|
 \end{tcolorbox}
+- This is equivalent to:
+` l = [] \\for i in range(10): l.append(i)
 - So: the thing on the left is repeated for each entry in the iterable.
 - This is a very concise way to create useful lists.
 
 +[fragile] Using the Variables
 - You can also do simple operations, for instance, get the squares
 \begin{tcolorbox}
-\pr \verb|print([i*ifor i in range(10)])| \\
+\pr \verb|print([i*i for i in range(10)])| \\
 \verb|[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]|
 \end{tcolorbox}
 - Or perform operations on each item:
@@ -40,13 +42,12 @@
 \visible<2->{
 ` [puzzle[5+9*x] for x in range(9)]
 }
-- Blocks don't lend themselves well to this:
+- Blocks don't lend themselves well to this (everything in moderation):
 \visible<3>{
 ` [puzzle[(x\%3) + (x//3)*9 + (b\%3) * 3 + (b//3)*27] for x in range(9)]
 }
 
-+ Example 1: Sudoku (Ordering)
-../img/sudoku_count.pdf:0.5:full
+../img/sudoku_count.pdf:1:full
 
 +[fragile] Selection
 - Using \tt{if}, you can control selection into the lists...

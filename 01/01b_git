@@ -12,7 +12,7 @@
 ! Version Control Systems maintain a history and facilitate collaborative editing.
 ../img/college_papers.png:0.31:side
 
-+ What is git?  GitHub?
++ What is git?  GitHub?  
 - Git is \emph{the} modern VCS, designed by Linus Torvalds (creator of Linux).
 - Git maintains a history of meaningful `commits.'
 -- It is tremendously flexible (`branches').
@@ -50,3 +50,10 @@ Start with a single user and a single thread of edits:
 #- \tt{git push}
 Repeat steps 2-4 as you work. \visible<3>{Do this now with a test repo.} \\
 \visible<2->{\hspace{3.2em}\huge{\chred{This is what you'll use regularly.}}}
+
++ A Standard Sequence: Atom
+The `staging', commit, and push  commit them; check the status and log to see that it worked:
+- Stage change.
+- Commit it with a comment.
+- Click to push.
+Easy to upload as you work!

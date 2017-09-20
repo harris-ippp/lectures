@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse_lazy
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return HttpResponse("Hello, world. You're at the index.")
 
 
 def table(request):
@@ -27,13 +27,16 @@ def table(request):
 from os.path import join
 from django.conf import settings
 
-def csv(request):
+def csv(request, year = None):
 
    import pandas as pd
 
-   baby = join(settings.STATIC_ROOT, 'myapp/baby.csv')
+   filename = join(settings.STATIC_ROOT, 'myapp/va_presidential.csv')
 
-   df = pd.read_csv(baby)
+   df = pd.read_csv(filename)
+
+   if year: df = df[df["Year"] == int(year)]
+
    table = df.to_html(float_format = "%.3f", classes = "table table-striped", index_names = False)
    table = table.replace('border="1"','border="0"')
    table = table.replace('style="text-align: right;"', "") # control this in css, not pandas.
@@ -55,6 +58,14 @@ def add(request, p1, p2):
 
 
 def greet_template(req, w): return render(req, "greet.html", {'who' : w})
+
+def pure_template(req): return render(req, "pure_template.html", {})
+
+def get_reader(request): # note: no other params. # if we knew the parameters ...
+
+  # state = request.GET.get('state', '') 
+  d = dict(request.GET._iterlists())
+  return HttpResponse(str(d))
 
 
 from .forms import InputForm
@@ -101,30 +112,43 @@ class FormClass(FormView):
 
 import matplotlib.pyplot as plt, numpy as np
 
-def pic(request, c = "k"):
+def pic(request, c = None):
 
-    t = np.linspace(0, 2 * np.pi, 30)
-    u = np.sin(t)
-    plt.figure()  # needed to avoid adding curves in plot
+   t = np.linspace(0, 2 * np.pi, 30)
+   u = np.sin(t)
 
-    plt.plot(t, u, color = c)
+   plt.figure() # needed, to avoid adding curves in plot
+   plt.plot(t, u, color = c)
 
-    # write bytes instead of file.
-    from io import BytesIO
-    figfile = BytesIO()
+   # write bytes instead of file.
+   from io import BytesIO
+   figfile = BytesIO()
 
-    # this is where the color is used.
-    try: plt.savefig(figfile, format='png')
-    except ValueError: raise Http404("No such color")
+   # this is where the color is used.
+   try: plt.savefig(figfile, format = 'png')
+   except ValueError: raise Http404("No such color")
 
-    figfile.seek(0) # rewind to beginning of file
-    return HttpResponse(figfile.read(), content_type="image/png")
+   figfile.seek(0) # rewind to beginning of file
+   return HttpResponse(figfile.read(), content_type="image/png")
     
 
-def display(request):
+def display_pic(request):
 
-    return render(request, 'view_pic.html', {"title" : "My Title",
+    return render(request, 'view_pic.html', {"title" : "An astounding plot!",
                                              "pic_source" : reverse_lazy("myapp:pic")})
+
+def display_table(request):
+
+    import pandas as pd
+    import numpy as np
+
+    df = pd.DataFrame(np.random.randn(10, 5), columns=['a', 'b', 'c', 'd', 'e'])
+    table = df.to_html(float_format = "%.3f", classes = "table table-striped", index_names = False)
+    table = table.replace('border="1"','border="0"')
+    table = table.replace('style="text-align: right;"', "") # control this in css, not pandas.
+
+    return render(request, 'view_table.html', {"title" : "An astounding table",
+                                               "html_table" : table})
 
 
 
@@ -141,11 +165,4 @@ def resp_redirect(request):
 def resp(request, state):
 
     return HttpResponse("I hear you, {}.".format(STATES_DICT[state]))
-
-
-
-
-
-
-  
 

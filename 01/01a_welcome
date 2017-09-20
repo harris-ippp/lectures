@@ -1,8 +1,9 @@
 ^T: Welcome: to the Class and to the Command Line!
 ^ST: Lecture 1A: Welcome!
 ^I: Introduction to Programming for Public Policy
-^SI: Intro Programming
-^D: September 26, 2016
+^SI: IPPP
+^D: September 26, 2017
+^H: \usepackage{animate}
 
 + Why Learn to Code?
 \Large
@@ -41,14 +42,15 @@
 ../img/rayid.png
 
 + Poverty by Census Tract: Visualize the World
-- See Jupyter Notebook, \tt{census/Census.ipynb}.
+\centering See Jupyter Notebook, \tt{ex/Census.ipynb}.
+../img/folium_pov_ex.png:0.9
 
 +++ How the Class is Structured
 
 + What We Will and Won't Cover
+- First-pass of low-level tools: the command line.
 - Thinking algorithmically with python: coding.
 -- Building blocks of code from the ground up.
-- First-pass of low-level tools: the command line.
 - Fundamentals of databases and the web.
 >1em
 \hrule
@@ -65,11 +67,13 @@
 \caveat{2}{30}{50}{70}{10}{$\bm{\sim5}$ weeks}
 
 + Assignments
-- Weekly assignments posted on the class \link{https://classroom.github.com/classrooms/20690068-introduction-to-public-policy-30550-uc-harris}{Github site}.
+- Weekly assignments (70\% of grade) posted on the class \link{https://classroom.github.com/classrooms/20690068-introduction-to-public-policy-30550-uc-harris}{Github site}.
 - You will also \emph{submit them} through `Github.'  
--- Covered later today.  It is the `standard' for collaboratively developing and publishing code.
+-- Covered Wednesday.  It is the `standard' for collaboratively developing and publishing code.
 -- If you have trouble with git/Github, speak up fast!
-- Collaborative, large scale final project for exam.  I will provide templates, and you will propose the project.
+- Collaborative (2 or 3 person) final project (25\%).  Start thinking about this now!  Look for data on government and non-profit sites, in corporate APIs -- anywhere!
+>0.5em
+- Discussion board \& participation (5\%): good questions and useful answers both get ``points."
 
 + Yes, some group work.
 ! Real projects require collaboration.
@@ -80,29 +84,35 @@
 
 + Additional Resources 
 - TAs to be finalized in the next 24 hours.
-- We will host a `clinic' (discussion session) for 2-3 hours, starting from 16h on Thursdays or Fridays.  \chred{Please come!}
-- Use the class \link{https://piazza.com/uchicago/fall2016/ppha30550}{Piazza} discussion board.
--- First item of business: vote for the tea time that fits your schedule!
+- TA sessions in 289A on Thursday and Friday afternoons at 3:30-5pm.
+- Use the class discussion threads on the \link{https://canvas.uchicago.edu/courses/10240}{Canvas} page.
+- All lecture slides and notebooks stored here -- follow \& bookmark! \\ \centering \link{http://github.com/harris-ippp/lectures/}{github.com/harris-ippp/lectures/} \\ 
 >1em
-- New class: \chred{Please} tell me (anonymously, if you prefer) if a lecture or assignment is confusing, or if you're frustrated.
-- And please ask questions as we go.
+- And \chred{please} (\chred{!!}) ask questions as we go.
+
++ Software
+<1em
+../img/programs.pdf:0.95
 
 +++ Welcome to the Command Line
 
 +  This will be different: hang in there.
-- This may be one of the hardest lectures in the entire class.
+- This may be one of the harder lectures -- a steep learning curve.
 - We are doing it now, because everything else depends on it.
 >1em
-- We'll list and examine a bunch of `commands' (programs/words).
-- Just understand the `meaning' -- don't worry about memorizing these.
+- We'll list and examine a `dictionary' of \emph{commands} (programs/words):
+-# Navigation 
+-# File and text manipulation
+- Think of today as a `dictionary': understand the `meaning,' and look them up later.
 - Learning to string them together will take practice (HW!).
 
 + Why Use The Command Line?
 - Making Graphical User Interfaces (GUIs) is tricky and unenlightening.
 - GUIs are often not extensible or scriptable: doing something fifty times usually requires the user to actually click around, fifty times!
 -- Insane!  Computers are good at repetition!
-- For computation, we're better off running programs from the command line.
+- So we're better off running programs from the command line.
 - Immediately available on Mac OS X.  On Windows, cygwin provides a Unix-like interface.
+-- You should already have installed it!!
 
 + Approaching the Command Line
 - Please open Terminal (Mac) or Cygwin (Windows).
@@ -111,7 +121,7 @@
 <0.45em
 ../img/welcome_to_the_shell.png:0.7
 
-+ The Fundamental Commands
++ Navigation Commands
 \Large
 - \chred{pwd}:     print working directory
 - \chred{ls}:      list (files and folders)
@@ -120,9 +130,10 @@
 - \chred{mv}:      move or rename a file
 - \chred{touch}:   create an empty file
 - \chred{cp}:      copy a file or folder
-- \chred{rm(dir)}: remove a file (directory)
+- \chred{rm(dir)}: remove a file (directory) -- \red{¡¡Careful!!}
 - \chred{man}:     read the `manual'
->1em
+- \chred{chmod}: change the `permissions' of a file.
+>0.2em
 - \chred{ssh/scp}: secure connections (not in this course)
 
 + Notes on the Directory Structure
@@ -134,11 +145,13 @@
 - \chred{'/'}: is `root'
 > 1em
 - \chred{\tt{*}}: is a `wildcard' (match anything or nothing)
+> 1em
+! Exercise: find, list, and open music or a doc.
 
-+ Going Deeper: The Commands
++ Manipulating Output
 Tremendous power `built in' to the command line: quickly compose programs to get answers.
 - \chred{echo}:    parrot back some text
-- \chred{curl/wget}: retrieving web resources.
+- \chred{curl}:    retrieving web resources.
 - \chred{cat, head, tail}: `concatenate' (dump) a file, or part of it
 - \chred{less}:    page through a file
 - \chred{grep}:    search for lines in a file
@@ -147,6 +160,7 @@ Tremendous power `built in' to the command line: quickly compose programs to get
 - \chred{sort}:    sort a file
 - \chred{cut}:     choose out specific columns
 - \chred{uniq}:    with \tt{-c}, count occurences of a unique line.
+- \chred{python}:  much on this, later!
 
 + Going Further: Piping and Scripting
 - The power of the command line comes from the ability to quickly compose programs from these building blocks.
@@ -166,11 +180,10 @@ Tremendous power `built in' to the command line: quickly compose programs to get
 - `Special' characters (!, \/, \$, (, ), etc.) need to be enclosed in quotes:
 ` \pr echo "Hello (and happy birthday)" > bd 
 
-+ curl/wget
-- \tt{curl} and \tt{wget} retrieve a web-page or other net resource \link{https://data.cityofchicago.org/Administration-Finance/Current-Employee-Names-Salaries-and-Position-Title/xzkq-xp2w}{[link]}:
-` wget data.cityofchicago.org/api/views/xzkq-xp2w/rows.csv 
++ curl (or wget)
+- \tt{curl} retrieves a web-page or other net resource \link{https://data.cityofchicago.org/Administration-Finance/Current-Employee-Names-Salaries-and-Position-Title/xzkq-xp2w}{[link]}:
 ` curl data.cityofchicago.org/api/views/xzkq-xp2w/rows.csv -s -o salaries.csv
-- The wget `-O' and curl `-o' `options' allow you to specify and output file name for the download.
+- The `-o' option allows you to specify and output file name for the download.
 -- And -s stands for `silent' -- see the \tt{man} pages.
 ! Please do the curl command.
 
@@ -186,11 +199,11 @@ Tremendous power `built in' to the command line: quickly compose programs to get
 + grep [1 of 3]
 - \tt{grep} is a filter.  It finds all matching lines in a file.
 ` \pr grep EMANUEL salaries.csv
-- You can also `reverse grep' with `-V.'
+- Use the \tt{man} pages to figure how to reverse grep, or ignore case.
 - \chred{grep is my favorite command.}  I hope you will enjoy it too!
 
 + grep [2 of 3]: Regular Expresion Special Characters 
-Regular expressions (regex) is a shorthand, for complex pattern matches.
+Regular expressions (regex) are shorthand for complex matching.
 - Dramatically expands potential of grep.
 *T: A bit quirky at first, but super useful!
 * c l
@@ -256,11 +269,10 @@ Regular expressions (regex) is a shorthand, for complex pattern matches.
 - The text analysis commands are super useful for fast answers.
 -- You will get more familiar with them in homework.
 -- But the rest of the course will not depend on these.
-- It should slow down a bit now.
+- It should slow dwn a bit now.
 
 \centering 
 \huge
-Next time:
-../img/pywordmark.png
+Next time: scripts.
 + 
 

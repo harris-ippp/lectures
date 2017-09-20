@@ -9,3 +9,6 @@
 .DS_Store
 .ipynb_checkpoints
 01/snip/
+__pycache__
+08/ex/data/
+01/ex/cb_2014_17_tract_500k.*

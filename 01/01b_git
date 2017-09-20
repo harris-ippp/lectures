@@ -21,9 +21,10 @@
 - GitHub is a nice \chred{server} for hosting repositories.
 ../img/git_github.pdf:0.6
 
-+++ Field Trip: \link{https://github.com/harris-ippp/lectures}{github.com/harris-ippp/lectures}
-github_clone_http.png:0.7
-+
++ Field Trip! 
+\centering 
+\link{https://github.com/harris-ippp/lectures/blob/master/01/01b\_git\#L24}{github.com/harris-ippp/lectures}
+github_clone_http.png:0.85
 
 + Git Commands 
 You'll use these regularly:
@@ -47,6 +48,6 @@ Start with a single user and a single thread of edits:
 #- \tt{git log \# now all part of the commit history?}
 # Upload it to the server:
 #- \tt{git push}
-Then repeat steps 2-4 as you go. \\
-\visible<2>{\hspace{3.2em}\huge{\chred{This is what you'll use regularly.}}}
+Repeat steps 2-4 as you work. \visible<3>{Do this now with a test repo.} \\
+\visible<2->{\hspace{3.2em}\huge{\chred{This is what you'll use regularly.}}}
 

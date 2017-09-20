@@ -54,8 +54,8 @@ Repeat steps 2-4 as you work. \visible<3>{Do this now with a test repo.} \\
 + A Standard Sequence: Atom
 The `staging', commit, and push  commit them; check the status and log to see that it worked:
 - Stage change. 
-- Commit with a comment.
-- Click to push.
+- Commit with a comment. 
+- Click to push. 
 Easy to upload as you work!
 <1em
 ../img/github_atom_commit.png:0.57:side

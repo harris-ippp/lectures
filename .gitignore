@@ -10,7 +10,7 @@
 .ipynb_checkpoints
 01/snip/
 __pycache__
-08/ex/data/
-01/ex/cb_2014_17_tract_500k.*
-08/ex/cb_2014_17_tract_500k.*
-06/ex/jamie_keys.py
+10-gis/ex/data/
+*/ex/data/cb_2014_17_tract_500k.*
+*/ex/cb_2014_17_tract_500k.*
+*/ex/jamie_keys.py

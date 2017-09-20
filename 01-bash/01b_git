@@ -52,10 +52,9 @@ Repeat steps 2-4 as you work. \visible<3>{Do this now with a test repo.} \\
 \visible<2->{\hspace{3.2em}\huge{\chred{This is what you'll use regularly.}}}
 
 + A Standard Sequence: Atom
-The `staging', commit, and push  commit them; check the status and log to see that it worked:
-- Stage change. 
-- Commit with a comment. 
-- Click to push. 
-Easy to upload as you work!
-<1em
-../img/github_atom_commit.png:0.57:side
+The (A) staging, (B) commit, and (C) push can all be done from Atom!
+\caveat{1}{22}{79.5}{46}{0}{(A)}
+\caveat{1}{22}{79.5}{77}{0}{(B)}
+\caveat{1}{22}{79.5}{93}{0}{(C)}
+../img/github_atom_commit.png:0.87
+

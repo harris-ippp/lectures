@@ -14,15 +14,15 @@
 
 + What is git?  GitHub?
 - Git is \emph{the} modern VCS, designed by Linus Torvalds (creator of Linux).
-- Git maintains a history of meaningful `commits.'  
+- Git maintains a history of meaningful `commits.'
 -- It is tremendously flexible (`branches').
 - Git is \emph{distributed}: everyone has a copy of the entire history.
 - However, it is often useful to maintain a master copy on a server where anyone can access it or `push' their changes: GitHub.
 - GitHub is a nice \chred{server} for hosting repositories.
 ../img/git_github.pdf:0.6
 
-+ Field Trip! 
-\centering 
++ Field Trip!
+\centering
 \link{https://github.com/harris-ippp/lectures/blob/master/01/01b\_git\#L24}{github.com/harris-ippp/lectures}
 github_clone_ssh.png:0.85
 

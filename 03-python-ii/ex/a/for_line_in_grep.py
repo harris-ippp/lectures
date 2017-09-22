@@ -9,4 +9,6 @@ for line in open("salaries.csv", "r"):
   spline = line.split(",")
 
   # pull off the salary, as a float
-  if float(spline[-1]) > 200000: print(line)
+  if not spline[-2]: continue
+  if float(spline[-2]) > 200000: print(line)
+

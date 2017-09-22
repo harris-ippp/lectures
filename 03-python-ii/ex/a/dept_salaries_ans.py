@@ -18,4 +18,8 @@ for l in open("salaries.csv"):
 
 print("{:25}{:>12}{:>15}{:>11}{:>11}".format("Department", "Employees", "Total Exp.", "Avg. Sal.", "Max Sal."))
 
+for x, l in sorted(depts.items(), key=lambda x: sum(x[1]), reverse = True):
+  l = depts[x]
+  print("{:2s}{:12d}{:15.2f}{:11.2f}{:11.2f}".format(x, len(l), sum(l), sum(l)/len(l), max(l)))
+
 

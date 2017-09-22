@@ -1,0 +1,93 @@
+^T: Input/Output
+^ST: Inputs/Output
+^I: Introduction to Programming for Public Policy
+^SI: Intro Programming
+^D: October 11, 2016
+^H: \include{pythonlst}
+^H: \usepackage{perpage} 
+^H: \MakePerPage{footnote}
+
++ Introduction
+- Our python scripts have been `self-contained.'
+- We'd like to be able to use outside data.
+>1em
+- Today's class will have a tiny bit of new material, and is mainly applications of dictionaries, lists, and for loops.
+- In Week 5, we'll learn the python module for ``comfortably" using these types of data: Pandas.
+
++ Reading Files \tright ex/a/for\_line\_in\_file.py
+! You have already run for loops over a file:
+\pythonexternal{ex/a/for_line_in_file.py}
+- The syntax \emph{is} a \tt{for} loop -- nothin' to it!
+- Just \tt{open()} the file with a \tt{`r'} flag, for `read.'
+- You get one line at a time, and can do whatever you want with them.
+- Use \tt{strip()} to remove whitespace and \tt{split()} to list-ify lines.
+
++ Writing to Files \tright ex/a/canonical\_write.py
+! Good news: very similar, but with ``w".
+\pythonexternal{ex/a/canonical_write.py}
+- The difference is that we're iterating over \emph{something else}.
+- The output file is just an object, that we write to.
+- There is also \tt{`a'}, for `append' (write at end of file).
+
++ Writing to Files: \tt{with} \tright ex/a/canonical\_write\_with.py
+- You can also use `\tt{with}' to specify a block in which to write.
+- The file `snaps shut' at the end of the block.
+\pythonexternal{ex/a/canonical_write_with.py}
+
++++ Formats
+
++ CSV: Comma Separated Values
+- Common, simple, flat, but non-standardized format.
+-- Text in columns separated by a delimiter (`escape' by quotes).
+-- Can be read directly by e.g., Excel.
+-- There are pythong tools for this too (of course)
+- We'll work with it by hand, to understand files and lists a bit better.
+../img/salaries.pdf
+
++ Using and Filtering Inputs \tright ex/a/for\_line\_in\_grep.py
+- Let's start by reproducing our `high salaries grep' from day 1.
+\visible<2>{\pythonexternal{ex/a/for_line_in_grep.py}}
+
++ Python: Beyond Single Lines
+- Using bash, we were limited in our `global' view.
+- Though we could \tt{sort}, we mainly looked at one line at a time.
+> 1em
+- Python lets us store variables and manipulate the entire dataset.\footnote{Truth be told, bash allows this too; it's just less fun.}
+-- In future weeks we'll learn more and more tools for doing this.
+
++ Aggregating at a Basic Level \tright{ex/a/fire\_salaries.py}
+- What was the expenditure on salaries in the fire department?
+\visible<2>{\pythonexternal{ex/a/fire_salaries.py}}
+- Ex. 2: modify \tt{ex/a/dept\_salaries.py} to print the total, average, and max salaries, and the number of employees.
+-- Use \tt{len()}, \tt{sum()}, and \tt{max()}.
+
++ JSON, or, dictionaries and lists revisited.
+- Officially stands for JavaScript Object Notation, but now used in many languages.
+- Common format for transmitting formatted data on the internet.
+- Readily manipulable in Python: just dictionaries and lists.
+-- Can be `nested' dictionaries -- much like classes.
+-- Often, data is packaged with metadata, and you have to `navigate down' to a list of \emph{actually} useful data.
+../img/json_ex.png:0.4:side Sample JSON Objects: \\ Dictionaries in Lists
+
++ JSON: File Access \tright ex/a/narco\_json.py
+Loading and saving JSON files uses the same \tt{open} syntax as other files.
+- Focus on reading in, for now.
+\pythonexternal{ex/a/narco_json_pres.py}
+
++ JSON: Exploring and Accessing Data (1)
+Let's explore some JSON data.  Open a python prompt in \tt{lectures/03/ex/b/}, and load \tt{narcotics.json}.
+- What are the most common drug offenses (descriptions)?
+-- Use a set comprehension (curly branches) to get the types.
+-- Use a for loop to ask how many of each type there are.
+>2em
+\link{https://gist.github.com/JamesSaxon/e2aca9e262b82ea84c57fd24add99e21}{Gist/Solution}
+
++ JSON: Exploring and Accessing Data (2)
+Now load \tt{locations.json} and \tt{elevations.json}.\\
+>0.5em
+These are Google API responses for geolocating the 100 largest cities in the US, and querying their elevations.
+- How many cities are there, above 1 mile?
+- What is the highest ``big city" in the US?
+- Again, explore the data using \tt{l.keys()}.
+- You'll have to find the highest city first, and then match its coordinates.
+

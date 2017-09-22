@@ -2,14 +2,19 @@
 ^ST: Lecture 3B: Debugging
 ^I: Introduction to Programming for Public Policy
 ^SI: Intro Programming
-^D: October 12, 2016
+^D: October 11, 2016
 
 + Debugging
 ''' Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?  \\ \hspace*{20.5em} -- Brian Kernighan
 - Bugs are inevitable; debugging is hard.
 - Let's talk briefly about how to deal with bugs.
 
-+ Steps
++ Avoid Errors in the First Place
+- You should have installed a ``linter" in Atom.  Pay attention to it!
+- If you didn't, then revisit the instructions from HW1. [\link{https://github.com/harris-ippp/01-welcome/blob/master/windows_install_instructions.md}{PC}, \link{https://github.com/harris-ippp/01-welcome/blob/master/mac_install_instructions.md}{Mac}]
+../img/linter.png:0.65
+
++ Problems Running Code? Steps
 # \textbf{Read the error!}  Python tells you the location of and code for syntactical errors.  That may be enough.
 # If you don't understand the error, google it.
 # For semantic errors, add lots of \tt{print} statements, near where you believe the code is failing, to understand the state of the program.
@@ -30,15 +35,17 @@ A fast way to see what the computer's actual state is to use pdb
 -[\textbf{s:}] step into a function
 -[\textbf{p:}] to print the value of an expression in the current context
 
-+ If you are still lost, ask!  (But ask well!)
-- Many forums where you can get help, but they can be snarky.
--- In this class, we have Piazza; in the real world, stack\textbf{overflow}.
--- Of course -- start by searching the forum (indexed on google).
-- A few tips for good questions: [\link{http://tinyurl.com/stack-hints}{1}, \link{http://www.catb.org/~esr/faqs/smart-questions.html}{2}, \link{https://webmasters.googleblog.com/2010/09/tips-for-getting-help-with-your-site.html}{3}, \link{http://stackoverflow.com/help/how-to-ask}{4}]
--- Ask in public, in the right place.  Tag it so people can find it.
--- Meaningful subject line: `python problem' or `help!' don't cut it.
--- Be specific about what you wanted (what are you trying to do), expected from the program, and got.
--- Provide your minimal example, so others can \emph{reproduce} your error.
--- List the steps you've already tried (demonstrate commitment).
-- Good questions get answered; bad ones get \link{http://lmgtfy.com/?q=rtfm}{LMGTFY} (or RTFM).
++ Ask for help -- but ask well!
+Many forums where you can get help, but they can be snarky.
+- In this class, we have Canvas; in the real world, stack\textbf{overflow}.
+- Of course -- start by searching the forum (indexed on google).
+>0.5em
+Preparing a good question will often lead you to the answer. \\
+Here are some common tips [\link{http://tinyurl.com/stack-hints}{1}, \link{http://www.catb.org/~esr/faqs/smart-questions.html}{2}, \link{https://webmasters.googleblog.com/2010/09/tips-for-getting-help-with-your-site.html}{3}, \link{http://stackoverflow.com/help/how-to-ask}{4}]:
+# Be specific about what you wanted (what are you trying to do), expected, and got.
+# Provide your ``minimal example," so others can reproduce your error.
+# List what you've already tried (demonstrate commitment).
+# Ask in public, in the right place.  Tag it so people can find it.
+# Meaningful subject line -- not `python problem' or `help!'
+Good questions get answered; bad ones get \link{http://lmgtfy.com/?q=rtfm}{LMGTFY} (or RTFM).
 

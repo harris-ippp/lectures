@@ -23,7 +23,7 @@ for c in cities:
 
 if locations:
     with open('locations.json', 'w') as outfile:
-        json.dump(locations, outfile)
+        json.dump(locations, outfile, indent = 2)
 
 with open("locations.json") as f: locations = json.load(f)
 pprint(locations)
@@ -31,10 +31,10 @@ pprint(locations)
 points = "|".join(["{}".format(l["status"]) for l in locations])
 print(points)
 
-# points = "|".join(["{0[lat]},{0[lng]}".format(l["results"][0]["geometry"]["location"]) for l in locations])
-# print(ele_query.format(points))
-# resp = requests.get(ele_query.format(points))
-# with open('elevations.json', 'w') as outfile: json.dump(resp.json(), outfile)
+points = "|".join(["{0[lat]},{0[lng]}".format(l["results"][0]["geometry"]["location"]) for l in locations])
+print(ele_query.format(points))
+resp = requests.get(ele_query.format(points))
+with open('elevations.json', 'w') as outfile: json.dump(resp.json(), outfile, indent = 2)
 
 with open("elevations.json") as f: elevations = json.load(f)
 

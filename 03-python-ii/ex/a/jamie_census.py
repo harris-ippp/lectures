@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import requests, pandas as pd
 
 state_fips= {
@@ -9,46 +11,46 @@ state_fips= {
   "dc" : 11, "pr" : 72
 } 
 
-pct = "Percent "
 
-def census_table(state, name, num, den, sort_abc = False, head = -1):
+def census_table(state, var, sort_abc = False, head = -1):
 
-    base_addr = "http://api.census.gov/data/2014/acs5?"
+    base_addr = "http://api.census.gov/data/2015/acs5/profile?"
+    var_addr  = "https://api.census.gov/data/2014/acs5/profile/variables/{}.json"
 
     if state:
       base_addr = base_addr + "for=county:*&in=state:{}&get=NAME,{}"
-      addr = base_addr.format(state_fips[state], ",".join([num, den]))
+      addr = base_addr.format(state_fips[state], ",".join(var))
     else:
       base_addr = base_addr + "for=state:*&get=NAME,{}"
-      addr = base_addr.format(",".join([num, den]))
+      addr = base_addr.format(",".join(var))
 
-    print(addr)
-    
     c = requests.get(addr).json()
-    a = [{c[0][xi]:x for xi, x in enumerate(v)} for v in c[1:]]
-
-    df = pd.io.json.json_normalize(a)
+    df = pd.DataFrame(data = c[1:], columns = c[0])
     df = df[df['state'] != '72']
 
-    for v in [num, den]: 
-      df[v] = df[v].astype(int)
+    for v in var:
+      df[v] = pd.to_numeric(df[v], errors = "coerce").fillna(0)
+
+      var_descr = requests.get(var_addr.format(v)).json()
+      print(var_descr["name"], var_descr["label"])
+
         
-    df[pct + name] = df[num] / df[den]
     pd.set_option('display.max_rows', len(df))
     if sort_abc:
-      print(df[['NAME', pct + name]])
-      print(df[['NAME', pct + name]].to_string(index=False))
+      print(df[['NAME'] + var].to_string(index=False))
 
     else: 
-      print(df[['NAME', pct + name]].sort_values(by=[pct + name], ascending = [0])
-                                    .head(head)
-                                    .to_string(index=False))
+      print(df[['NAME'] + var].sort_values(by=var[0], ascending = [0])
+                              .head(head)
+                              .to_string(index=False))
 
-    return a
+    print("\n")
 
-# census_table("",   "Poverty",      "B06012_002E", "B06012_001E", head = 5)
-# census_table("",   "Poverty",      "B06012_002E", "B06012_001E", sort_abc = True)
-# census_table("il", "Poverty",      "B06012_002E", "B06012_001E", head = 5)
-# census_table("il", "Teen Births",  "B13016_003E", "B13016_002E", 5)
-# census_table("pa", "BA or Higher", "B16010_041E", "B16010_001E", 5)
+    return df
+
+census_table("",   ["DP02_0040E"])
+# census_table("",   ["DP03_0119PE", "DP02_0066PE", "DP02_0040E"], sort_abc = True)
+# census_table("",   ["DP02_0066PE"], sort_abc = True)
+# census_table("il", ["DP03_0119PE"], head = 5)
+# census_table("pa", ["DP03_0119PE"], head = 5)
 

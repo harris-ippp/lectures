@@ -1,0 +1,9 @@
+graph graphname {
+  forcelabels=true;
+  node [shape=circle, fontname="arial bold", labelfontsize=12, fontcolor=white, color="#8B0021", style=filled, width=0.5, margin=0];
+  edge [penwidth=4, color="#807A75"];
+  1 [label=1, pos="0,0!", fontcolor="#8B0021", style="bold"];
+  2 [label=2, pos="2,0!", fontcolor=white, color="#8B0021"];
+  3 [label=3, pos="4,0!", fontcolor="#8B0021", style="bold"];
+  1 -- 2;
+}

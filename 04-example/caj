@@ -1,0 +1,32 @@
+^NT
+^ST: Social Networks / CAJ Repl
+^SA: Saxon
+
+\centering
+\chred{\large{\emph{Paper Replication}}}
+../img/caj_abstract.pdf
++ 
+
++ Simple networks for job transmission
+
++ The Model
+
++ What do we want to confirm?
+\only<1>{ caj-ex/f1/a.pdf:0.35:side Figure 1}\only<2>{ caj-ex/f2/a.pdf:0.35:side Figure 1}
+
++ Necessary Functionality
+- Read in arbitrary graphs
+- Implement for job creation, transmission, and loss mechanisms
+-- Save each agent's employment record for study
+- Calculate employment rates
+- Calculate correlations among agents
+- Calculate minimum distance between agents
+
++ A Computational Shortcut
+- Normally, the variance is $σ² = E[X²] - E[X]²$.
+- But we have only two states (0 and 1), and $x = x²$ for both of them.
+- In that case, defining $µ ≡ X̅$,
+\[ σ² = µ - µ². \]
+- As a reminder, the correlation is 
+\[ ρ_{XY} = E[(X-µ_X)(Y-µ_X)]/(σ_X σ_Y). \]
+

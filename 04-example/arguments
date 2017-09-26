@@ -1,0 +1,52 @@
+^T:  Options
+^ST: Options
+^I:  Introduction to Programming for Public Policy
+^SI: Intro Programming
+^D:  October 16, 2016
+^H:  \include{pythonlst}
+
++++ Arguments
+
++ What Are Arguments
+We have already used arguments to:
+- perform functions on different inputs.
+- modify the behavior of programs (e.g., grep -i or sort -r).
+! Now let's modify the behavior of our scripts!
+The idea is that we want the same code to be able to do many things, without rewriting it.
+
++ The argparse module \tright ex/options\_intro.py
+Unapproachable \link{https://docs.python.org/3.5/library/argparse.html}{documentation} but a good \link{https://docs.python.org/3.5/howto/argparse.html}{tutorial}.
+- Try running the simplest example, with `-h':
+\pythonexternal{ex/options_intro.py}
+\visible<2->{
+Add a requred argument:
+- \small \tt{parser.add\_argument("number", help="A number!")}
+}
+\visible<3->{
+Add an optional argument (dashes, or `required'):
+- \small \tt{parser.add\_argument("--extras", default = "yay!")}
+}
+
++ Controling the Types
+! Please follow along with these.
+\visible<2->{
+By default, all arguments are strings; `cast' them on the fly with `type.'
+- \small \tt{parser.add\_argument("number", type = float, help="A number!")}
+\tt{type} takes a function; lambda functions, str.lower, etc. work too. \\
+}
+>1.5em
+\visible<3->{
+Specifying default values is easy:
+- \small \tt{parser.add\_argument("number", type = float, default = 3)}
+}
+>1.5em
+\visible<4->{
+Or an \tt{action="store\_true"} (default is the opposite):
+- \small \tt{parser.add\_argument("--store", action="store\_true")}
+}
+
++ Using the Arguments
+- After running \tt{args = parser.parse\_args()}, the arguments become accessible as variables, via the long-form versions of the argument names, \tt{args.var\_name}.
+- We can then pass these variables into a function or class, to run our script with varying behavior.
+! Let's experiment with \tt{options\_example.py}.
+

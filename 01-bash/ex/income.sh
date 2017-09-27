@@ -4,7 +4,7 @@
 # DP05_0001E  :: Total population
 # DP03_0062E  :: Median Income
 # DP03_0119PE :: Poverty Rate
-curl "http://api.census.gov/data/2014/acs5/profile?for=county:*&in=state:*&get=NAME,DP05_0001E,DP03_0062E,DP03_0119PE" -o income.json
+curl "https://api.census.gov/data/2014/acs5/profile?for=county:*&in=state:*&get=NAME,DP05_0001E,DP03_0062E,DP03_0119PE" -o income.json
 
 # poorest counties.
 echo "Poorest Counties"

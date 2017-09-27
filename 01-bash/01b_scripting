@@ -56,7 +56,7 @@
 +++ Two Examples on Income
 
 + Putting the Salaries Script Into a File
-Full script \link{https://raw.githubusercontent.com/harris-ippp/lectures/master/01/ex/salaries.sh}{ex/salaries.sh} and the data file \linklogo{http://data.cityofchicago.org/api/views/xzkq-xp2w/rows.csv}.  
+Full script \link{https://raw.githubusercontent.com/harris-ippp/lectures/master/01-bash/ex/salaries.sh}{ex/salaries.sh} and the data file \linklogo{http://data.cityofchicago.org/api/views/xzkq-xp2w/rows.csv}.  
 \fontsize{11}{12} \selectfont
 \bashexternal{ex/salaries.sh}
 Execute (run) \tt{salaries.sh} from the folder that contains \tt{salaries.csv}.
@@ -70,7 +70,7 @@ What are the highest-income and highest-poverty counties in the US?
 - Bonus: what about the highest and lowest in Illinois, etc...
 %
 - Check your answers with \link{https://en.wikipedia.org/wiki/Oglala_Lakota_County,_South_Dakota}{wikipedia}.
-- Then compare with a \link{https://github.com/harris-ippp/lectures/blob/master/01/ex/income.sh}{solution}.
+- Then compare with a \link{https://github.com/harris-ippp/lectures/blob/master/01-bash/ex/income.sh}{solution}.
 
 + A First Python Script
 ''' Create a file \texttt{hello\_world.py}, using vim Atom, TextEdit, etc.

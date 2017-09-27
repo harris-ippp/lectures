@@ -2,7 +2,7 @@
 ^ST: Lecture 1A: Welcome!
 ^I: Introduction to Programming for Public Policy
 ^SI: IPPP
-^D: September 26, 2017
+^D: September 25, 2017
 ^H: \usepackage{animate}
 
 + Why Learn to Code?
@@ -21,25 +21,25 @@
 # Software is easier and more powerful than ever.
 #- Mapping, internet, etc.: making awesome stuff has never been easier.
 # Governments are getting on board...
-#- `One size fits all' bureaucracy doesn't cut it.
-#- Modern interface for services.
 #- Target interventions (money) where it's most needed.
+#- Modern interface for services.
+#- `One size fits all' bureaucracy doesn't cut it.
 # And they're learning to share their data.
-#- Most states have \emph{some} data portal presence; many are very good.
+#- Most states have \emph{some} data portal presence; \only<1>{many}\only<2->{a few} are \only<1-2>{very good}\only<3>{passable}.
 
 +++ Coding for Public Policy
-
-+ Boston 311 System: Improve Constituent Services
-../img/bos311a.png; ../img/bos311b.png; ../img/bos311c.png
-
-+ Mapping Trees in New York: Make Something Beautiful
-../img/nyc_trees.png \link{http://jillhubley.com/project/nyctrees/}{jillhubley.com/project/nyctrees}
 
 + Prioritizing Building Inspections: Public Safety
 ../img/nyc_fire.png:0.5
 
 + Policing: Intervene with `At-Risk' Officer
 ../img/rayid.png
+
++ Boston 311 System: Improve Constituent Services
+../img/bos311a.png; ../img/bos311b.png; ../img/bos311c.png
+
++ Mapping Trees in New York: Make Something Beautiful
+../img/nyc_trees.png \link{http://jillhubley.com/project/nyctrees/}{jillhubley.com/project/nyctrees}
 
 + Poverty by Census Tract: Visualize the World
 \centering See Jupyter Notebook, \tt{ex/Census.ipynb}.
@@ -68,10 +68,13 @@
 
 + Assignments
 - Weekly assignments (70\% of grade) posted on the class \link{https://classroom.github.com/classrooms/20690068-introduction-to-public-policy-30550-uc-harris}{Github site}.
+-- HW1 due Oct. 4 at 1:30am: install software \& command line.
 - You will also \emph{submit them} through `Github.'  
 -- Covered Wednesday.  It is the `standard' for collaboratively developing and publishing code.
 -- If you have trouble with git/Github, speak up fast!
 - Collaborative (2 or 3 person) final project (25\%).  Start thinking about this now!  Look for data on government and non-profit sites, in corporate APIs -- anywhere!
+-- For inspiration: \link{https://harris-ippp.github.io/final\#datasets-for-inspiration}{harris-ippp.github.io/final}.
+-- Proposal due October 31, with datasets, group members, etc.  See site.
 >0.5em
 - Discussion board \& participation (5\%): good questions and useful answers both get ``points."
 
@@ -83,18 +86,23 @@
 ../img/group_assignments.png
 
 + Additional Resources 
-- TAs to be finalized in the next 24 hours.
-- TA sessions in 289A on Thursday and Friday afternoons at 3:30-5pm.
+- TA sessions in 289A on Thursday and Friday afternoons at 3:30-5pm (October 6 in 224).
+-- Additional session tomorrow at noon in 289B, \emph{for installation problems}.
+- Four fabulous TAs (2nd-year MSCAPP):
+-- Victor Vilchis Tella (victorvt)
+-- Emma Peterson (ecpeterson)
+-- Andrew Yaspan (ayaspan)
+-- Yuxi Wu (yuxiwu)
 - Use the class discussion threads on the \link{https://canvas.uchicago.edu/courses/10240}{Canvas} page.
 - All lecture slides and notebooks stored here -- follow \& bookmark! \\ \centering \link{http://github.com/harris-ippp/lectures/}{github.com/harris-ippp/lectures/} \\ 
 >1em
 - And \chred{please} (\chred{!!}) ask questions as we go.
 
++++ Welcome to the Command Line
+
 + Software
 <1em
 ../img/programs.pdf:0.95
-
-+++ Welcome to the Command Line
 
 +  This will be different: hang in there.
 - This may be one of the harder lectures -- a steep learning curve.
@@ -128,11 +136,11 @@
 - \chred{cd}:      change directory
 - \chred{mkdir}:   create a directory
 - \chred{mv}:      move or rename a file
-- \chred{touch}:   create an empty file
 - \chred{cp}:      copy a file or folder
 - \chred{rm(dir)}: remove a file (directory) -- \red{¡¡Careful!!}
 - \chred{man}:     read the `manual'
 - \chred{chmod}: change the `permissions' of a file.
+- \chred{open/explorer} (Mac/PC): open in default app.
 >0.2em
 - \chred{ssh/scp}: secure connections (not in this course)
 
@@ -176,12 +184,12 @@ Tremendous power `built in' to the command line: quickly compose programs to get
 - \tt{echo} just parrots everything that follows it:
 ` \pr echo hello world. \\ hello world.
 - You could easily use this to write to a file... not like this!
-` \pr echo Hello (and happy birthday) > bd\\ -bash: \chred{syntax error} near unexpected token `('
+` \pr echo Hello (and happy birthday) > bd.txt\\ -bash: \chred{syntax error} near unexpected token `('
 - `Special' characters (!, \/, \$, (, ), etc.) need to be enclosed in quotes:
-` \pr echo "Hello (and happy birthday)" > bd 
+` \pr echo "Hello (and happy birthday)" > bd.txt
 
 + curl (or wget)
-- \tt{curl} retrieves a web-page or other net resource \link{https://data.cityofchicago.org/Administration-Finance/Current-Employee-Names-Salaries-and-Position-Title/xzkq-xp2w}{[link]}:
+- \tt{curl} retrieves a web-page or other net resource [\link{https://data.cityofchicago.org/Administration-Finance/Current-Employee-Names-Salaries-and-Position-Title/xzkq-xp2w}{site}, \link{https://data.cityofchicago.org/api/views/xzkq-xp2w/rows.csv}{data}]:
 ` curl data.cityofchicago.org/api/views/xzkq-xp2w/rows.csv -s -o salaries.csv
 - The `-o' option allows you to specify and output file name for the download.
 -- And -s stands for `silent' -- see the \tt{man} pages.
@@ -190,10 +198,10 @@ Tremendous power `built in' to the command line: quickly compose programs to get
 + cat/head/tail/less
 - \tt{cat} dumps a file to the screen:
 ` \pr cat salaries.csv
-- For very large files, better to `page through it', or check the beginning or end:
-` \pr less salaries.csv
+- For very large files, better to check the beginning or end, or `page through' it:
 ` \pr head -42 salaries.csv \# first 42 lines
 ` \pr tail -12 salaries.csv \#  last 12 lines
+` \pr less salaries.csv ~~~~\# h(elp), q(uit), b(ack), ...
 - With \tt{<< X}, one could write a small script ... uncommon.
 
 + grep [1 of 3]
@@ -220,7 +228,7 @@ Regular expressions (regex) are shorthand for complex matching.
 +[fragile] grep [3 of 3]: Applying Regular Expressions
 - How much does the mayor make? 
 \begin{tcolorbox}
-\pr \verb|grep '^\"EMA' salaries.csv|
+\pr \verb|grep '^"EMA' salaries.csv|
 \end{tcolorbox}
 - Who makes more than \$200k?
 \begin{tcolorbox}
@@ -234,6 +242,7 @@ Regular expressions (regex) are shorthand for complex matching.
 ` \pr grep -i "police officer" salaries.csv | wc -l
 - How many of them are detectives?
 ` \pr grep "POLICE.*DETECTIVE" salaries.csv | wc -l
+- What fraction of the city's salaried workers make more than \$100k?
 
 + sed
 - sed allows for simple, regex find and replace
@@ -267,12 +276,10 @@ Regular expressions (regex) are shorthand for complex matching.
 - You will use the navigation commands \emph{all the time}.
 %
 - The text analysis commands are super useful for fast answers.
+-- In weeks 2-10, we'll focus on python, but the terminal should remain a first line of defense for parsing and approaching large files.
 -- You will get more familiar with them in homework.
--- But the rest of the course will not depend on these.
-- It should slow dwn a bit now.
-
+-- We need to move from ``issuing commands" to ``writing code"...
 \centering 
-\huge
-Next time: scripts.
-+ 
+\Huge
+\visible<2>{Next up -- scripts!!}
 

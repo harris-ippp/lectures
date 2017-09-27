@@ -23,8 +23,8 @@
 
 + Field Trip!
 \centering
-\link{https://github.com/harris-ippp/lectures/blob/master/01/01b\_git\#L24}{github.com/harris-ippp/lectures}
-github_clone_ssh.png:0.85
+\link{https://github.com/harris-ippp/lectures/blob/master/01-bash/01b\_git\#L24}{github.com/harris-ippp/lectures}
+github_clone_ssh.png:0.85 ~ \\ \chred{\large{git clone https://github.com/harris-ippp/lectures.git}}
 
 + Git Commands
 You'll use these regularly:
@@ -48,7 +48,7 @@ Start with a single user and a single thread of edits:
 #- \tt{git log \# now all part of the commit history?}
 # Upload it to the server:
 #- \tt{git push}
-Repeat steps 2-4 as you work. \visible<3>{Do this now with a test repo.} \\
+Repeat steps 2-4 as you work. \\
 \visible<2->{\hspace{3.2em}\huge{\chred{This is what you'll use regularly.}}}
 
 + A Standard Sequence: Atom

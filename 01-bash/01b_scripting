@@ -49,7 +49,7 @@
 -- This makes our script into a program. (!)
 -[B.] Add ``\tt{\#!/bin/bash}'' to the top of \tt{hw.sh} on a line by itself.
 -- This specifies the language to use -- in this case, bash.
--- We could also specify ``\tt{\#!/usr/bin/env python}" which effectively means ``whichever python is loaded."
+-- We could also specify ``\tt{\#!/usr/bin/env bash}" which effectively means ``whichever bash is loaded."  Useful if you want to use the ``default" python, for instance.
 -[C.] Now run it!
 ` \\\pr chmod u+x hw.sh \# A \\\ \pr ./hw.sh \hspace{3.5em} \# C -- don\tqs{}t need \tqs{}source\tqs{}! \\ hello world
 
@@ -63,8 +63,8 @@ Execute (run) \tt{salaries.sh} from the folder that contains \tt{salaries.csv}.
 
 + Income in the United States
 What are the highest-income and highest-poverty counties in the US?
-- Check out the \link{http://api.census.gov/data/2014/acs5/profile/variables.html}{variables} of the American Community Survey.
-- Then use \link{http://api.census.gov/data/2014/acs5/profile?for=county:*&in=state:*&get=NAME,DP05_0001E,DP03_0062E,DP03_0119PE}{this call} from the ACS API.
+- Check out the \link{https://api.census.gov/data/2014/acs5/profile/variables.html}{variables} of the American Community Survey.
+- Then use \link{https://api.census.gov/data/2014/acs5/profile?for=county:*&in=state:*&get=NAME,DP05_0001E,DP03_0062E,DP03_0119PE}{this call} from the ACS API.
 - You then mainly just need to ``wrangle the text into order.''
 -- This will get even easier with Python.
 - Bonus: what about the highest and lowest in Illinois, etc...

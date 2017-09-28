@@ -8,19 +8,68 @@
 + 
 
 + Simple networks for job transmission
+- Across diverse swaths of society, people hear about jobs and find employment through their social contacts.
+- The social networks that each person maintains affect their ability to find jobs and advance in their careers.
+- Expected gains from employment in a given network structure affect probability of remaining in the labor force.
+- Simulations on a simple network yield insights on these effects.
 
 + The Model
+In each period: 
+- With probability $a=0.1$, each agent receives a job offer.
+- If the agent is unemployed, he keeps the offer; if he is unemployed, he transmits it to a random, currently unemployed ``neighbor."
+-- Employment status is based on the ``last period."
+-- Jobs can only be transmitted once.
+- With probability $b=0.015$, every job or accepted offer is destroyed.
 
-+ What do we want to confirm?
-\only<1>{ caj-ex/f1/a.pdf:0.35:side Figure 1}\only<2>{ caj-ex/f2/a.pdf:0.35:side Figure 1}
++ What to confirm? [1 of 4]
+-[A] §II, Ex. 1a: given $s⃗_{t-1}$, $s_{1t}$ and $s_{3t}$ are negatively correlated.
+-[B] §II, Ex. 1b: in the long run, agent 3 benefits agent 1.
+-[C] §II, Ex. 2: for the graphs shown, the probabilities and correlations below.
+>1em
+\begin{centering}
+\begin{tabular}{cccc}
+\hline\hline
+ & $P(s₁=0)$ & Corr($s₁,s₂$) & Corr($s₁,s₃$) \\ \hline
+ $α$ & 0.132 & - & - \\
+ $β$ & 0.083 & 0.041 & - \\
+ $γ$ & 0.063 & 0.025 & 0.019 \\
+ $δ$ & 0.050 & 0.025 & 0.025 \\
+\hline \hline
+\end{tabular}
+\end{centering}
+Figure 1, $s⃗_{t-1}$ caj-ex/f1/a.pdf:0.35:side caj-ex/f1/b.pdf:0.30:side \vspace{1em} caj-ex/f2/single.pdf:0.35:side Figure 2 
+
++ What to confirm? [2 of 4]
+-[D] §II, Ex. 2, \P6: the networks shown demonstrate that the probability of unemployment falls in the number of links, and correlations between nodes fall with the length of the shortest path between them.
+-- For A, $\text{Corr}(s₁, s₂) > \text{Corr}(s₁, s₃) > \text{Corr}(s₁, s₄) > \text{Corr}(s₁, s₅)$.
+-- The average unemployment is 6\% for A, and 3\% for B.
+<1em
+caj-ex/f3/a.pdf:0.8 Figure 3A; caj-ex/f3/b.pdf:0.8 Figure 3B
+
++ What to confirm? [3 of 4]
+-[E] Ex. 3: even with equal numbers of links, the position in a network affects employment.
+-- The average rates are: $s̅₁=0.047$, $s̅₂=0.048$, and $s̅₃=0.05$.
+<2em
+caj-ex/f4/a.pdf
+
++ What to confirm? [4 of 4]
+-[F] Ex. 4: the average distance between nodes affects the long-run average employment, in the entire network.
+-- Average path lengths for A and B are: 1.571 and 1.786.
+-- Average unemployment rates for A and B are 0.048 and 0.049.
+<1em
+caj-ex/f5/a.pdf:0.8 Figure 5A; caj-ex/f5/b.pdf:0.8 Figure 5B
 
 + Necessary Functionality
-- Read in arbitrary graphs
-- Implement for job creation, transmission, and loss mechanisms
+- Read in arbitrary graphs (trivial)
+- \chred{Implement job creation, transmission, and loss mechanisms}
 -- Save each agent's employment record for study
+-- See \link{https://docs.python.org/3/library/random.html\#real-valued-distributions}{random.random()} -- we'll want $a < \tt{random()}$.
+-- Use \link{https://docs.python.org/3/library/random.html\#functions-for-sequences}{random.choice()} to choose a random neighbor, or \link{https://docs.python.org/3/library/random.html\#functions-for-sequences}{random.shuffle()} to choose a random ordering of neighbors.
 - Calculate employment rates
 - Calculate correlations among agents
 - Calculate minimum distance between agents
+>1em
+- Bonus make all this scriptable!
 
 + A Computational Shortcut
 - Normally, the variance is $σ² = E[X²] - E[X]²$.
@@ -29,4 +78,14 @@
 \[ σ² = µ - µ². \]
 - As a reminder, the correlation is 
 \[ ρ_{XY} = E[(X-µ_X)(Y-µ_X)]/(σ_X σ_Y). \]
+
++ Straightforward Extensions
+In §IV, Calvó-Armengol and Jackson model drop-out rates with contagion, and different initial conditions (and costs to employment).
+- Part-analytic calculation of exp. costs to staying in the labor force.
+>2em 
+Two classes of people $A$ and $B$, with different initial employment histories.
+- Study time to convergence, for various levels of segregation.
+- Allow the job obtention rate to depend on past employment history (over a certain number of periods).
+>2em 
+Far more broadly: any number of agent-based models.
 

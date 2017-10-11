@@ -83,7 +83,7 @@ Let's explore some JSON data.  Open a python prompt in \tt{lectures/03/ex/b/}, a
 \link{https://gist.github.com/JamesSaxon/e2aca9e262b82ea84c57fd24add99e21}{Gist/Solution}
 
 + JSON: Exploring and Accessing Data (2)
-Now load \tt{locations.json} and \tt{elevations.json}.\\
+Now load \tt{ex/b/locations.json} and \tt{ex/b/elevations.json}.\\
 >0.5em
 These are Google API responses for geolocating the 100 largest cities in the US, and querying their elevations.
 - How many cities are there, above 1 mile?

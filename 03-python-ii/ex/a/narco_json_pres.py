@@ -1,7 +1,7 @@
 import requests, json
 
 # we'll cover this in a few weeks.
-j = requests.get("...").json
+j = requests.get("...").json()
 
 # writing to a file
 with open("narcotics.json", "w") as out: 

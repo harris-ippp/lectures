@@ -8,10 +8,11 @@
 + 
 
 + Simple networks for job transmission
-- Across diverse swaths of society, people hear about jobs and find employment through their social contacts.
-- The social networks that each person maintains affect their ability to find jobs and advance in their careers.
+- Throughout vasts swaths of society, people hear about jobs and find employment through social contacts.
+- The characteristics of the social networks that each person maintains affect their ability to stay employed and advance their careers.
 - Expected gains from employment in a given network structure affect probability of remaining in the labor force.
-- Simulations on a simple network yield insights on these effects.
+- Simulations on a simple graph yield insights on these effects.
+-- Nodes (vertices) are agents and edges are social connections.
 
 + The Model
 In each period: 
@@ -25,18 +26,13 @@ In each period:
 -[A] §II, Ex. 1a: given $s⃗_{t-1}$, $s_{1t}$ and $s_{3t}$ are negatively correlated.
 -[B] §II, Ex. 1b: in the long run, agent 3 benefits agent 1.
 -[C] §II, Ex. 2: for the graphs shown, the probabilities and correlations below.
->1em
-\begin{centering}
-\begin{tabular}{cccc}
-\hline\hline
- & $P(s₁=0)$ & Corr($s₁,s₂$) & Corr($s₁,s₃$) \\ \hline
- $α$ & 0.132 & - & - \\
- $β$ & 0.083 & 0.041 & - \\
- $γ$ & 0.063 & 0.025 & 0.019 \\
- $δ$ & 0.050 & 0.025 & 0.025 \\
-\hline \hline
-\end{tabular}
-\end{centering}
+*cccc
+*T: \fontsize{9}{11}\selectfont Expected unemployment and correlations, for $α-δ$.  N.B. that these numbers are extremely imprecise -- \\ see footnotes 8 and 9.
+* & $P(s₁=0)$ & Corr($s₁,s₂$) & Corr($s₁,s₃$) \\ \hline
+* $α$ & 0.132 & - & - \\
+* $β$ & 0.083 & 0.041 & - \\
+* $γ$ & 0.063 & 0.025 & 0.019 \\
+* $δ$ & 0.050 & 0.025 & 0.025 \\
 Figure 1, $s⃗_{t-1}$ caj-ex/f1/a.pdf:0.35:side caj-ex/f1/b.pdf:0.30:side \vspace{1em} caj-ex/f2/single.pdf:0.35:side Figure 2 
 
 + What to confirm? [2 of 4]
@@ -54,7 +50,7 @@ caj-ex/f4/a.pdf
 
 + What to confirm? [4 of 4]
 -[F] Ex. 4: the average distance between nodes affects the long-run average employment, in the entire network.
--- Average path lengths for A and B are: 1.571 and 1.786.
+-- Average path lengths for A and B are 1.571 and 1.786.
 -- Average unemployment rates for A and B are 0.048 and 0.049.
 <1em
 caj-ex/f5/a.pdf:0.8 Figure 5A; caj-ex/f5/b.pdf:0.8 Figure 5B
@@ -63,13 +59,15 @@ caj-ex/f5/a.pdf:0.8 Figure 5A; caj-ex/f5/b.pdf:0.8 Figure 5B
 - Read in arbitrary graphs (trivial)
 - \chred{Implement job creation, transmission, and loss mechanisms}
 -- Save each agent's employment record for study
--- See \link{https://docs.python.org/3/library/random.html\#real-valued-distributions}{random.random()} -- we'll want $a < \tt{random()}$.
+-- See \link{https://docs.python.org/3/library/random.html\#real-valued-distributions}{random.random()} -- we'll want $\tt{random()} < a$.
 -- Use \link{https://docs.python.org/3/library/random.html\#functions-for-sequences}{random.choice()} to choose a random neighbor, or \link{https://docs.python.org/3/library/random.html\#functions-for-sequences}{random.shuffle()} to choose a random ordering of neighbors.
 - Calculate employment rates
 - Calculate correlations among agents
 - Calculate minimum distance between agents
 >1em
 - Bonus make all this scriptable!
+
++ Implementing the Model! \tright See \tt{caj-ex/caj\_tools.py}.
 
 + A Computational Shortcut
 - Normally, the variance is $σ² = E[X²] - E[X]²$.

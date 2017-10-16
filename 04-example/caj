@@ -8,11 +8,14 @@
 + 
 
 + Simple networks for job transmission
-- Throughout vasts swaths of society, people hear about jobs and find employment through social contacts.
+Throughout vasts swaths of society, people hear about jobs and find employment through social contacts.
 - The characteristics of the social networks that each person maintains affect their ability to stay employed and advance their careers.
-- Expected gains from employment in a given network structure affect probability of remaining in the labor force.
 - Simulations on a simple graph yield insights on these effects.
 -- Nodes (vertices) are agents and edges are social connections.
+-- Workers in the same graph component will have correlated employment histories.
+-- More-closely connected nodes will be more correlated.
+-- More-densely connected networks will have higher average employment.
+-- Expected gains from employment in a given network structure affect probability of remaining in the labor force.
 
 + The Model
 In each period: 
@@ -46,7 +49,7 @@ caj-ex/f3/a.pdf:0.8 Figure 3A; caj-ex/f3/b.pdf:0.8 Figure 3B
 -[E] Ex. 3: even with equal numbers of links, the position in a network affects employment.
 -- The average rates are: $s̅₁=0.047$, $s̅₂=0.048$, and $s̅₃=0.05$.
 <2em
-caj-ex/f4/a.pdf
+caj-ex/f4/a.pdf Figure 4
 
 + What to confirm? [4 of 4]
 -[F] Ex. 4: the average distance between nodes affects the long-run average employment, in the entire network.
@@ -56,7 +59,9 @@ caj-ex/f4/a.pdf
 caj-ex/f5/a.pdf:0.8 Figure 5A; caj-ex/f5/b.pdf:0.8 Figure 5B
 
 + Necessary Functionality
-- Read in arbitrary graphs (trivial)
+- Read in arbitrary graphs (trivial) and put them in a dictionary.
+-- We'll use the \link{https://docs.python.org/3/library/glob.html}{glob.glob()} function to list files.
+-- I've provided json descriptions of all the graphs we'll consider.
 - \chred{Implement job creation, transmission, and loss mechanisms}
 -- Save each agent's employment record for study
 -- See \link{https://docs.python.org/3/library/random.html\#real-valued-distributions}{random.random()} -- we'll want $\tt{random()} < a$.

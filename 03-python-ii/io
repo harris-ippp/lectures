@@ -77,10 +77,14 @@ Loading and saving JSON files uses the same \tt{open} syntax as other files.
 + JSON: Exploring and Accessing Data (1)
 Let's explore some JSON data.  Open a python prompt in \tt{lectures/03/ex/b/}, and load \tt{narcotics.json}.
 - What are the most common drug offenses (descriptions)?
--- Use a set comprehension (curly branches) to get the types.
--- Use a for loop to ask how many of each type there are.
+-- First extract the descriptions to a single list.
+-- Make a copy of it as a set (just one item per type).
+-- For each item in the set, \tt{list.count()} the occurrences in the list.
+-- Sort and print them.
+~\\
 >2em
 \link{https://gist.github.com/JamesSaxon/e2aca9e262b82ea84c57fd24add99e21}{Gist/Solution}
+(There are always many ways to skin a cat...)
 
 + JSON: Exploring and Accessing Data (2)
 Now load \tt{ex/b/locations.json} and \tt{ex/b/elevations.json}.\\

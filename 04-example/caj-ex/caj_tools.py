@@ -1,7 +1,18 @@
-"""Tools for implementating Calvo-Armengo/Jackson, 2003."""
+"""Tools for implementing Calvo-Armengo/Jackson, 2003."""
 
 from random import random, shuffle
 import math
+
+def give_to_neighbor(graph, neighbors):
+
+  shuffle(neighbors)
+
+  for nei_id in neighbors:
+      for nei in graph:
+          if nei["id"] == nei_id and not nei["hist"][-1]:
+              nei["empl"] = True
+              return
+
 
 def iterate(graph, a = 0.100, b = 0.015, N = 100000):
     
@@ -19,22 +30,12 @@ def iterate(graph, a = 0.100, b = 0.015, N = 100000):
                 if not n1["hist"][-1]:
                     n1["empl"] = True
                     
-                else: # Pass to a neighbor:
-                    shuffle(n1["nei"])
-                    
-                    found = False
-                    for nei in n1["nei"]:
-                        for n2 in graph:
-                            if n2["id"] == nei and not n2["hist"][-1]:
-                                n2["empl"] = True
-                                found = True
-                                break
-                        if found: break
-                                            
+                else: give_to_neighbor(graph, n1["nei"])
+
         for n in graph:
             if random() < b:
                 n["empl"] = False
-                
+             
 
 
 def unemployment(l): return 1 - sum(l)/len(l)
@@ -53,15 +54,20 @@ def correlation(l1, l2):
     
     exp = sum([(x1 - avg1)*(x2 - avg2) for x1, x2 in zip(l1, l2)]) / len(l1)
     
-    # print(var1, var2)
     return exp / math.sqrt(var1 * var2)
+
+
+
+
+
+
+
 
 
 def avg_path_length_single(node, graph):
     
     max_d = 0
     dist  = {node : 0}
-    nodes = {n["id"] for n in graph}
     
     while max_d in dist.values():
         for n in graph:
@@ -69,19 +75,12 @@ def avg_path_length_single(node, graph):
                 for nei in n["nei"]:
                     if nei not in dist:
                         dist[nei] = max_d+1
-            
         max_d += 1
-        
-        # print(node, max_d, [k for k, v in dist.items() if v == max_d])
-    
-    if len(nodes) > len(dist):
-        return float('inf')
-    else:
-        return sum(dist.values())/(len(dist)-1)
+
+    if len(graph) > len(dist): return float('inf')
+    else: return sum(dist.values())/(len(dist)-1)
     
     
 def avg_path_length(graph):
     
     return sum([avg_path_length_single(n["id"], graph) for n in graph])/len(graph)
-    
-

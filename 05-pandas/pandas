@@ -1,0 +1,33 @@
+^NT
+^T:  Pandas
+
++ What is Pandas?
+\textbf{pandas} is a Python package providing fast, flexible, and expressive data structures designed to make working with “relational” or “labeled” data both easy and intuitive. \\
+>1em
+It aims to be the fundamental high-level building block for doing practical, \textbf{real world} data analysis in Python. Additionally, it has the broader goal of becoming the \textbf{most powerful and flexible open source data analysis / manipulation tool available in any language}. \\
+>1em
+It is already well on its way toward this goal.
+
++ Why Pandas?
+Pandas surpasses excel in a few important ways:
+- Integration in the python ecosystem.  A single (reproducible!) script for your data retrieval, cleaning, plotting, and (advanced) analysis.
+- Natively understands familiar formats (xls and csv) as well as ``heftier" ones like json and sql (next week).
+- More powerful for cleaning, slicing, and merging multiple datasets.
+- Flexible and scriptable plotting (matplotlib).
+- Far more powerful statistical modeling (statsmodels).
+- Beyond this course -- pandas is built on \emph{numpy}, and is computationally very efficient.
+
++ Core Concepts
+Two datatypes: pandas.Series (columns) and pandas.DataFrame (tables). \\
+>2em
+Three big ideas:
+# \chred{masking} rows and selecting columns: selecting sets of rows or columns from a dataset.
+#- Select columns: \tt{df[column\_name]} or  \tt{df[column\_list]}
+#- Masking rows: \tt{df[mask]}
+#- Both simultaneously: \tt{df.loc[mask, column\_list]}.
+# \chred{merging} or \chred{joining} data: assembling one dataset from multiple files.
+#- Join by index: \tt{df1.join(df2)}
+#- Merge on columns: \tt{pandas.merge(df1, df2)}
+# \chred{aggregating}: perform operations on subsets of the data in one pass.
+#- Group by: \tt{df.groupby(value).mean()}, \tt{.sum()}, \tt{.median}, etc.
+

@@ -2,26 +2,145 @@
 ^ST: The Web
 ^I: Introduction to Programming for Public Policy
 ^SI: Intro Programming
-^D: Halloween 2016
+^D: Halloween Eve 2016
 ^L: ../img/pumpkin.jpg
 
-+++ The Internet and the \\ World Wide Web
-
-+ Fundamental Definitions
-''' The \chred{Internet} is a \emph{physical network}, and a set of protocols for shipping information across that network.
++ The Internet and the World Wide Web
+''' The \chred{Internet} is a \emph{physical network} of cables and routers, and a set of protocols for shipping information across that network.
 >3em
-''' The \chred{World Wide Web} uses a high-level protocol, called the Hyper Text Transfer Protocol (http), along with a markup language (html), to transfer interlinked documents across the Internet.
+''' The \chred{World Wide Web} uses a high-level protocol, called the Hyper Text Transfer Protocol (http), along with a markup language (html), to request and transfer (interlinked) documents across the Internet.
+
+>3.5em
++++ Hyper Text Transfer Protocol
+../img/cern_next.jpg:0.6
++
+
++ The Hyper Text Transfer Protocol
+- Most of the data that you access on the internet comes over http or https (secure).
+- A web browser is a `client,' issuing requests through a TCP/IP port.
+- A `server' is an application on a computer, listening on a port.
+- HTTP provides a framework for these requests and responses.
+-- HTTP takes the transmission across the Internet at the lower levels (TCP/IP/Link) for granted.
+
++ \tt{GET} and \tt{POST} Requests
+- The two most-common request types are \tt{GET} and \tt{POST}.  
+- Both request resources with a `uniform resource locator' (URL):
+''' \centering \tt{scheme://host[:port]/path[?query][\#fragment]}
+- \tt{GET} simply requests a URL.
+- \tt{POST} additionally sends data to the server in the request `body.'
+>1em
+- There are also several methods used more-commonly in e.g., javascript (not covered): \tt{HEAD}, \tt{PUT}, \tt{DELETE}, etc.
+
++ The Response/Resource
+- The server responds to the request with a status code and, hopefully, the requested resource.
+- The resource returned may be...
+-- static: a file \&c. that is already prepared.
+-- dynamic: using limited data from the name of the requested resource (\tt{GET}) or data from the body of the request (\tt{POST}) the server may create or modify a resource `on-the-fly' (next week).
+- The most common status code is \green{200}/OK, but you've probably also seen \red{404}/Not Found, and experienced \gold{301}/Moved or \gold{307}/redirect.
+- Any type of document can be sent: \infnblue{HTML files} are common, but they depend on pictures, style, sounds, movies, etc. that the browser must also request.  And pdfs, json, doc, csv, etc. are also all fine.
+
++++ Hyper Text Markup Language
+We're covering this so that:
+# You can make simple websites to share data.
+# You can sift through other people's websites to grab their data.
+
++ Webpages
+- Modern webpages have myriad components -- pictures, videos, text, fonts and styling (css), links, databases, scripts, authentication, etc.
+- These components are drawn together by documents in Hyper Text Markup Language (html).  
+-- HTML `tags' define headers, lists, images, links, tables, etc. 
+-- The browser parses these tags (and css and javascript code).
+- Presentation of elements specified by `Cascading Style Sheets.'
+- The web is the totality of interlinking html documents and other http resources.
+
++ The Fundamental HTML Tags\footnote{We will not cover forms...}
+<1em
+- Most of these come in pairs: \tt{<tag>value</tag>}.  
+- Break and img are the exceptions.
+<1.5em
+\fontsize{9}{13} \selectfont
+* cl
+* Tag   & Meaning \\ \hline
+* \tt{<title>}    & Page Title \\
+* \tt{<header>}   & Header Content \\
+* \tt{<body>}     & Body of the page \\
+* \tt{<h1>}       & Header (Highest) \\
+* \tt{<h2-6>}     & Header (Lower) \\ 
+* \tt{<p>}, \tt{</br>} & Paragraph, Break \\
+* \tt{<em>}, \tt{<b>}  & Emphasis (Italic)/Bold \\
+* \tt{<ol>}, \tt{<ul>}, \tt{<li>} & (Un)ordered List, List Element \\
+* \tt{<a href="">} & Hyperlink \\
+* \tt{<table>}, \tt{<tr>}, \tt{<th>}, \tt{<td>} & Table, row, header, and cell \\
+* \tt{<img src="">} & Image (single tag) \\
+* \tt{<div>} & div: $\unsim$block \\
+
++ An HTML Skeleton
+../img/html_skeleton.png:0.7
+
++ HTML Example
+- Go find this skeleton at: \chred{lectures/docs/skeleton.html}
+- Open it in both a browser \emph{and} in Atom.
+- We'll use this to write a click-bait article on chickens:
+\centering
+\link{https://harris-ippp.github.io/lectures/chickens.html}{https://harris-ippp.github.io/lectures/chickens.html}.
+
+../img/chickens_goal_red.pdf:1.0:full
+
++ CSS
+Once your content is in place (or you've given up on content), format it!
+- CSS rules apply to all objects of one (or many) types:
+` h1, h2, h3 \{ color: darkred; font-weight: bold; \}
+- Rules apply hierarchically: for instance, a link in an item in a list would be ``\tt{ul li a}."
+- \emph{Classes} of element types are referred to with a dot: \tt{ul.nav}.
+- Elements may be accessed by `\tt{id}' with a hash: \tt{\#myelement}.
+- Specify \tt{:visited} links, or elements the mouse is \tt{:hover}-ing over.
+
++ A Few Common Names
+- There are too many property names to remember them all, \\ but here are some of the most common ones.
+-- Find others and check meanings \link{http://www.w3schools.com/css/default.asp}{here} or by googling.
+- Will discuss how spacing works, next.
+>1.5em
+* cccc
+* background       & border-spacing & display     & margin          \\ 
+* background-color & border-style   & float       & padding         \\ 
+* border           & border-width   & font-family & text-align      \\ 
+* border-color     & color          & font-weight & text-decoration \\ 
+
++ CSS Spacing
+- There are three attributes for spacing: padding, border, and margin.
+- These maybe specified as pixels (px) `em' (m-width), `ex' (x-width), or as a percent of the parent element (\%).
+- A single value corresponds to all borders, two values correspond to top/bottom and side borders, and four is (top, right, bottom, left)
+../img/css_spacing.pdf:0.4
+
++ Writing CSS or Including a File
+- CSS rules may be added in the header, between \tt{<style>} tags.
+- A file of .css rules in your directory may be loaded via \\ \tt{<link rel="stylesheet" href="my\_style.css">}
+
++[fragile] A CSS `Trick' for Navigation from a List
+Common to build navigation from a list of links:
+- Display list elements on a single line (\tt{inline}).
+- Display links as \tt{inline-block}: respect their padding and margins.
+\begin{tcolorbox}
+\verb|ul.nav li   { display: inline; }|
+\verb|ul.nav li a { display: inline-block; }|
+\end{tcolorbox}
+
+\chred{If you write want to write your own web-pages...} \\
+>1em
+- Look into Bootstrap -- they write a lot of the css and javascript templates for you, making this process much faster.
+- In particular, they make it easy to reformat pages for mobile devices.
+
++++ The Internet, in Short
 
 + History of the Internet in One Slide
 - Started as a Defense Advanced Research Projects Agency (DARPA/DoD) ARPANET project to interconnect computers.
-- First transmission between nodes at UCLA in 1969; by 1970 it reached across the US (to Boston).
+- First transmission between nodes at UCLA in (Oct 29!) 1969; by 1970 it reached across the US (to Boston).
 - Transmission Control Protocol/Internet Protocol (TCP/IP, slide \ref{slide:tcpip}) developped throughout the 1970s.
 -- Became sole internet protocol in 1983.
 - ARPANET declared `operational' (no-longer research) in 1975; transferred to the military.
 - Ethernet standard (transmission on wires) written in 1981.
 - In the 1980s, the internet shifted to the National Science Foundation; in 1983, it switched to its modern protocol (TCP/IP).
 -- NSFNET provided the backbone of the internet from 1985 to 1995.
-- Clinton I privatized the internet backbone in 1994.
+- Internet backbone privatized by Clinton in 1994.
 
 % http://www.vox.com/a/internet-maps
 ../img/G69Dec.jpg:1.0:full
@@ -84,122 +203,4 @@ Data is divided, wrapped and delivered to lower levels, where they are repeatedl
 ../img/111_eighth_ave.jpg:1.0:full
 
 ../img/trace_map.png:1.0:full
-
->3.5em
-+++ Hyper Text Transfer Protocol
-../img/cern_next.jpg:0.6
-+
-
-+ The Hyper Text Transfer Protocol
-- Most of the data that you access on the internet comes over http or https (secure).
-- A web browser is a `client,' issuing requests through a TCP/IP port.
-- A `server' is an application on a computer, listening on a port.
-- HTTP provides a framework for these requests and responses.
--- HTTP takes the transmission across the Internet at the lower levels (TCP/IP/Link) for granted.
-
-+ \tt{GET} and \tt{POST} Requests
-- The two most-common request types are \tt{GET} and \tt{POST}.  
-- Both request resources with a `uniform resource locator' (URL):
-''' \centering \tt{scheme://host[:port]/path[?query][\#fragment]}
-- \tt{GET} simply requests a URL.
-- \tt{POST} additionally sends data to the server in the request `body.'
->1em
-- There are also several methods used more-commonly in e.g., javascript (not covered): \tt{HEAD}, \tt{PUT}, \tt{DELETE}, etc.
-
-+ The Response/Resource
-- The server responds to the request with a status code and, hopefully, the requested resource.
-- The resource returned may be...
--- static: a file \&c. that is already prepared.
--- dynamic: using limited data from the name of the requested resource (\tt{GET}) or data from the body of the request (\tt{POST}) the server may create or modify a resource `on-the-fly' (next week).
-- The most common status code is \green{200}/OK, but you've probably also seen \red{404}/Not Found, and experienced \gold{301}/Moved or \gold{307}/redirect.
-- Most common type of document is an \infnblue{html file}, which may include references (URLs) for additional resources (pictures, style, etc.) that the browser must also request, and which the server will supply.
-
-+++ Hyper Text Markup Language
-We're covering this so that:
-# You can make simple websites to share data.
-# You can sift through other people's websites to grab their data.
-
-+ Webpages
-- Modern webpages have myriad components -- pictures, videos, text, fonts and styling (css), links, databases, scripts, authentication, etc.
-- These components are drawn together by documents in Hypter Text Markup Language (html).  
--- HTML `tags' define headers, lists, images, links, tables, etc. 
--- The browser parses these tags (and css and javascript code).
-- Presentation of elements specified by `Cascading Style Sheets.'
-- The totality of interlinking html documents is the web.
-
-+ The Fundamental HTML Tags\footnote{We will, perhaps, make it to forms next week.}
-<1em
-- Most of these come in pairs: \tt{<tag>value</tag>}.  
-- Break and img are the exceptions.
-<1.5em
-\fontsize{9}{13} \selectfont
-* cl
-* Tag   & Meaning \\ \hline
-* \tt{<title>}    & Page Title \\
-* \tt{<header>}   & Header Content \\
-* \tt{<body>}     & Body of the page \\
-* \tt{<h1>}       & Header (Highest) \\
-* \tt{<h2-6>}     & Header (Lower) \\ 
-* \tt{<p>}, \tt{</br>} & Paragraph, Break \\
-* \tt{<em>}, \tt{<b>}  & Emphasis/Bold \\
-* \tt{<ol>}, \tt{<ul>}, \tt{<li>} & (Un)order List, List Element \\
-* \tt{<a href="">} & Hyperlink \\
-* \tt{<table>}, \tt{<tr>}, \tt{<th>}, \tt{<td>} & Table, row, header, and cell \\
-* \tt{<img src="">} & Image (single tag) \\
-* \tt{<div>} & div: $\unsim$block \\
-
-+ An HTML Skeleton
-../img/html_skeleton.png:0.7
-
-+ HTML Example
-- Go find this skeleton at:
-\centering
-\link{https://harris-ippp.github.io/lectures/skeleton.html}{https://harris-ippp.github.io/lectures/skeleton.html} \\
-or \\
-\link{http://tinyurl.com/gmqnwzz}{http://tinyurl.com/gmqnwzz}
->0.5em
-- Save page as; Format `Web Page, HTML only'.
-- Navigate to it using the standard directory system, and open it in both Atom and your browser.
-- We'll use this to write an `informative' article on chickens, \link{https://harris-ippp.github.io/lectures/index.html}{here}.
-
-../img/chickens_goal_red.pdf:1.0:full
-
-+ CSS
-Once your content is in place (or you've given up on content), format it!
-- CSS rules apply to all objects of one (or many) types:
-` h1, h2, h3 \{ color: darkred; font-weight: bold; \}
-- Rules apply hierarchically: for instance, a link in an item in a list would be ``\tt{ul li a}."
-- \emph{Classes} of element types are referred to with a dot: \tt{ul.nav}.
-- Elements may be accessed by `\tt{id}' with a hash: \tt{\#myelement}.
-- Specify \tt{:visited} links, or elements the mouse is \tt{:hover}-ing over.
-
-+ A Few Common Names
-- There are too many property names to remember them all, \\ but here are some of the most common ones.
--- Find others and check meanings \link{http://www.w3schools.com/css/default.asp}{here} or by googling.
-- Will discuss how spacing works, next.
->1.5em
-* cccc
-* background       & border-spacing & display     & margin          \\ 
-* background-color & border-style   & float       & padding         \\ 
-* border           & border-width   & font-family & text-align      \\ 
-* border-color     & color          & font-weight & text-decoration \\ 
-
-+ CSS Spacing
-- There are three attributes for spacing: padding, border, and margin.
-- These maybe specified as pixels (px) `em' (m-width), `ex' (x-width), or as a percent of the parent element (\%).
-- A single value corresponds to all borders, two values correspond to top/bottom and side borders, and four is (top, right, bottom, left)
-../img/css_spacing.pdf:0.4
-
-+ Writing CSS or Including a File
-- CSS rules may be added in the header, between \tt{<style>} tags.
-- A file of .css rules in your directory may be loaded via \\ \tt{<link rel="stylesheet" href="my\_style.css">}
-
-+[fragile] A CSS `Trick' for Navigation from a List
-Common to build navigation from a list of links:
-- Display list elements on a single line (\tt{inline}).
-- Display links as \tt{inline-block}: respect their padding and margins.
-\begin{tcolorbox}
-\verb|ul.nav li   { display: inline; }|
-\verb|ul.nav li a { display: inline-block; }|
-\end{tcolorbox}
 

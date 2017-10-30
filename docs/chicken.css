@@ -2,9 +2,9 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-body {
-  margin: 0 10%;
-}
+body { margin: 0 10%; }
+
+h1 { color: darkred; }
 
 ul.nav {
   margin: 0;
@@ -12,9 +12,7 @@ ul.nav {
   background-color: darkred;
 }
 
-ul.nav li {
-  display: inline;
-}
+ul.nav li { display: inline; }
 
 ul.nav li a {
   color: white;
@@ -71,19 +69,7 @@ td.trcell, td.facell, td.uicell {
   font-weight: bold;
 }
 
-td.trcell { 
-  color: green;
-}
-
-td.facell { 
-  color: red; 
-}
-
-td.uicell { 
-  color: #ffc107;
-}
-
-h1 {
-  color: darkred;
-}
+td.trcell { color: green;   }
+td.facell { color: red;     }
+td.uicell { color: #ffc107; }
 

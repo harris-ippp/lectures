@@ -17,13 +17,13 @@
 + Examples of Different Resources
 Qualities and techniques best demonstrated by example:
 # Google has many straightforward APIs for \link{https://developers.google.com/maps/documentation/directions/intro\#traffic-model}{mapping}.
-# Twitter famously provides one of the most-comfortable, featureful, compulsively perfect \link{https://dev.twitter.com/rest/public}{APIs} ever (\link{https://github.com/harris-ippp/lectures/blob/master/06-web/ex/twitter\_stream.py}{example}).
+# Twitter famously provides one of the most-comfortable, featureful, compulsively perfect \link{https://developer.twitter.com/en/docs/api-reference-index}{APIs} ever (\link{https://github.com/harris-ippp/lectures/blob/master/06-web/ex/twitter\_stream.py}{example}).
 # Census provides both a `consumer-level' \link{http://www.census.gov/data.html}{site} and \link{http://www.census.gov/data/developers/data-sets/acs-5year.html}{an API} for retrieving well-formatted data at any level.
 # Bureau of Labor Statistics provides a \link{http://www.bls.gov/developers/api_python.htm}{respectable API} for time series data whose \link{http://www.bls.gov/help/hlpforma.htm}{coding} is quite abstruse (\link{https://github.com/harris-ippp/lectures/blob/master/06-web/ex/bls_time_series.py}{example}).
 # The \link{http://historical.elections.virginia.gov/elections/search/year_from:1924/year_to:2016/office_id:1/stage:General}{Virginia Department of Elections} provides a clean (but hidden) interface for retrieving data, but no clean way to {\it query it}.
 # Lots of Wikipedia \link{https://en.wikipedia.org/wiki/List_of_colleges_and_universities_in_the_United_States_by_endowment}{articles} have ``pretty clean" tables.
 # Illinois State Board of Education \link{http://illinoisreportcard.com/}{Report Card} provides a lot of data, but back-breaking methods for accessing it.
-# Some websites go to great lengths to keep you out: \link{http://indiawater.gov.in/IMISReports/Reports/WaterQuality/rpt_WQM_HabitationWiseLabTesting_S.aspx?Rep=0&RP=Y}{India Water} or \link{https://trends.google.com/trends/}{google trends}.  (It is {\it their data}, after all...)
+# Some websites go to great lengths to keep you out: \link{http://indiawater.gov.in/IMISReports/Reports/WaterQuality/rpt_WQM_HabitationWiseLabTesting_S.aspx?Rep=0\&RP=Y}{India Water} or \link{https://trends.google.com/trends/}{google trends} [\link{https://trends.google.com/trends/api/explore?hl=en-US\&property=\&req=\%7B\%22comparisonItem\%22\%3A+\%5B\%7B\%22geo\%22\%3A+\%22\%22\%2C+\%22keyword\%22\%3A+\%22apples\%22\%2C+\%22time\%22\%3A+\%22today+5-y\%22\%7D\%2C+\%7B\%22geo\%22\%3A+\%22\%22\%2C+\%22keyword\%22\%3A+\%22bananas\%22\%2C+\%22time\%22\%3A+\%22today+5-y\%22\%7D\%5D\%2C+\%22category\%22\%3A+0\%7D\&tz=360}{ex}].  (It is {\it their data}, after all...)
 
 + Five Tools
 # \link{http://docs.python-requests.org/en/master/}{requests} library: retrieve web resources \emph{in python}.
@@ -93,9 +93,8 @@ Pandas will extract tables from a page, as a list of DataFrames.
 \pythonexternal{ex/bs.py}
 
 + Scraping with a WebDriver: Selenium
-- On \link{http://illinoisreportcard.com/District.aspx?source=SchoolsInDistrict&Districtid=15016299025}{many} web pages, you have to wait for the page to `load.'
-- \emph{Could} do this with browser, then save page... not scalable!
-- So use a web driver!
+- On \link{http://illinoisreportcard.com/District.aspx?source=SchoolsInDistrict&Districtid=15016299025}{many} web pages, you must wait for elements of a page to load from other sources.  These won't be in the html.
+- Browsers aren't scalable, so use a python a web driver!
 ` \pr conda install -c conda-forge selenium \\ \pr conda install phantomjs
 \pythonexternal{ex/sel.py}
 
@@ -144,6 +143,11 @@ Some websites establish pretty good RESTful interfaces, and make no effort to re
 - Let's try \link{https://vizhub.healthdata.org/gbd-compare/}{healthdata.org}.
 - Watch the Network as we navigate the visualization, filter for gbd-compare/api.
 - Just need the metadata, which shows up at the \link{https://vizhub.healthdata.org/gbd-compare/api/metadata?lang=41}{beginning}.
+>1em
+Some websites make you work a little bit harder:
+- Google \link{https://trends.google.com/trends/}{trends} requires a token, but it's fairly easy to find it. [\link{https://trends.google.com/trends/api/explore?hl=en-US\&property=\&req=\%7B\%22comparisonItem\%22\%3A+\%5B\%7B\%22geo\%22\%3A+\%22\%22\%2C+\%22keyword\%22\%3A+\%22apples\%22\%2C+\%22time\%22\%3A+\%22today+5-y\%22\%7D\%2C+\%7B\%22geo\%22\%3A+\%22\%22\%2C+\%22keyword\%22\%3A+\%22bananas\%22\%2C+\%22time\%22\%3A+\%22today+5-y\%22\%7D\%5D\%2C+\%22category\%22\%3A+0\%7D\&tz=360}{ex}]
+>1em
+Some sites make it fairly hard to retrieve their data (changing tokens/authentication).
 
 + Scraping Take-Aways
 - Enormous variability in ease of scraping and tools required.

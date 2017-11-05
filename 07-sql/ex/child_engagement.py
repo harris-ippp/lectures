@@ -4,13 +4,13 @@ from matplotlib import pyplot as plt
 con = sqlite3.connect("atus.sqlite")
 
 with open("ex/direct_engagement.sql") as f:
-  query = f.read()
+  query = f.read() # entire file into string.
 
 df = pd.read_sql_query(query, con)
-ax = df.boxplot("Direct Engagement", "Parental Education")
+ax = df.boxplot("Engagement", "Education")
 
 plt.suptitle("")
 ax.set(title = "", ylim = (0, 7),
        xlabel = "Parental Education [Years]", 
        ylabel = "Direct Engagement [Hours]")
-ax.get_figure().savefig("engagement.pdf", bbox_inches='tight')
+ax.figure.savefig("engagement.pdf")

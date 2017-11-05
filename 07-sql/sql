@@ -1,33 +1,41 @@
-^T: The Relational Model and the \\ Structured Query Language
+^T: Relational Models and the \\ Structured Query Language
 ^ST: RDBM and SQL
 ^H: \include{sqllst}
 ^H: \include{pythonlst}
 
-! \Huge{Who are these dudes?}
-
-../img/gates.jpg:1.0:full
-
-../img/buffett.jpg:1.0:full
+../img/rich_guys.jpg:1.0:full
+\caveat{1}{20}{21}{92}{0}{Who are these people?}
 
 ../img/ellison.jpg:1.0:full
 \only<2>{\placegraphic{29}{88}{10cm}{../img/oracle_logo}}
 
-+++ Databases: Content
-- As these are not consumer-facing products, database systems fly under the radar like our energy infrastructure.  But they are very, very important.
++++ Databases as Infrastructure
+- Since they are not consumer-facing products, database systems fly under the radar like our energy infrastructure.  But they are very, very important.
 - They power the deep content of the internet: blogs, consumer applications, health services, etc.
 -- Typical web application is server + database + scripting language.
 - Huge problems in health services, government, etc. from failure to construct consistent or interoperable models.
 -- This is totally solvable, but more political than technical!
 
-+ Databases
-- Databases store data efficiently, and retrieve it quickly.
++ Databases: or, Another Data Source
+- Databases store data efficiently and retrieve it quickly.
+-- Typical computers have 8-16 GB of memory: a hard limit on what you can simultaneously load.  Databases allow efficient row-wise calulations.
 -- Search efficiently over many GBs, or hundreds of GBs of data...
+-- Maintain \emph{one} copy of the data; allow many people to acces it (servers).
 -- \emph{Really} huge datasets need different models than discussed today.
 - In the `relational model,' the data are stored in interrelated `tables.'
 - Each record (row) is uniquely identified by a `primary key' (index).
 - Differs from composite objects in object-oriented programming, since many records in one table may link to a single record of another (e.g., people to a city) and several records may link in different ways (grade to teacher, student, and school).
 
-+ RDB: Time Use Survey, Revisited
++ Our Example: The American Time Use Survey
+- ATUS is a subset of the Current Population Survey.
+- Respondents record all activities performed on a ``diary day," in 15-minute increments.
+- Survey provides micro-data in tables including:
+-- \chred{CPS}: data from the CPS interviews.
+-- \chred{Roster}: Stats on each member of the household + non-hh children, and relationship to respondent.
+-- \chred{Respondent}: Detailed info and summary data on the respondent.
+-- \chred{Activity}: Code and duration of each activity in the day.
+
++ Tables of the American Time Use Survey
 ../img/rdb.pdf
 
 + The Relational Model: Normal Forms (Good Practice)
@@ -52,7 +60,7 @@ To avoid repeating cumbersome calculations, these are sometimes violated.
 
 + Relational Database Management Systems (RDBMSs) \\ and the Structured Query Language (SQL)
 - Most of the most-prevalent database systems implement the relational model.\footnote{There are always exceptions...}  These systems are called RDBMSs.
-- Structured Query Language (SQL) (ISO/IEC 9075:2011) is a standardized (ISO/ANSI) language for interacting with RDBMSs.
+- Structured Query Language (SQL) is a standardized (ANSI/ISO 9075) language for interacting with RDBMSs.
 - Originally intended to be user-facing, so `fairly intuititive.'
 - Despite standardization, the implementations almost all have some (extremely annoying) differences: some tinkering is necessary to migrate between `dialects.'
 -- Nevertheless, the basic functionality -- selecting, inserting, deleting, and altering data, is pretty consistent.
@@ -68,14 +76,9 @@ To avoid repeating cumbersome calculations, these are sometimes violated.
 - To just open a file, do:
 ` \pr sqlite3 atus.sqlite
 - This should give you a new prompt.
-- To make the output clearer, you can do:
-` \pr .mode columns \\ \pr .headers on
-- You can also run a file, like so:
-` \pr sqlite3 atus.sqlite < ex/limit\_cps.sql
-- We'll talk about interfacing to pandas, on Wednesday
 
 + Navigating SQLite: Time Use Survey
-The biggest difference between RDBMS implementations is in access to the metadata: a list of tables and their schema (format).
+The biggest differences between RDBMS implementations are accessing metadata: table names and schema (columns).
 - To show the tables in the database:
 ` sqlite> .tables \\ sqlite> .fullschema --indent
 - To show the `schema' of a table (its columns and types):
@@ -84,7 +87,7 @@ The biggest difference between RDBMS implementations is in access to the metadat
 -- Other RDBMSs have more types -- e.g., datetime, or even geographies.
 -- SQLite just has date \emph{functions}.
 
-+ \tt{SELECT}ing Columns: Vertical Slicing
++ \tt{SELECT}ing Columns \tright \small{\tt{ex/select\_*from\_cps.sql}}
 This is THE basic SQL syntax that you will use.
 - Selecting \emph{all} (\tt{*}) columns from the cps table:
 \sqlexternal{ex/select_from_cps.sql}
@@ -95,44 +98,51 @@ This is THE basic SQL syntax that you will use.
 - Upper case keywords an old convention: SQL strings are often used in other languages, and therefore aren't color-highlighted.  Not necessary.
 - There is absolutely \emph{no} requirement about the formatting of the query.
 
-+ \tt{LIMIT} (i.e., .head())
-- Normally, this would come a bit later... but the last output was pretty excessive.  For exploration, use `\tt{LIMIT}':
++ Running Queries in SQLite 
+To make the output clearer, you can do:\footnote{You can also put these two lines in your \tt{\~{}/.sqliterc} file, that will run each time you open sqlite3.}
+` \pr .mode columns \\ \pr .headers on
+You can also run queries in a file, like so:
+` \pr sqlite3 atus.sqlite < ex/limit\_cps.sql
+We'll talk about interfacing to pandas, on Wednesday
+
++ \tt{LIMIT} (i.e., .head()) \tright \small{\tt{ex/limit\_cps.sql}}
+- To reduce output, for exploration, use `\tt{LIMIT}':
 \sqlexternal{ex/limit_cps.sql}
 
-+ \tt{WHERE} Requirements: Horizontal Slicing
++ \tt{WHERE} Requirements ($\unsim$Masking) \tright \small{\tt{ex/where*.sql}}
 - Make requirements with `\tt{WHERE}':
 \sqlexternal{ex/where_simple.sql}
 - Can make multiple requirements with \tt{AND} or \tt{OR}:
 \sqlexternal{ex/where_and.sql}
-- Note the single `=' sign.
+- Comment to end of line by \tt{\blue{--}}, or between two markers \tt{\blue{/* to */}}.
 
-+ \tt{GROUP BY} (i.e., .groupby())
++ \tt{GROUP BY} (i.e., .groupby()) \tright \small{\tt{ex/group*.sql}}
 - This functions exactly as groupby() in pandas.
 - `Group' by one or more variables, to aggregate over others.
 -- Unlike most RDBMSs, SQLite won't complain if you mix and match aggregating functions and non-aggregated fields -- so be careful.
 - Many functions: \tt{AVG}, \tt{SUM}, \tt{MAX}, \tt{MIN}, \tt{COUNT}, etc.
 \sqlexternal{ex/group_alone_time.sql}
 
-+ \tt{ORDER BY} (i.e., .sort\_values(by = ``..."))
++ \tt{ORDER BY} (i.e., .sort\_values(by = ``...")) \tright \small{\tt{ex/order*.sql}}
 - Sort by one or more fields, ascending or descending (\tt{ASC} or \tt{DESC}).
 \sqlexternal{ex/order_group_education_state.sql}
 - Note also the use of \tt{AS} (like in python!), to alias a long column name.
 
-+ \tt{JOIN} (i.e., .join())
++ \tt{JOIN} (i.e., .join()) \tright \small{\tt{ex/join*.sql}}
 - In households with children, what is the likelihood that a spouse or partner is present, by levels of education.  Must \tt{JOIN} tables.
 - Alternatively, this can be done with multiple tables in `\tt{FROM}' and join conditions under `\tt{WHERE}.'
-\only<1>{\sqlexternal{ex/spouse_present.sql}}
-\only<2>{\sqlexternal{ex/spouse_present_where.sql}}
+\only<1>{\sqlexternal{ex/join.sql}}
+\only<2>{\sqlexternal{ex/join_where.sql}}
 
-+ \tt{HAVING} (Requirements on Groups)
++ \tt{HAVING} (Requirements on Groups) \tright \small{\tt{ex/having.sql}}
 - \tt{HAVING} is like \tt{WHERE} for grouped values.
 - For instance, you could present averages only for groups with \tt{COUNT()} larger than 30, or averages or sums above a threshold.
 \sqlexternal{ex/having.sql}
 
-+ Subqueries
++ Subqueries \tright \small{\tt{ex/subquery.sql}}
 - You can use subqueries as tables, for multiple levels of grouping.
 - How much time does each sex claim to spend in `Personal/Private activities' such as `necking' and `private activity, unspecified'?
-\sqlexternal{ex/sex_by_sex.sql}
+\sqlexternal{ex/subquery.sql}
 
 + On The Structure
 - Good news is: SQL queries basically always follow the same structure.  
@@ -151,13 +161,12 @@ This is THE basic SQL syntax that you will use.
 - The \tt{id} column will auto-increment, to provide a unique primary key.
 - \tt{NOT NULL} and \tt{PRIMARY KEY} are \emph{constraints}, that help the RDBMS optimally parse a statement.
 
-+ \tt{INSERT} Rows
++ \tt{INSERT} Rows \tright \small{\tt{ex/insert.sql}}
 - Insert values like so:
 \sqlexternal{ex/insert.sql}
 - Multiple values are both convenient and efficient.
-- Trying to insert multiplepeople with 
 
-''' When the RDBMS evaluates a statement, it begins by `parsing' and compiling it: reading it and turning it into a computer-ready, optimized plan.  Most RDBMSs treat this as separate from the execution step, so you can `recycle' the execution plan.  (To my knowledge, \tt{sqlite3} does not provide this access.)
+''' When the RDBMS evaluates a statement, it begins by `parsing' and compiling it: reading it and turning it into a computer-ready, optimized plan.  Most RDBMSs treat this as separate from the execution step, so you can `recycle' the execution plan.  
 
 + Creating a Table From the Command Line
 - There's a shortcut in \tt{sqlite3} for loading data from a csv file:
@@ -171,7 +180,6 @@ This is THE basic SQL syntax that you will use.
 - And pandas totally builds in support, like read\_csv/read\_json.
 \only<1>{\pythonexternal{ex/sqlite_minimal.py}}
 \only<2>{\pythonexternal{ex/sqlite_pandas.py}}
-- Other library, \tt{sqlalchemy}, extends this interface, makes access feel more object-oriented.
 
 + Broader Example: Goal
 - Want direct child engagement by parent education.
@@ -183,13 +191,13 @@ This is THE basic SQL syntax that you will use.
 # Write a SQL query to give us the formatted data.
 # Use this query load the data in pandas, and plot it.
 
-+ A Larger Example: SQL
++ A Larger Example: SQL \tright \small{\tt{ex/direct\_engagement.sql}}
 \sqlexternal{ex/direct_engagement.sql}
 
-+ A Larger Example: Python
++ A Larger Example: Python \tright \small{\tt{ex/child\_engagement.py}}
 \pythonexternal{ex/child_engagement.py}
 
-+ Result (Lower Stats than Before)
++ Results
 <0.5em
-engagement.pdf:0.8
+engagement.pdf:0.9
 

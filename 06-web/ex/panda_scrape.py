@@ -1,6 +1,6 @@
 import pandas as pd
 
-pd.read_html("https://harris-ippp.github.io/lectures/")
+pd.read_html("http://harris-ippp.github.io/lectures")
 
 wiki =  "https://en.wikipedia.org/wiki/"
 wiki += "List_of_colleges_and_universities_"

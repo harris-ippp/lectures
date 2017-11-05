@@ -11,18 +11,24 @@ if len(sys.argv) > 1: search = "%20".join(sys.argv[1:])
 else: search = "Bach"
 
 stream = osess.get("https://stream.twitter.com/1.1/statuses/filter.json?track=" + search, stream=True)
-for line in stream.iter_lines():
-  if line: 
+with open("twitter_stream.json", "w") as out: out.write("[\n")
 
-    j = json.loads(line.decode("utf-8"))
+with open("twitter_stream.json", "a") as out: 
 
-    if 'user' in j and 'text' in j:
-      loc = "None"
-      if j['place']: 
-        loc = j['place']['full_name']
-      elif j['user']['location']: 
-        loc = j['user']['location']
+  for line in stream.iter_lines():
+    if line: 
+  
+      j = json.loads(line.decode("utf-8"))
+      out.write(" " + line.decode("utf-8") + ", \n")
+  
+      if 'user' in j and 'text' in j:
+        loc = "None"
+        if j['place']: 
+          loc = j['place']['full_name']
+        elif j['user']['location']: 
+          loc = j['user']['location']
+  
+        print("{:30}\t{:30}\t{}".format(j['user']['name'], loc, j['text'].replace("\n", " // ")))
 
-      print("{:30}\t{:30}\t{}".format(j['user']['name'], loc, j['text'].replace("\n", " // ")))
-
+  out.write("\n]")
 

@@ -18,15 +18,15 @@ ORDER BY ::
 * [CPS] high school by state
 
 JOIN ::
-* [RES, CPS] worked last week (1Y, 2N) by ed attainment
-  
+* [RES, CPS] worked last week (1Y, 2N) by ed attainment -- ex/worked.sql
+* [RES, CPS] education by state with age cut            -- ex/education_state_join.sql
 
 SUBQUERY :: 
-* [CPS, ACT] time spent directly engaging children, by years of education.
+* [CPS, ACT] time spent directly engaging children, by years of education. -- ex/child_engagement_ed.sql
 * [CPS, ACT] time spent directly engaging children, by sex.
   [CPS, ACT] time spent directly engaging children, by spouse or partner present.
   [CPS, ACT] time spent directly engaging children, by work status.
   [CPS, ACT] time spent directly engaging children, by GEDIV/GEREG.
 * [ACT, CPS, RES] married by attended church
-  [ACT, ROS] housework by sex
+* [ACT, ROS] housework by sex
   [ACT, ROS, CPS] housework by sex and educational atainment

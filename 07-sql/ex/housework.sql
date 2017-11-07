@@ -1,11 +1,12 @@
 SELECT 
-  cps.educational_attainment ed,
+  cps.years_education ed,
   roster.edited_sex sex,
-  AVG(housework)
+  ROUND(AVG(housework), 2) housework,
+  COUNT(housework) "(N)"
 FROM (
   SELECT
     case_id,
-    SUM((activity_code/10000 = 2) * duration) housework
+    SUM((activity_code/10000 = 2) * duration/60.) housework
   FROM
     activities
   GROUP BY case_id
@@ -16,6 +17,8 @@ JOIN cps ON
 JOIN roster ON
   sum_activities.case_id = roster.case_id AND
   roster.line_no = 1
+WHERE 
+  edited_age > 20
 GROUP BY
   ed, sex
 ;

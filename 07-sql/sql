@@ -22,18 +22,18 @@
 -- Search efficiently over many GBs, or hundreds of GBs of data...
 -- Maintain \emph{one} copy of the data; allow many people to acces it (servers).
 -- \emph{Really} huge datasets need different models than discussed today.
-- In the `relational model,' the data are stored in interrelated `tables.'
+- In the `relational model,' data are stored in interrelated `tables.'
 - Each record (row) is uniquely identified by a `primary key' (index).
 - Differs from composite objects in object-oriented programming, since many records in one table may link to a single record of another (e.g., people to a city) and several records may link in different ways (grade to teacher, student, and school).
 
 + Our Example: The American Time Use Survey
 - ATUS is a subset of the Current Population Survey.
-- Respondents record all activities performed on a ``diary day," in 15-minute increments.
+- Respondents record all activities performed on a ``diary day."
 - Survey provides micro-data in tables including:
 -- \chred{CPS}: data from the CPS interviews.
 -- \chred{Roster}: Stats on each member of the household + non-hh children, and relationship to respondent.
 -- \chred{Respondent}: Detailed info and summary data on the respondent.
--- \chred{Activity}: Code and duration of each activity in the day.
+-- \chred{Activity}: Detailed code and duration of each activity in the day.
 
 + Tables of the American Time Use Survey
 ../img/rdb.pdf
@@ -151,9 +151,8 @@ We'll talk about interfacing to pandas, on Wednesday
 
 +++ Creating Tables
 
-+ CREATE TABLE
-- Most likely, you will be a database rather than developer.
-- But it's useful to understand how to create a simple database.
++ \tt{CREATE TABLE}
+- Most likely, you will be a database user rather than developer, but it's useful to understand how to create a simple database.
 ` \pr sqlite3 my\_new\_db.sqlite
 \sqlexternal{ex/create.sql}
 - This defines the \emph{schema} of a table.
@@ -169,8 +168,13 @@ We'll talk about interfacing to pandas, on Wednesday
 ''' When the RDBMS evaluates a statement, it begins by `parsing' and compiling it: reading it and turning it into a computer-ready, optimized plan.  Most RDBMSs treat this as separate from the execution step, so you can `recycle' the execution plan.  
 
 + Creating a Table From the Command Line
-- There's a shortcut in \tt{sqlite3} for loading data from a csv file:
-` \pr CREATE TABLE chicago (Last TEXT, First TEXT, Position TEXT, Department TEXT, Salary REAL); \\ \pr .mode csv \\ \pr .import salaries.csv chicago
+- There's a shortcut in \tt{sqlite3} for loading data from a csv file.
+-- All RDBMSs provide some analogous functionality for loading data.
+` \pr CREATE TABLE chicago (Last TEXT, First TEXT, Position TEXT, Department TEXT, FP TEXT, SH TEXT, Hours INTEGER, Salary REAL, Wage REAL);\\ \pr .mode csv \\ \pr \chred{.import salaries.csv chicago} \\ \pr .mode columns
+- Let's ask some simple questions:
+-- Best-paid salaried workers in the city?
+-- Departments with the highest average salary?
+-- Departments with the highest fraction non-salaried workers?
 - You'll try this, for homework.
 
 +++ Access from Python 
@@ -181,7 +185,7 @@ We'll talk about interfacing to pandas, on Wednesday
 \only<1>{\pythonexternal{ex/sqlite_minimal.py}}
 \only<2>{\pythonexternal{ex/sqlite_pandas.py}}
 
-+ Broader Example: Goal
++ Broader Example: Child Engagement
 - Want direct child engagement by parent education.
 -- Will sum over activities, per person.
 - Use \tt{years\_education}, \tt{activity\_code}, and \tt{duration}; join on \tt{case\_id} and \tt{line\_no}.
@@ -191,13 +195,20 @@ We'll talk about interfacing to pandas, on Wednesday
 # Write a SQL query to give us the formatted data.
 # Use this query load the data in pandas, and plot it.
 
-+ A Larger Example: SQL \tright \small{\tt{ex/direct\_engagement.sql}}
++ Engagement: SQL \tright \small{\tt{ex/direct\_engagement.sql}}
 \sqlexternal{ex/direct_engagement.sql}
 
-+ A Larger Example: Python \tright \small{\tt{ex/child\_engagement.py}}
++ Engagement: Python \tright \small{\tt{ex/child\_engagement.py}}
 \pythonexternal{ex/child_engagement.py}
 
-+ Results
++ Engagement: Results
 <0.5em
 engagement.pdf:0.9
+
++ Housework: Python 
+\pythonexternal{ex/housework.py}
+
++ Housework: Results
+<0.5em
+housework.pdf:0.85
 

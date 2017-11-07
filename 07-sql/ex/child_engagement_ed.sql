@@ -7,6 +7,8 @@ FROM
   respondents
 INNER JOIN cps ON 
   respondents.case_id = cps.case_id AND respondents.line_no = cps.line_no
+INNER JOIN roster ON
+  respondents.case_id = roster.case_id and respondents.line_no = roster.line_no
 INNER JOIN (
   SELECT 
     activities.case_id, 
@@ -14,8 +16,10 @@ INNER JOIN (
   FROM 
     activities GROUP BY case_id) 
 AS activities_sum ON 
-  respondents.case_id = activities_sum.case_id
+  respondents.case_id = activities_sum.case_id AND
+  respondents.line_no = 1
 WHERE
+  edited_age > 20 AND
   number_of_hh_children > 0 AND
   edited_labor_force_status < 3
 GROUP BY

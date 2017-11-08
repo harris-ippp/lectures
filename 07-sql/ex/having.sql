@@ -1,7 +1,7 @@
 SELECT 
   number_of_hh_children Children, 
-  AVG(daily_time_secondary_childcare_hh_children/60) 
-    AS "Secondary Childcare", 
+  AVG(daily_time_alone_non_work/60) 
+    AS "Alone Time", 
   COUNT(number_of_hh_children) N
 FROM respondents 
 GROUP BY number_of_hh_children 

@@ -1,8 +1,8 @@
+#!/usr/bin/env python 
+
 import requests
 
-addr =  "http://api.census.gov/data/2014/acs5/profile?"
-addr += "for=tract:*&in=state:42+county:*"
-addr += "&get=NAME,DP02_0058E,DP02_0058M"
+addr = "https://harris-ippp.github.io/lectures/"
 
 resp = requests.get(addr) # this is it!!
 # pt = requests.put('addr', data = {'key':'value'})
@@ -10,6 +10,6 @@ resp = requests.get(addr) # this is it!!
 
 s = resp.status_code
 t = resp.text
-c = resp.content
-j = resp.json()
+# j = resp.json()
+print(s, t)
 

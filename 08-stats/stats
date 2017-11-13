@@ -1,1 +1,64 @@
-Hey
+^T: Graphical and Statistical Packages
+^I: Introduction to Programming for Public Policy
+^SI: Intro Programming
+^D: November 13, 2017
+^H: \include{pythonlst}
+^H: \usepackage{dsfont}
+
++ Outline
+Focus thus far: basic programming, finding resources, and manipulating (new) file formats (html, json, SQL, etc.).\\
+>1em
+This week: anchor these data skills in exploratory data analysis.
+- \link{https://seaborn.pydata.org/tutorial.html}{seaborn}: fast and attractive plotting library (matplotlib+).
+- \link{http://scipy.github.io/devdocs/tutorial/index.html}{scipy}\chred{.}\link{http://scipy.github.io/devdocs/stats.html\#statistical-functions}{stats}: basic statistical tests (correlation, $t$-tests, \&c.).
+- \link{http://www.statsmodels.org/stable/examples/index.html}{statsmodels}: `stata for python' -- OLS up to complex models.
+I will cover a \emph{tiny} fraction of these libraries.  Check them out! \\
+>1em
+Time permitting: pointers for classification problems and fancier methods.
+- \link{http://scikit-learn.org/stable/index.html}{scikit-learn}: clustering, classification, and machine learning toolkit.
+
++ Seaborn
+\pythonexternal{ex/sns_import.py}
+>1em
+Seaborn does two things for us:
+# It changes the matplotlib defaults and thus the \link{https://seaborn.pydata.org/tutorial/aesthetics.html}{aesthetics} of any plot through pandas.
+# It provides methods for making \link{https://seaborn.pydata.org/api.html\#categorical-plots}{attractive plots}.  Among others:
+#- \link{https://seaborn.pydata.org/generated/seaborn.distplot.html}{distplot}: histograms with KDE or PDF fit.
+#- \link{https://seaborn.pydata.org/generated/seaborn.regplot.html}{regplot}: scatter plot and regression with error bands.
+#- \link{https://seaborn.pydata.org/generated/seaborn.boxplot.html}{boxplot} or \link{https://seaborn.pydata.org/generated/seaborn.violinplot.html}{violinplot}: Tukey's IQR + whiskers, and modern variants.
+#- \link{https://seaborn.pydata.org/generated/seaborn.pointplot.html}{pointplot}: point estimates with bootstrap CIs.
+#- \link{https://seaborn.pydata.org/generated/seaborn.jointplot.html}{jointplot}: simultaneous 1D and 2D -- scatter, hex grid, KDE, etc.  (Good alternative for scatter with too many observations.)
+#- \dots
+
++ Seaborn Aesthetics
+Seaborn will change the aesthetics.  You can manipulate them further:
+- \tt{sns.set\_style("whitegrid")} changes total look to one of seaborn's (good) defaults.
+- \tt{sns.set\_context("notebook")} changes the sizing of the text.
+Both of these allow you to fine-tune any further parameters.  (This actually directly wraps matplotlib.) \\
+>1em
+\pythonexternal{ex/sns_aesthetics.py}
+
++ Seaborn Plotting
+- Each Seaborn method has a $\unsim$dozen arguments.  Basically, you have to provide the data.
+- Most methods return a (manipulable) axis.
+\pythonexternal{ex/seaborn_boxplot.py}
+
++ Scipy 
+\pythonexternal{ex/scipy_import.py}
+- Scipy is one-stop shopping for statistical tests:
+-- \link{http://scipy.github.io/devdocs/generated/scipy.stats.ttest\_ind.html}{$\bm{t}$-test}: \tt{ttest\_ind(a, b, equal\_var = False)}.
+-- \link{http://scipy.github.io/devdocs/generated/scipy.stats.pearsonr.html}{Pearson's $\bm{r}$}: \tt{pearsonr(x, y)}
+-- \link{http://scipy.github.io/devdocs/generated/scipy.stats.spearmanr.html}{Spearman's rank correlation}: \tt{spearmanr(x, y)}
+-- \link{http://scipy.github.io/devdocs/generated/scipy.stats.linregress.html}{Linear regression}: \tt{linregress(x, y)}
+- It provides methods for many \link{http://scipy.github.io/devdocs/generated/scipy.stats.rv\_continuous.html}{PDFs} (e.g., \link{http://scipy.github.io/devdocs/generated/scipy.stats.norm.html\#methods}{norm}).
+-- Among others: \tt{rvs()} (random variables), \tt{pdf()}, \tt{cdf()}.
+-- If you want to mock up a model, these can be extremely helpful.
+
++ Statsmodels (OLS and WLS)
+Statsmodels provides intuitive model building (patsy).  You'll need:
+\pythonexternal{ex/smf_ols.py}
+- Patsy understands numpy functions (log, pow, exp, etc.).
+- Strings are interpreted as categories.  To treat a numerical value as a category (sex, state, etc.), you can use \tt{C(state)}.
+- Interactions \emph{and} variables are specified \tt{A*B}, while \tt{A:B} is the interactions \emph{only}.
+- After fitting, check \tt{model.summary()} or retrieve \tt{model.params} or \tt{model.resid}.
+

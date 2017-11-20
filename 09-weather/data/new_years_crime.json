@@ -1,0 +1,110 @@
+[
+  {
+    "Offense": "HUMAN TRAFFICKING",
+    "NYD": "2"
+  },
+  {
+    "Offense": "GAMBLING",
+    "NYD": "4"
+  },
+  {
+    "Offense": "INTIMIDATION",
+    "NYD": "6"
+  },
+  {
+    "Offense": "OBSCENITY",
+    "NYD": "10"
+  },
+  {
+    "Offense": "STALKING",
+    "NYD": "13"
+  },
+  {
+    "Offense": "KIDNAPPING",
+    "NYD": "15"
+  },
+  {
+    "Offense": "HOMICIDE",
+    "NYD": "18"
+  },
+  {
+    "Offense": "ARSON",
+    "NYD": "24"
+  },
+  {
+    "Offense": "INTERFERENCE WITH PUBLIC OFFICER",
+    "NYD": "39"
+  },
+  {
+    "Offense": "LIQUOR LAW VIOLATION",
+    "NYD": "45"
+  },
+  {
+    "Offense": "PROSTITUTION",
+    "NYD": "46"
+  },
+  {
+    "Offense": "PUBLIC PEACE VIOLATION",
+    "NYD": "82"
+  },
+  {
+    "Offense": "CRIMINAL TRESPASS",
+    "NYD": "328"
+  },
+  {
+    "Offense": "ROBBERY",
+    "NYD": "516"
+  },
+  {
+    "Offense": "SEX OFFENSE",
+    "NYD": "550"
+  },
+  {
+    "Offense": "CRIM SEXUAL ASSAULT",
+    "NYD": "563"
+  },
+  {
+    "Offense": "WEAPONS VIOLATION",
+    "NYD": "565"
+  },
+  {
+    "Offense": "BURGLARY",
+    "NYD": "575"
+  },
+  {
+    "Offense": "MOTOR VEHICLE THEFT",
+    "NYD": "661"
+  },
+  {
+    "Offense": "ASSAULT",
+    "NYD": "771"
+  },
+  {
+    "Offense": "NARCOTICS",
+    "NYD": "1182"
+  },
+  {
+    "Offense": "OFFENSE INVOLVING CHILDREN",
+    "NYD": "1406"
+  },
+  {
+    "Offense": "DECEPTIVE PRACTICE",
+    "NYD": "1545"
+  },
+  {
+    "Offense": "OTHER OFFENSE",
+    "NYD": "1618"
+  },
+  {
+    "Offense": "CRIMINAL DAMAGE",
+    "NYD": "2167"
+  },
+  {
+    "Offense": "BATTERY",
+    "NYD": "4270"
+  },
+  {
+    "Offense": "THEFT",
+    "NYD": "5193"
+  }
+]

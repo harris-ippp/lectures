@@ -2,7 +2,7 @@
 ^ST: GIS
 ^I: Introduction to Programming for Public Policy
 ^SI: Intro Programming
-^D: November 14, 2016
+^D: November 27, 2017
 ^H: \include{pythonlst}
 
 + Geographic Information Systems: Maps
@@ -18,7 +18,7 @@ People love maps -- emotional response to `seeing yourself.'
 #- Finding and importing shapefiles and geojson (like \tt{read\_csv()}).
 #- Projections (briefly). \\ \vspace{1em}
 # Attribute and spatial joins.
-#- Using the census geolocation API (APIs). 
+#- Geocoding APIs: geopy/nominatim, Census, etc.
 #- Making a map with real data! \\ \vspace{1em}
 # Making a simple \emph{web} (!) map with GeoPandas 
 }
@@ -40,7 +40,7 @@ People love maps -- emotional response to `seeing yourself.'
 ` import geopandas as gpd \\ gdf = gpd.read\_file("myfile.shp") \\ gdf.plot() \# WOW!!!!
 - All of the `standard' dataframe operations (slicing, indexing, merging) are still available.
 
-+ Making a Slightly Better Map 
++ Making a Better Map 
 - Let's restrict ourselves to the contiguous 48 states.
 - Make a mask to get rid of Alaska and Hawaii (STATEFP 2 and 15), and the territories (STATEFP $≥ 57$).
 -- Alternative: translate, rotate, and scale them with \link{https://shapely.readthedocs.io/en/latest/manual.html}{shapely}.
@@ -81,7 +81,7 @@ Two examples:
 + Choropleth Maps: Shaded Areas
 Easy to make basic, beautiful maps!
 \pythonexternal{ex/choropleth.py}
-- The built-in method also allows for \tt{quantiles} (default), \tt{equal\_intervals} (linear), and \tt{fisher\_jenks}.
+- The built-in method also allows for \tt{equal\_intervals} (linear, default), \tt{quantiles}, and \tt{fisher\_jenks}.
 -- Fisher Jenks defines categories by minimizing the in-group variance , and maximizing the between-group variance.
 -- Most lay-people will only understand equal intervals!!
 -- Without a scheme, geopandas will make a smooth, equal-interval coloring but a bad legend.
@@ -130,13 +130,13 @@ Easy to make basic, beautiful maps!
 - Many geocoding services (Census, Texas A\&M) also provide census tracts, counties, etc. $⟹ $ Huge time saver!
 
 +[fragile] Built-In Geocoding
-- \tt{geopy} plugs into the OpenStreetMap `Nominatim' API.
+- \tt{geopy} plugs into the OpenStreetMap `Nominatim' API, as well as google bing, yahoo, and openmapquest.
+-- Some of the others require API keys for large numbers of requests.
 \begin{tcolorbox}
 \verb|from geopy.geocoders import Nominatim| \\
-\verb|Nominatim().geocode("1155 E. 60th St, Chicago 60637")| \\
+\verb|Nominatim().geocode("1155 E. 60th St, Chicago 60637")| 
 \end{tcolorbox}
-- GeoPandas has \tt{geopy} built-in, with google, bing, yahoo, openmapquest, or nominatim.
--- Some of the others require API keys for large numbers of requests.
+- GeoPandas provides tools to do many geocodes in one pass:
 \begin{tcolorbox}
 \verb|gpd.tools.geocode(["London", "Paris", | \\
 \verb|                   "New York", "Hong Kong"]) |

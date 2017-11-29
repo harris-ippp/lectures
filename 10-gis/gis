@@ -163,3 +163,13 @@ Spatial operations (\tt{intersects}, \tt{within}, and \tt{contains}) are effecti
 - Curl these shapefiles for the world:
 \centering \fontsize{9}{11} \selectfont http://thematicmapping.org/downloads/TM\_WORLD\_BORDERS\_SIMPL-0.3.zip \normalsize 
 
++ Spatial Operations: Beyond Joins and Aggregations
+With spatial operations, we can create variables that express the distances to a point of service/care (trauma center), or the amount of a resource (e.g., park-land or grocery store square-footage) available within a radius.
+- Non-trivial questions: how close do you have to you be to a park to enjoy it, or to a grocery store to use it?
+- Geopandas provides these operations through \chred{shapely}.
+- To reduce an entire dataset to one shape: \tt{gdf.unary\_union}.
+../img/spatial_op.pdf
+
++ Access to Parks
+\vspace{0.5em} City Parks \\ \vspace{1.5em} ex/individual_parks.pdf; Distance to Area-Weighted Park \\ \vspace{2em} ex/parks_variable_buffer.pdf; Quantiles of Area, $<$ 250m from Census Tract \\ \vspace{2em} ex/parks_area.pdf 
+
